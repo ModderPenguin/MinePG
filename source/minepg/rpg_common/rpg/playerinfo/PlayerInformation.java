@@ -12,7 +12,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
     public static final String IDENTIFIER = "minepg_playerinfo";
     
     private String playersClass;
-    private boolean hasClassChosen = false;
+    private boolean hasClassBeenChosen = false;
 
     public static PlayerInformation forPlayer(Entity player) {
         return (PlayerInformation)player.getExtendedProperties(IDENTIFIER);
@@ -37,7 +37,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         NBTTagCompound nbt = new NBTTagCompound();
         
         nbt.setString("playersClass", playersClass);
-        nbt.setBoolean("hasClassChosen", hasClassChosen);
+        nbt.setBoolean("hasClassBeenChosen", hasClassBeenChosen);
         
         nbtPlayer.setCompoundTag(IDENTIFIER, nbt);
     }
@@ -47,29 +47,29 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
         
         playersClass = nbt.getString("playersClass");
-        hasClassChosen = nbt.getBoolean("hasClassChosen");
+        hasClassBeenChosen = nbt.getBoolean("hasClassBeenChosen");
     }
     
     public boolean hasPlayerChosenClass() {
         if(getPlayersClass() == null) {
-            hasClassChosen = false;
-            return hasClassChosen;
+            hasClassBeenChosen = false;
+            return hasClassBeenChosen;
         } else {
-            hasClassChosen = true;
-            return hasClassChosen;
+            hasClassBeenChosen = true;
+            return hasClassBeenChosen;
         }
     }
     
-    public boolean setHasClassChosen(boolean hasClassChosen) {
-        if(this.hasClassChosen != hasClassChosen) {
-            this.hasClassChosen = hasClassChosen;
+    public boolean setHasClassChosen(boolean hasClassBeenChosen) {
+        if(this.hasClassBeenChosen != hasClassBeenChosen) {
+            this.hasClassBeenChosen = hasClassBeenChosen;
             setDirty();
         }
-        return this.hasClassChosen;
+        return this.hasClassBeenChosen;
     }
     
-    public boolean getHasClassChosen() {
-        return hasClassChosen;
+    public boolean getHasClassBeenChosen() {
+        return hasClassBeenChosen;
     }
     
     public String getPlayersClass() {

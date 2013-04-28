@@ -1,12 +1,10 @@
 package rpg.client.gui;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.WorldInfo;
 import rpg.ClassList;
-import rpg.IOHelper;
 import rpg.PlayerClassHandler;
 import rpg.gui.ContainerEmpty;
 import rpg.world.gen.feature.WorldGenArcherStarterChest;

@@ -11,25 +11,25 @@ import cpw.mods.fml.relauncher.Side;
 public class PacketPlayerInfo extends MinePGPacket {
     
     private String playersClass;
-    private boolean hasClassChosen;
+    private boolean hasClassBeenChosen;
     
-
     public PacketPlayerInfo() {}
 
     public PacketPlayerInfo(PlayerInformation playerInformation) {
         playersClass = playerInformation.getPlayersClass();
+        hasClassBeenChosen = playerInformation.getHasClassBeenChosen();
     }
 
     @Override
     protected void writeData(ByteArrayDataOutput out) {
         out.writeChars(playersClass);
-        out.writeBoolean(hasClassChosen);
+        out.writeBoolean(hasClassBeenChosen);
     }
 
     @Override
     protected void readData(ByteArrayDataInput in) {
         playersClass = in.readLine();
-        hasClassChosen = in.readBoolean();
+        hasClassBeenChosen = in.readBoolean();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class PacketPlayerInfo extends MinePGPacket {
         if (side.isClient()) {
             PlayerInformation info = PlayerInformation.forPlayer(player);
             info.setPlayersClass(playersClass);
-            info.setHasClassChosen(hasClassChosen);
+            info.setHasClassChosen(hasClassBeenChosen);
         }
     }
 }
