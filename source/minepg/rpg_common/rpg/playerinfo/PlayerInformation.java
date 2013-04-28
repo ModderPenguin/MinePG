@@ -12,7 +12,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
     public static final String IDENTIFIER = "minepg_playerinfo";
     
     private String playersClass;
-    private boolean hasClassChosen;
+    private boolean hasClassChosen = false;
 
     public static PlayerInformation forPlayer(Entity player) {
         return (PlayerInformation)player.getExtendedProperties(IDENTIFIER);

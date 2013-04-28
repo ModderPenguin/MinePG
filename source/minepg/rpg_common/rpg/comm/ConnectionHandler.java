@@ -17,12 +17,14 @@ public class ConnectionHandler implements IConnectionHandler {
 	
 	@Override
 	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
+	    /*
 	    PlayerInformation info = PlayerInformation.forPlayer((EntityPlayerMP)player);
-	    if(info.hasPlayerChosenClass() == true) {
+	    if(info.hasPlayerChosenClass() == false) {
 			((EntityPlayerMP) player).openGui(RPG.instance, EnumGui.ChooseStarter.getIndex(), ((EntityPlayerMP) player).worldObj, 0, 0, 0);
 		} else {
 			System.out.println("[PLAYER CLASS] Class: " + PlayerClassHandler.getPlayersClass());
 		}
+		*/
 	}
 
 	@Override
