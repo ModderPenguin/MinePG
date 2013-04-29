@@ -3,7 +3,7 @@ package rpg.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.world.World;
-import rpg.config.MinotaurBlocks;
+import rpg.config.blocks.MinotaurBlocks;
 
 public class BlockPortalMino extends BlockPortal {
 

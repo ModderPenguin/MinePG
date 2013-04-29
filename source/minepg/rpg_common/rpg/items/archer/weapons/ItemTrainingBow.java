@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import rpg.PlayerClassHandler;
 import rpg.items.ItemRPGBow;
+import rpg.playerinfo.PlayerInformation;
 
 public class ItemTrainingBow extends ItemRPGBow
 {
@@ -16,8 +16,9 @@ public class ItemTrainingBow extends ItemRPGBow
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        // Checks the players class and displays a color accordingly
-        if(PlayerClassHandler.getPlayersClass() == "Archer") {
+        PlayerInformation info = PlayerInformation.forPlayer(par2EntityPlayer);
+        // Checks the players class and colored item name accordingly
+        if(info.getPlayersClass() == "Archer") {
             par3List.add("A Bow used in");
             par3List.add("training");
             par3List.add("");

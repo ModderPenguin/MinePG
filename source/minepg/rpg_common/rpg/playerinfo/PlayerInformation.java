@@ -72,10 +72,19 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         return hasClassBeenChosen;
     }
     
+    /**
+     * retrieves the players current class
+     * @return returns the players current class
+     */
     public String getPlayersClass() {
         return playersClass;
     }
     
+    /**
+     * sets the players class to the class specified in @param playersClass
+     * @param playersClass: the class to set the player to
+     * @return returns the players class
+     */
     public String setPlayersClass(String playersClass) {
         if(this.playersClass != playersClass) {
             this.playersClass = playersClass;

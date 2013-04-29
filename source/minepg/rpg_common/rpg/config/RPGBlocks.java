@@ -2,6 +2,8 @@ package rpg.config;
 
 import java.lang.reflect.Field;
 
+import rpg.config.blocks.MinotaurBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;

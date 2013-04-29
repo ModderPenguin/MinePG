@@ -1,12 +1,11 @@
-package rpg.enums;
+package rpg.enums.weapons;
 
 import net.minecraft.item.Item;
 import rpg.config.RPGItems;
 
-public enum EnumRPGHammerMaterial {
+public enum EnumRPGWandMaterial {
 	TRAINING(32, 1, 1),
 	TAURITE(200, 5, 10);
-
 
     /**
      * The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32)
@@ -22,7 +21,7 @@ public enum EnumRPGHammerMaterial {
     //Added by forge for custom Armor materials.
     public Item customCraftingMaterial = null;
 
-    private EnumRPGHammerMaterial(int par3, int par4, int par5)
+    private EnumRPGWandMaterial(int par3, int par4, int par5)
     {
         this.maxUses = par3;
         this.damageVsEntity = par4;
@@ -57,7 +56,7 @@ public enum EnumRPGHammerMaterial {
      * Return the crafting material for this tool material, used to determine the item that can be used to repair a tool
      * with an anvil
      */
-    public int getHammerCraftingMaterial()
+    public int getWandCraftingMaterial()
     {
         switch (this)
         {

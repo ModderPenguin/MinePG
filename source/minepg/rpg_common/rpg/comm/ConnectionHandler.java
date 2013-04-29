@@ -1,15 +1,10 @@
 package rpg.comm;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
 import net.minecraft.network.packet.NetHandler;
 import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.server.MinecraftServer;
-import rpg.PlayerClassHandler;
-import rpg.RPG;
-import rpg.enums.EnumGui;
-import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.Player;
 

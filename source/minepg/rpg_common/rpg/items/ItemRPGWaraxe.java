@@ -7,15 +7,20 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import rpg.enums.EnumRPGToolMaterial;
+import rpg.enums.weapons.EnumRPGWaraxeMaterial;
+import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemRPGWaraxe extends RPGItem {
 	private int weaponDamage;
-    private final EnumRPGToolMaterial toolMaterial;
-    public ItemRPGWaraxe(int id, EnumRPGToolMaterial material, String name)
+    private final EnumRPGWaraxeMaterial toolMaterial;
+    private final int durationOfPotionEffect;
+    private final int amplifierOfPotionEffect;
+    public ItemRPGWaraxe(int id, EnumRPGWaraxeMaterial material, int duration, int amplifier, String name)
     {
         super(id, name);
         this.toolMaterial = material;
@@ -23,6 +28,8 @@ public class ItemRPGWaraxe extends RPGItem {
         this.setMaxDamage(material.getMaxUses());
         this.setCreativeTab(CreativeTabs.tabCombat);
         this.weaponDamage = 4 + material.getDamageVsEntity();
+        this.durationOfPotionEffect = duration;
+        this.amplifierOfPotionEffect = amplifier;
     }
     
     public int func_82803_g()
@@ -79,8 +86,16 @@ public class ItemRPGWaraxe extends RPGItem {
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
-        return par1ItemStack;
+        PlayerInformation info = PlayerInformation.forPlayer(par3EntityPlayer);
+        
+        if(info.getPlayersClass() == "Berserker" || info.getPlayersClass() == "Demon") {
+            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.resistance.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+            return par1ItemStack;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -112,6 +127,6 @@ public class ItemRPGWaraxe extends RPGItem {
      */
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
-        return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return this.toolMaterial.getWaraxeCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 }

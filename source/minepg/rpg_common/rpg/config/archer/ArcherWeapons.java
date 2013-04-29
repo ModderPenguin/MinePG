@@ -16,8 +16,8 @@ public class ArcherWeapons {
 	public static Item arrowTraining;
 	
 	public static void load(Configuration config) {
-		bowTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Bow ID", 1013).getInt();
-		arrowTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Arrow ID", 1014).getInt();
+		bowTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Bow ID", 1012).getInt();
+		arrowTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Arrow ID", 1013).getInt();
 		
 		bowTraining = new ItemTrainingBow(bowTrainingID, "bowTraining").setCreativeTab(CreativeTabs.tabCombat);
 		arrowTraining = new RPGItem(arrowTrainingID, "arrowTraining").setCreativeTab(CreativeTabs.tabCombat);

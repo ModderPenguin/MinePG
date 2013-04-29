@@ -1,4 +1,4 @@
-package rpg.items.armor.ds;
+package rpg.items.armor.mage;
 
 import java.util.List;
 

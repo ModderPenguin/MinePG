@@ -1,7 +1,7 @@
 package rpg.config.armor;
 
 import rpg.enums.EnumRPGArmorMaterial;
-import rpg.items.armor.ds.DSTrainingArmor;
+import rpg.items.armor.mage.DSTrainingArmor;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -19,7 +19,7 @@ public class DSArmor {
 	public static void load(Configuration config) {
 		hatTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Helm ID", 1005).getInt();
 		robeTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Robe ID", 1006).getInt();
-		sandalsTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Sandals ID", 1008).getInt();
+		sandalsTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Sandals ID", 1007).getInt();
 		
 		hatTraining = new DSTrainingArmor(hatTrainingID, EnumRPGArmorMaterial.TRAINING, 0, 0, "hatTraining");
 		robeTraining = new DSTrainingArmor(robeTrainingID, EnumRPGArmorMaterial.TRAINING, 0, 1, "robeTraining");

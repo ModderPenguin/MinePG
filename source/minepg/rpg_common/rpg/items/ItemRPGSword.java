@@ -1,5 +1,7 @@
 package rpg.items;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,6 +12,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import rpg.enums.EnumRPGToolMaterial;
+import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,6 +33,22 @@ public class ItemRPGSword extends RPGItem
     public int func_82803_g()
     {
         return this.toolMaterial.getDamageVsEntity();
+    }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        PlayerInformation info = PlayerInformation.forPlayer(par2EntityPlayer);
+        // Checks the players class and colored item name accordingly
+        if(info.getPlayersClass() == "Warrior") {
+            par3List.add("Class: §AWarrior");
+            par3List.add("Class: §4Knight");
+        } else if(info.getPlayersClass() == "Knight") {
+            par3List.add("Class: §AWarrior");
+            par3List.add("Class: §AKnight");
+        } else {
+            par3List.add("Class: §4Warrior");
+            par3List.add("Class: §4Knight");
+        }
     }
 
     /**

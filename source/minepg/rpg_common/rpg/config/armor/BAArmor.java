@@ -1,7 +1,7 @@
 package rpg.config.armor;
 
 import rpg.enums.EnumRPGArmorMaterial;
-import rpg.items.armor.ba.BATrainingArmor;
+import rpg.items.armor.archer.BATrainingArmor;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.registry.LanguageRegistry;

@@ -19,6 +19,12 @@ public class PacketPlayerInfo extends MinePGPacket {
         playersClass = playerInformation.getPlayersClass();
         hasClassBeenChosen = playerInformation.getHasClassBeenChosen();
     }
+    
+    public PacketPlayerInfo(EntityPlayer player, String className) {
+        PlayerInformation info = PlayerInformation.forPlayer(player);
+        
+        info.setPlayersClass(className);
+    }
 
     @Override
     protected void writeData(ByteArrayDataOutput out) {

@@ -1,4 +1,4 @@
-package rpg.enums;
+package rpg.enums.weapons;
 
 import net.minecraft.item.Item;
 import rpg.config.RPGItems;

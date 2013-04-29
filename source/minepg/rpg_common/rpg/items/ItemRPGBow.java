@@ -1,5 +1,6 @@
 package rpg.items;
 
+import rpg.playerinfo.PlayerInformation;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
@@ -137,19 +138,26 @@ public class ItemRPGBow extends RPGItem
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
-        MinecraftForge.EVENT_BUS.post(event);
-        if (event.isCanceled())
-        {
-            return event.result;
+        PlayerInformation info = PlayerInformation.forPlayer(par3EntityPlayer);
+        
+        if(info.getPlayersClass() == "Archer" || info.getPlayersClass() == "Sniper" || info.getPlayersClass() == "Assassin" ||
+                info.getPlayersClass() == "Woodsmen" || info.getPlayersClass() == "Hunter") {
+            ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
+            MinecraftForge.EVENT_BUS.post(event);
+            if (event.isCanceled())
+            {
+                return event.result;
+            }
+            
+            if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(Item.arrow.itemID))
+            {
+                par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+            }
+            
+            return par1ItemStack;
+        } else {
+            return null;
         }
-
-        if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(Item.arrow.itemID))
-        {
-            par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
-        }
-
-        return par1ItemStack;
     }
 
     /**

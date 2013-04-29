@@ -1,4 +1,4 @@
-package rpg.items.armor.pk;
+package rpg.items.armor.warrior;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package rpg.items.armor.ba;
+package rpg.items.armor.archer;
 
 import java.util.List;
 

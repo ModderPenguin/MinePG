@@ -1,5 +1,7 @@
 package rpg.items;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -8,7 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import rpg.enums.EnumRPGStaffMaterial;
+import rpg.enums.weapons.EnumRPGStaffMaterial;
+import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,6 +33,29 @@ public class ItemRPGStaff extends RPGItem
     public int func_82803_g()
     {
         return this.toolMaterial.getDamageVsEntity();
+    }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        PlayerInformation info = PlayerInformation.forPlayer(par2EntityPlayer);
+        // Checks the players class and colored item name accordingly
+        if(info.getPlayersClass() == "Mage") {
+            par3List.add("Class: §AMage");
+            par3List.add("Class: §4Naturalist");
+            par3List.add("Class: §4Druid");
+        } else if(info.getPlayersClass() == "Naturalist") {
+            par3List.add("Class: §AMage");
+            par3List.add("Class: §ANaturalist");
+            par3List.add("Class: §4Druid");
+        } else if(info.getPlayersClass() == "Druid") {
+            par3List.add("Class: §AMage");
+            par3List.add("Class: §ANaturalist");
+            par3List.add("Class: §ADruid");
+        } else {
+            par3List.add("Class: §4Mage");
+            par3List.add("Class: §4Naturalist");
+            par3List.add("Class: §4Druid");
+        }
     }
 
     /**

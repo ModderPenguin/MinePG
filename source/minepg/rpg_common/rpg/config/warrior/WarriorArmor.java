@@ -1,11 +1,9 @@
-package rpg.config.knight;
+package rpg.config.warrior;
 
 import net.minecraftforge.common.Configuration;
 
-public class KnightArmor {
-	
-	
-	
+public class WarriorArmor {
+
 	public static void load(Configuration config) {
 		
 	}

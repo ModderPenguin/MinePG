@@ -1,4 +1,4 @@
-package rpg.config;
+package rpg.config.blocks;
 
 import java.lang.reflect.Field;
 
@@ -8,6 +8,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.Configuration;
 import rpg.blocks.BlockPortalMino;
 import rpg.blocks.BlockTauriteBlock;
+import rpg.config.RPGBlocks;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 

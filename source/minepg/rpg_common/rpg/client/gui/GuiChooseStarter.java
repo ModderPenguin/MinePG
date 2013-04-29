@@ -5,8 +5,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.WorldInfo;
 import rpg.ClassList;
-import rpg.PlayerClassHandler;
 import rpg.gui.ContainerEmpty;
+import rpg.network.packet.PacketPlayerInfo;
 import rpg.world.gen.feature.WorldGenArcherStarterChest;
 
 public class GuiChooseStarter extends GuiContainer {
@@ -45,7 +45,7 @@ public class GuiChooseStarter extends GuiContainer {
         
 		switch(button.id) {
 			case 0:
-				PlayerClassHandler.setPlayerClass("Archer");
+			    new PacketPlayerInfo(mc.thePlayer, "Archer").sendToPlayer(mc.thePlayer);
 				mc.thePlayer.addExperienceLevel(1);
 				mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the Archer");
 				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
@@ -56,7 +56,7 @@ public class GuiChooseStarter extends GuiContainer {
 		        archerStarterChest.generateChest();
 				break;
 			case 1:
-				PlayerClassHandler.setPlayerClass("Berserker");
+			    new PacketPlayerInfo(mc.thePlayer, "Mage").sendToPlayer(mc.thePlayer);
 				mc.thePlayer.addExperienceLevel(1);
 				mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the Mage");
 				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
@@ -66,7 +66,7 @@ public class GuiChooseStarter extends GuiContainer {
 				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this chest. It contains the items you will need for your journey");
 				break;
 			case 2:
-				PlayerClassHandler.setPlayerClass("Druid");
+			    new PacketPlayerInfo(mc.thePlayer, "Warrior").sendToPlayer(mc.thePlayer);
 				mc.thePlayer.addExperienceLevel(1);
 				mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the Warrior");
 				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");

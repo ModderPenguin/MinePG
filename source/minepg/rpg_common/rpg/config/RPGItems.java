@@ -4,14 +4,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import rpg.config.archer.ArcherItems;
-import rpg.config.armor.BAArmor;
-import rpg.config.armor.DSArmor;
-import rpg.config.armor.PKArmor;
-import rpg.config.berserker.BerserkerItems;
-import rpg.config.druid.DruidItems;
-import rpg.config.knight.KnightItems;
-import rpg.config.paladin.PaladinItems;
-import rpg.config.sorcerer.SorcererItems;
+import rpg.config.mage.MageItems;
+import rpg.config.warrior.WarriorItems;
 import rpg.items.materials.ItemTaurite;
 import rpg.items.materials.ItemTauriteCloth;
 import rpg.items.materials.ItemTrainingCloth;
@@ -31,15 +25,10 @@ public class RPGItems {
 	public static Item tauriteCloth;
 	
 	public static void load(Configuration config) {
-		DSArmor.load(config);
-		PKArmor.load(config);
-		BAArmor.load(config);
-		DruidItems.load(config);
-		SorcererItems.load(config);
-		PaladinItems.load(config);
-		KnightItems.load(config);
-		BerserkerItems.load(config);
 		ArcherItems.load(config);
+		MageItems.load(config);
+		WarriorItems.load(config);
+		
 		trainingIngotID = config.get(Configuration.CATEGORY_ITEM, "Training Ingot ID", 1000).getInt();
 		trainingClothID = config.get(Configuration.CATEGORY_ITEM, "Training Cloth ID", 1001).getInt();
 		tauriteID = config.get(Configuration.CATEGORY_ITEM, "Taurite ID", 1100).getInt();
@@ -52,15 +41,9 @@ public class RPGItems {
 	}
 	
 	public static void addNames() {
-		DSArmor.addNames();
-		PKArmor.addNames();
-		BAArmor.addNames();
-		DruidItems.addNames();
-		SorcererItems.addNames();
-		PaladinItems.addNames();
-		KnightItems.addNames();
-		BerserkerItems.addNames();
 		ArcherItems.addNames();
+		MageItems.addNames();
+		WarriorItems.addNames();
 		
 		LanguageRegistry.addName(trainingIngot, "Training Ingot");
 		LanguageRegistry.addName(trainingCloth, "Training Cloth");
