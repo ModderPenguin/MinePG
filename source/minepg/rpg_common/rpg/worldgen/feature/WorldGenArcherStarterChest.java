@@ -1,4 +1,4 @@
-package rpg.world.gen.feature;
+package rpg.worldgen.feature;
 
 import rpg.config.archer.ArcherWeapons;
 import rpg.config.armor.BAArmor;

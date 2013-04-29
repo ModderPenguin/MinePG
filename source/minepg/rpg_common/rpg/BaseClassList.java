@@ -1,6 +1,6 @@
 package rpg;
 
-public class ClassList {
+public class BaseClassList {
 	
     private static String[] classList = new String[]{"Archer", "Mage", "Warrior"};
 	

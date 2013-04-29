@@ -4,10 +4,10 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.WorldInfo;
-import rpg.ClassList;
+import rpg.BaseClassList;
 import rpg.gui.ContainerEmpty;
 import rpg.network.packet.PacketPlayerInfo;
-import rpg.world.gen.feature.WorldGenArcherStarterChest;
+import rpg.worldgen.feature.WorldGenArcherStarterChest;
 
 public class GuiChooseStarter extends GuiContainer {
 
@@ -16,7 +16,7 @@ public class GuiChooseStarter extends GuiContainer {
 
 	public GuiChooseStarter() {
 		super(new ContainerEmpty());
-		starterList = ClassList.getStarterStringList();
+		starterList = BaseClassList.getStarterStringList();
 	}
 
 	@SuppressWarnings("unchecked")
