@@ -7,14 +7,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 
-public class WorldGenageStarterChest {
+public class WorldGenMageStarterChest {
     
     private World world;
     private int x; //X
     private int y; //Y
     private int z; //Z
     
-    public WorldGenageStarterChest(World theWorld, int i, int j, int k) {
+    public WorldGenMageStarterChest(World theWorld, int i, int j, int k) {
         world = theWorld;
         x = i;
         y = j;

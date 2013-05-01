@@ -3,6 +3,7 @@ package rpg.worldgen.feature;
 import rpg.config.archer.ArcherWeapons;
 import rpg.config.armor.BAArmor;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
