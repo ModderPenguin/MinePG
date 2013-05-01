@@ -5,8 +5,6 @@ import static rpg.RPG.logger;
 import java.util.List;
 import java.util.Set;
 
-import rpg.RPG;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet;
@@ -14,6 +12,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.WorldServer;
+import rpg.RPG;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -35,7 +34,7 @@ public abstract class MinePGPacket {
     }
 
     static {
-        addMapping(0, PacketPlayerInfo.class);
+        
 
         idMapping = ImmutableBiMap.copyOf(idMapping);
     }
