@@ -6,7 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.world.storage.WorldInfo;
 import rpg.BaseClassList;
 import rpg.gui.ContainerEmpty;
-import rpg.network.packet.PacketPlayerInfo;
 import rpg.worldgen.feature.WorldGenArcherStarterChest;
 
 public class GuiChooseStarter extends GuiContainer {
@@ -37,43 +36,24 @@ public class GuiChooseStarter extends GuiContainer {
         int y = worldInfo.getSpawnY();
         int z = worldInfo.getSpawnZ();
         WorldGenArcherStarterChest archerStarterChest = new WorldGenArcherStarterChest(mc.theWorld, x, y, z);
-        //WorldGenArcherStarterChest berserkerStarterChest = new WorldGenArcherStarterChest(mc.theWorld, x, y, z);
-        //WorldGenBerserkerStarterChest druidStarterChest = new WorldGenBerserkerStarterChest(mc.theWorld, x, y, z);
-        //WorldGenDruidStarterChest knightStarterChest = new WorldGenDruidStarterChest(mc.theWorld, x, y, z);
-        //WorldGenPaladinStarterChest paladinStarterChest = new WorldGenPaladinStarterChest(mc.theWorld, x, y, z);
-        //WorldGenSorcererStarterChest sorcererStarterChest = new WorldGenSorcererStarterChest(mc.theWorld, x, y, z);
+                
+        mc.thePlayer.addExperienceLevel(1);
+		mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the [INSERT CLASS NAME]");
+		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
+		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
+		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");
+		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
+		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this chest. It contains the items you will need for your journey");
         
 		switch(button.id) {
 			case 0:
-			    new PacketPlayerInfo(mc.thePlayer, "Archer").sendToPlayer(mc.thePlayer);
-				mc.thePlayer.addExperienceLevel(1);
-				mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the Archer");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this chest. It contains the items you will need for your journey");
 		        archerStarterChest.generateChest();
 				break;
 			case 1:
-			    new PacketPlayerInfo(mc.thePlayer, "Mage").sendToPlayer(mc.thePlayer);
-				mc.thePlayer.addExperienceLevel(1);
-				mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the Mage");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this chest. It contains the items you will need for your journey");
+				
 				break;
 			case 2:
-			    new PacketPlayerInfo(mc.thePlayer, "Warrior").sendToPlayer(mc.thePlayer);
-				mc.thePlayer.addExperienceLevel(1);
-				mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the Warrior");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
-				mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this chest. It contains the items you will need for your journey");
+				
 				break;
 		}
 		mc.thePlayer.closeScreen();
