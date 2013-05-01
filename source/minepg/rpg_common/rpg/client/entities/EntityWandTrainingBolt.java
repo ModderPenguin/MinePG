@@ -1,13 +1,16 @@
 package rpg.client.entities;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class EntityWandTrainingBolt extends EntityThrowable
+public class EntityWandTrainingBolt extends EntityThrowable implements IProjectile
 {
-   public EntityWandTrainingBolt(World par1World)
+   public float arrowShake = 0;
+
+public EntityWandTrainingBolt(World par1World)
    {
        super(par1World);
        setThrowableHeading(this.motionX, this.motionY, this.motionZ, 3.0F, 1.0F);
