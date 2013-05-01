@@ -18,7 +18,6 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         return (PlayerInformation)player.getExtendedProperties(IDENTIFIER);
     }
 
-    @SuppressWarnings("unused")
     private boolean dirty = true;
 
     private final EntityPlayer player;
@@ -93,7 +92,6 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         return this.playersClass;
     }
 
-    @SuppressWarnings("unused")
     private void updateClient() {
         new PacketPlayerInfo(this).sendToPlayer(player);
     }

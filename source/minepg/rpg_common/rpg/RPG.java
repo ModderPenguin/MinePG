@@ -47,7 +47,7 @@ public class RPG {
 		{
 			MinecraftForge.EVENT_BUS.register(new SoundLoader());
 		}
-		RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));		
+		//RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));		
 	}
 
 	@Init
