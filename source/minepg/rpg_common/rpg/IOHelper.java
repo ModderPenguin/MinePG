@@ -24,18 +24,18 @@ public class IOHelper {
 		}
 	}
 	
-    public static String readFile( String file ) throws IOException {
-	    @SuppressWarnings("resource")
-        BufferedReader reader = new BufferedReader( new FileReader (file));
-	    String         line = null;
-	    StringBuilder  stringBuilder = new StringBuilder();
-	    String         ls = System.getProperty("line.separator");
+    public static String readFile(String file) throws IOException {
+    	@SuppressWarnings("resource")
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+	    String line = null;
+	    StringBuilder stringBuilder = new StringBuilder();
+	    String ls = System.getProperty("line.separator");
 
 	    while( ( line = reader.readLine() ) != null ) {
 	        stringBuilder.append( line );
 	        stringBuilder.append( ls );
 	    }
-
+	    
 	    return stringBuilder.toString();
 	}
 	
