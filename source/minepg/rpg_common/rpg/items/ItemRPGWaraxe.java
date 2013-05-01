@@ -1,5 +1,7 @@
 package rpg.items;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -10,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import rpg.PlayerClassHandler;
 import rpg.enums.weapons.EnumRPGWaraxeMaterial;
-import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,6 +32,16 @@ public class ItemRPGWaraxe extends RPGItem {
         this.weaponDamage = 4 + material.getDamageVsEntity();
         this.durationOfPotionEffect = duration;
         this.amplifierOfPotionEffect = amplifier;
+    }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        // Checks the players class and colored item name accordingly
+        if(PlayerClassHandler.getPlayersClass() == "Berserker") {
+            par3List.add("Class: §ABerserker");
+        } else {
+            par3List.add("Class: §4Berserker");
+        }
     }
     
     public int func_82803_g()
@@ -85,10 +97,8 @@ public class ItemRPGWaraxe extends RPGItem {
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {
-        PlayerInformation info = PlayerInformation.forPlayer(par3EntityPlayer);
-        
-        if(info.getPlayersClass() == "Berserker" || info.getPlayersClass() == "Demon") {
+    {        
+        if(PlayerClassHandler.getPlayersClass() == "Berserker" || PlayerClassHandler.getPlayersClass() == "Demon") {
             par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));
             par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.resistance.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));
             par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));

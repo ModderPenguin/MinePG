@@ -1,6 +1,5 @@
 package rpg.items;
 
-import rpg.playerinfo.PlayerInformation;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
@@ -15,14 +14,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import rpg.PlayerClassHandler;
+import rpg.lib.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemRPGBow extends RPGItem
 {
-    String bowpull0 = this.getUnlocalizedName().substring(5) + "_pull_0";
-    String bowpull1 = this.getUnlocalizedName().substring(5) + "_pull_1";
-    String bowpull2 = this.getUnlocalizedName().substring(5) + "_pull_2";
+    String bowpull0 = Reference.MOD_ID + this.getUnlocalizedName().substring(5) + "_pull_0";
+    String bowpull1 = Reference.MOD_ID + this.getUnlocalizedName().substring(5) + "_pull_1";
+    String bowpull2 = Reference.MOD_ID + this.getUnlocalizedName().substring(5) + "_pull_2";
     public final String[] bowPullIconNameArray = new String[] {bowpull0, bowpull1, bowpull2};
     @SideOnly(Side.CLIENT)
     private Icon[] iconArray;
@@ -137,11 +138,9 @@ public class ItemRPGBow extends RPGItem
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {
-        PlayerInformation info = PlayerInformation.forPlayer(par3EntityPlayer);
-        
-        if(info.getPlayersClass() == "Archer" || info.getPlayersClass() == "Sniper" || info.getPlayersClass() == "Assassin" ||
-                info.getPlayersClass() == "Woodsmen" || info.getPlayersClass() == "Hunter") {
+    {        
+        if(PlayerClassHandler.getPlayersClass() == "Archer" || PlayerClassHandler.getPlayersClass() == "Sniper" || PlayerClassHandler.getPlayersClass() == "Assassin" ||
+        		PlayerClassHandler.getPlayersClass() == "Woodsmen" || PlayerClassHandler.getPlayersClass() == "Hunter") {
             ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
             MinecraftForge.EVENT_BUS.post(event);
             if (event.isCanceled())

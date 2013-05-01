@@ -11,8 +11,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import rpg.PlayerClassHandler;
 import rpg.enums.EnumRPGToolMaterial;
-import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,12 +37,11 @@ public class ItemRPGSword extends RPGItem
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        PlayerInformation info = PlayerInformation.forPlayer(par2EntityPlayer);
         // Checks the players class and colored item name accordingly
-        if(info.getPlayersClass() == "Warrior") {
+        if(PlayerClassHandler.getPlayersClass() == "Warrior") {
             par3List.add("Class: §AWarrior");
             par3List.add("Class: §4Knight");
-        } else if(info.getPlayersClass() == "Knight") {
+        } else if(PlayerClassHandler.getPlayersClass() == "Knight") {
             par3List.add("Class: §AWarrior");
             par3List.add("Class: §AKnight");
         } else {

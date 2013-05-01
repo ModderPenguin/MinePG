@@ -10,8 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import rpg.PlayerClassHandler;
 import rpg.enums.weapons.EnumRPGStaffMaterial;
-import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,17 +37,16 @@ public class ItemRPGStaff extends RPGItem
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        PlayerInformation info = PlayerInformation.forPlayer(par2EntityPlayer);
         // Checks the players class and colored item name accordingly
-        if(info.getPlayersClass() == "Mage") {
+        if(PlayerClassHandler.getPlayersClass() == "Mage") {
             par3List.add("Class: §AMage");
             par3List.add("Class: §4Naturalist");
             par3List.add("Class: §4Druid");
-        } else if(info.getPlayersClass() == "Naturalist") {
+        } else if(PlayerClassHandler.getPlayersClass() == "Naturalist") {
             par3List.add("Class: §AMage");
             par3List.add("Class: §ANaturalist");
             par3List.add("Class: §4Druid");
-        } else if(info.getPlayersClass() == "Druid") {
+        } else if(PlayerClassHandler.getPlayersClass() == "Druid") {
             par3List.add("Class: §AMage");
             par3List.add("Class: §ANaturalist");
             par3List.add("Class: §ADruid");

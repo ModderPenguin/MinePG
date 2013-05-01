@@ -9,8 +9,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import rpg.PlayerClassHandler;
 import rpg.enums.weapons.EnumRPGHammerMaterial;
-import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -36,17 +36,16 @@ public class ItemRPGHammer extends RPGItem {
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        PlayerInformation info = PlayerInformation.forPlayer(par2EntityPlayer);
         // Checks the players class and colored item name accordingly
-        if(info.getPlayersClass() == "Warrior") {
+        if(PlayerClassHandler.getPlayersClass() == "Warrior") {
             par3List.add("Class: §AWarrior");
             par3List.add("Class: §4Paladin");
             par3List.add("Class: §4Angelic Warrior");
-        } else if(info.getPlayersClass() == "Paladin") {
+        } else if(PlayerClassHandler.getPlayersClass() == "Paladin") {
             par3List.add("Class: §AWarrior");
             par3List.add("Class: §APaladin");
             par3List.add("Class: §4Angelic Warrior");
-        } else if(info.getPlayersClass() == "Angel") {
+        } else if(PlayerClassHandler.getPlayersClass() == "Angel") {
             par3List.add("Class: §AWarrior");
             par3List.add("Class: §APaladin");
             par3List.add("Class: §AAngelic Warrior");
@@ -105,10 +104,8 @@ public class ItemRPGHammer extends RPGItem {
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {
-        PlayerInformation info = PlayerInformation.forPlayer(par3EntityPlayer);
-        
-        if(info.getPlayersClass() == "Paladin" || info.getPlayersClass() == "Angel") {
+    {        
+        if(PlayerClassHandler.getPlayersClass() == "Paladin" || PlayerClassHandler.getPlayersClass() == "Angel") {
             par3EntityPlayer.heal(this.healAmount);
             return par1ItemStack;
         } else {
