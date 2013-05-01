@@ -26,8 +26,4 @@ public class ClientProxy extends CommonProxy {
 
 		return null;
 	}
-
-	public static File getMinecraftDir() {
-		return Minecraft.getMinecraftDir();
-	}
 }
