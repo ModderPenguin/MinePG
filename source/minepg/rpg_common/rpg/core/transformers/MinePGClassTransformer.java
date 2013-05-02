@@ -22,7 +22,7 @@ public class MinePGClassTransformer implements IClassTransformer {
 	static {
 		ImmutableMap.Builder<String, ClassTransformer> builder = ImmutableMap.builder();
 
-		builder.put("net.minecraft.entity.monster.EntityZombie", new ZombieTransformer());
+		
 
 		visitors = builder.build();
 	}
