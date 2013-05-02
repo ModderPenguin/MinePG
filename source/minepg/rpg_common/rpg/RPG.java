@@ -7,10 +7,10 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import rpg.comm.ConnectionHandler;
 import rpg.config.RPGConfig;
+import rpg.handlers.MinePGPacketHandler;
 import rpg.lib.Reference;
 import rpg.sounds.SoundLoader;
 import rpg.storage.RPGStorage;
-import rpg.handlers.MinePGPacketHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -53,6 +53,7 @@ public class RPG {
 	@Init
 	public void load(FMLInitializationEvent event) {
 		proxy.registerRenderers();
+		proxy.registerKeyBindings();
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		NetworkRegistry.instance().registerConnectionHandler(new ConnectionHandler());
 		MinecraftForge.EVENT_BUS.register(RPGStorage.RandomManager);

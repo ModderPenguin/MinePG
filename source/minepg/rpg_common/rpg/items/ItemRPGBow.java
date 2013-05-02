@@ -14,8 +14,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import rpg.PlayerClassHandler;
+import rpg.config.archer.ArcherWeapons;
 import rpg.lib.Reference;
+import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -139,8 +140,9 @@ public class ItemRPGBow extends RPGItem
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {        
-        if(PlayerClassHandler.getPlayersClass() == "Archer" || PlayerClassHandler.getPlayersClass() == "Sniper" || PlayerClassHandler.getPlayersClass() == "Assassin" ||
-        		PlayerClassHandler.getPlayersClass() == "Woodsmen" || PlayerClassHandler.getPlayersClass() == "Hunter") {
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(par3EntityPlayer);
+    	if(playerInfo.getPlayersClass() == "Archer" || playerInfo.getPlayersClass() == "Sniper" || playerInfo.getPlayersClass() == "Assassin" ||
+        		playerInfo.getPlayersClass() == "Woodsmen" || playerInfo.getPlayersClass() == "Hunter") {
             ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
             MinecraftForge.EVENT_BUS.post(event);
             if (event.isCanceled())
@@ -148,7 +150,7 @@ public class ItemRPGBow extends RPGItem
                 return event.result;
             }
             
-            if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(Item.arrow.itemID))
+            if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(ArcherWeapons.arrowTraining.itemID))
             {
                 par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
             }

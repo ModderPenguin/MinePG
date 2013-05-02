@@ -33,4 +33,8 @@ public class CommonProxy implements IGuiHandler {
 	public int addArmor(String name){
 		return RenderingRegistry.addNewArmourRendererPrefix(name);
 	}
+
+	public void registerKeyBindings() {
+		
+	}
 }

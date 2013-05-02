@@ -2,7 +2,8 @@ package rpg.enums;
 
 
 public enum EnumGui {
-	ChooseStarter(0);
+	ChooseClass(0), LoreStartingPage(1), PlayerStats(2);
+	
 	
 	private int index;
 	

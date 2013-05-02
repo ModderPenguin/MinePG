@@ -32,8 +32,8 @@ public class WorldGenArcherStarterChest {
      
         chest2.setInventorySlotContents(0, new ItemStack(ArcherWeapons.bowTraining));
         chest2.setInventorySlotContents(1, new ItemStack(ArcherWeapons.arrowTraining, 32));
-        chest2.setInventorySlotContents(2, new ItemStack(BAArmor.tunicTraining));
-        chest2.setInventorySlotContents(3, new ItemStack(BAArmor.legsTraining));
-        chest2.setInventorySlotContents(4, new ItemStack(BAArmor.bootsTraining));
+        //chest2.setInventorySlotContents(2, new ItemStack(BAArmor.tunicTraining));
+        //chest2.setInventorySlotContents(3, new ItemStack(BAArmor.legsTraining));
+        //chest2.setInventorySlotContents(4, new ItemStack(BAArmor.bootsTraining));
     }
 }
