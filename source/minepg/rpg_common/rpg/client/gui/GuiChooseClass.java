@@ -6,14 +6,15 @@ import net.minecraft.item.Item;
 import net.minecraft.world.storage.WorldInfo;
 import rpg.BaseClassList;
 import rpg.gui.ContainerEmpty;
+import rpg.network.packet.PacketClassNameUpdate;
 import rpg.worldgen.feature.WorldGenArcherStarterChest;
 
-public class GuiChooseStarter extends GuiContainer {
+public class GuiChooseClass extends GuiContainer {
 
 	String[] starterList;
 	Item item;
 
-	public GuiChooseStarter() {
+	public GuiChooseClass() {
 		super(new ContainerEmpty());
 		starterList = BaseClassList.getStarterStringList();
 	}
@@ -36,7 +37,9 @@ public class GuiChooseStarter extends GuiContainer {
         int y = worldInfo.getSpawnY();
         int z = worldInfo.getSpawnZ();
         WorldGenArcherStarterChest archerStarterChest = new WorldGenArcherStarterChest(mc.theWorld, x, y, z);
-                
+        
+        
+        
         mc.thePlayer.addExperienceLevel(1);
 		mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the [INSERT CLASS NAME]");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
@@ -47,6 +50,7 @@ public class GuiChooseStarter extends GuiContainer {
         
 		switch(button.id) {
 			case 0:
+				//new PacketClassNameUpdate("Archer").sendToServer();
 		        archerStarterChest.generateChest();
 				break;
 			case 1:
