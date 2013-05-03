@@ -1,10 +1,14 @@
 TODO List
 
 1* Fix up player class loading
-2* Make textures for items
-3* Make Bows only usable by Archer
-4* Make Waraxes only usable by Berserker
-5* Make Staffs only usable by Druid
-6* Make Swords only usable by Knight
-7* Make Hammers only usable by Paladin
-8* Make Wands only usable by Sorcerer
+2* Make Items usable by only their class
+3* Finish Karma bar
+
+
+Extras
+
+//below code checks what biome the chunk is and can be used to spawn structures in specific biomes.
+BiomeGenBase biomegenbase = world.getWorldChunkManager().getBiomeGenAt(blockX + 16, blockZ + 16);       
+if (biomegenbase == BiomeGenBase.desert ) {
+         //for loop / generation code here
+         }

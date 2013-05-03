@@ -15,7 +15,7 @@ public class ConnectionHandler implements IConnectionHandler {
 	
 	@Override
 	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
-		((EntityPlayerMP) player).openGui(RPG.instance, EnumGui.ChooseClass.getIndex(), ((EntityPlayerMP) player).worldObj, 0, 0, 0);
+		((EntityPlayerMP) player).openGui(RPG.instance, EnumGui.LoreStartingPage.getIndex(), ((EntityPlayerMP) player).worldObj, 0, 0, 0);
 	}
 
 	@Override

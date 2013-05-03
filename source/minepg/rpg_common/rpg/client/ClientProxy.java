@@ -6,7 +6,6 @@ import rpg.CommonProxy;
 import rpg.client.entities.EntityWandTrainingBolt;
 import rpg.client.gui.GuiChooseClass;
 import rpg.client.gui.GuiLoreStartingPage;
-import rpg.client.gui.GuiPlayerStats;
 import rpg.client.keybindings.PlayerStatsKey;
 import rpg.client.renderers.RenderWandTrainingBolt;
 import rpg.enums.EnumGui;
@@ -25,9 +24,9 @@ public class ClientProxy extends CommonProxy {
 			return new GuiChooseClass();
 		} else if(ID == EnumGui.LoreStartingPage.getIndex()) {
 			return new GuiLoreStartingPage();
-		} else if(ID == EnumGui.PlayerStats.getIndex()) {
-			return new GuiPlayerStats();
-		}
+		}// else if(ID == EnumGui.PlayerStats.getIndex()) {
+			//return new GuiPlayerStats();
+		//}
 		
 		return null;
 	}

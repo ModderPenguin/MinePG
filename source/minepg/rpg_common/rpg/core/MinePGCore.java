@@ -17,6 +17,7 @@ public class MinePGCore implements IFMLLoadingPlugin {
 	public String[] getASMTransformerClass() {
 		return new String[] {
 				"rpg.core.transformers.MinePGClassTransformer",
+				"rpg.core.transformers.MobSpawnerTransformer"
 		};
 	}
 

@@ -15,7 +15,6 @@ public class ItemTrainingBow extends ItemRPGBow
         super(par1, name);
     }
     
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void addPlayerClassHandlerrmation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
         PlayerInformation playerInfo = PlayerInformation.forPlayer(par2EntityPlayer);
     	// Checks the players class and colored item name accordingly

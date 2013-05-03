@@ -121,28 +121,6 @@ public class KarmaEventHandler {
 		}
 	}
 
-	// called by the hook inserted into EntityAIMate by the CrymodTransformer 
-	public static void onBreedingSpawnChild(EntityAgeable baby, EntityAnimal animal, EntityAnimal mate) {
-		String animalBreeder = MinePGUtil.getEntityData(animal).getString("breedingOwner");
-		String mateBreeder = MinePGUtil.getEntityData(mate).getString("breedingOwner");
-
-		if (animalBreeder.equals(mateBreeder)) {
-			EntityPlayer player = animal.worldObj.getPlayerEntityByName(animalBreeder);
-			if (player != null) {
-				forPlayer(player).modifyKarmaWithMax(0.1F, 20);
-			}
-		}
-	}
-
-	// called by the hook inserted into EntityZombie by the CrymodTransformer
-	public static void onZombieConvert(EntityZombie zombie) {
-		String curer = MinePGUtil.getEntityData(zombie).getString("cureOwner");
-		EntityPlayer player = zombie.worldObj.getPlayerEntityByName(curer);
-		if (player != null) {
-			forPlayer(player).modifyKarmaWithMax(3, 30);
-		}
-	}
-
 	// called by the hook inserted into BlockMobSpawner/removeBlockByPlayer by the CrymodTransformer
 	public static void onMobSpawnerBreak(EntityPlayer player, World world, int x, int y, int z) {
 		if (!world.isRemote) {
@@ -184,30 +162,6 @@ public class KarmaEventHandler {
 			}
 
 			playerPlacingBlock = null;
-		}
-	}
-
-	private static final int[] MESSAGE_BORDERS = {50, 40, 25, 10};
-
-	@ForgeSubscribe
-	public void onServerChat(ServerChatEvent evt) {
-		float karma = forPlayer(evt.player).getKarma();
-		if (karma == 0) {
-			return;
-		}
-		int useBorder = -1;
-		for (int border : MESSAGE_BORDERS) {
-			if (karma > 0 && karma >= border || karma < 0 && karma <= -border && useBorder < border) {
-				useBorder = border;
-			}
-		}
-		if (useBorder != -1) {
-			String messageKey = "crymod.chatprefix." + (karma < 0 ? "bad" : "good") + "." + useBorder;
-			EnumChatFormatting messageColor = karma < 0 ? EnumChatFormatting.DARK_RED : EnumChatFormatting.DARK_BLUE;
-
-			String usernamePrefix = messageColor + StringTranslate.getInstance().translateKey(messageKey) + EnumChatFormatting.WHITE;
-
-			evt.line = evt.line.replace(evt.username, usernamePrefix +  " " + evt.username);
 		}
 	}
 }

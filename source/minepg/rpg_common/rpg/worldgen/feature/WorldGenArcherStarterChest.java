@@ -1,7 +1,7 @@
 package rpg.worldgen.feature;
 
-import rpg.config.archer.ArcherWeapons;
 import rpg.config.armor.BAArmor;
+import rpg.config.base.archer.ArcherWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

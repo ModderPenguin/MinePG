@@ -6,7 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.world.storage.WorldInfo;
 import rpg.BaseClassList;
 import rpg.gui.ContainerEmpty;
-import rpg.network.packet.PacketClassNameUpdate;
+import rpg.network.packet.PacketClassUpdate;
+import rpg.playerinfo.PlayerInformation;
 import rpg.worldgen.feature.WorldGenArcherStarterChest;
 
 public class GuiChooseClass extends GuiContainer {
@@ -38,28 +39,32 @@ public class GuiChooseClass extends GuiContainer {
         int z = worldInfo.getSpawnZ();
         WorldGenArcherStarterChest archerStarterChest = new WorldGenArcherStarterChest(mc.theWorld, x, y, z);
         
-        
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(mc.thePlayer);
         
         mc.thePlayer.addExperienceLevel(1);
-		mc.thePlayer.sendChatToPlayer("[MinePG] You chose the path of the [INSERT CLASS NAME]");
+		
+        switch(button.id) {
+			case 0:
+				new PacketClassUpdate("Archer").sendToServer();
+				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Archer");
+		        archerStarterChest.generateChest();
+				break;
+			case 1:
+				new PacketClassUpdate("Mage").sendToServer();
+				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Mage");
+				break;
+			case 2:
+				new PacketClassUpdate("Warrior").sendToServer();
+				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Warrior");
+				break;
+		}
+		
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this chest. It contains the items you will need for your journey");
-        
-		switch(button.id) {
-			case 0:
-				//new PacketClassNameUpdate("Archer").sendToServer();
-		        archerStarterChest.generateChest();
-				break;
-			case 1:
-				
-				break;
-			case 2:
-				
-				break;
-		}
+		mc.thePlayer.sendChatToPlayer("[MinePG] ¤AHint: ¤FThe chest should be somewhere near you...");
 		mc.thePlayer.closeScreen();
 	}
 

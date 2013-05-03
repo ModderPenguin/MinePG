@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 
 import org.lwjgl.input.Keyboard;
 
-import rpg.client.gui.GuiPlayerStats;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.TickType;
@@ -31,7 +30,7 @@ public class PlayerStatsKey extends KeyHandler {
     @Override
     public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {
     	if (/*tickEnd && */FMLClientHandler.instance().getClient().currentScreen == null) {
-    		FMLClientHandler.instance().getClient().displayGuiScreen(new GuiPlayerStats());
+    		//FMLClientHandler.instance().getClient().displayGuiScreen(new GuiPlayerStats());
     		World world = FMLClientHandler.instance().getClient().theWorld;
     	}
     }
