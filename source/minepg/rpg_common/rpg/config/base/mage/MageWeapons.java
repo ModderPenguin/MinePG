@@ -1,4 +1,4 @@
-package rpg.config.mage;
+package rpg.config.base.mage;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -19,8 +19,8 @@ public class MageWeapons {
     public static Item wandTraining;
     
     public static void load(Configuration config) {
-        staffTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Staff ID", 1014).getInt(1014);
-        wandTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Wand ID", 1015).getInt(1015);
+        staffTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Staff ID", 1014).getInt();
+        wandTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Wand ID", 1015).getInt();
         
         staffTraining = new ItemTrainingStaff(staffTrainingID, EnumRPGStaffMaterial.TRAINING, "staffTraining").setCreativeTab(CreativeTabs.tabCombat);
         wandTraining = new ItemTrainingWand(wandTrainingID, EnumRPGWandMaterial.TRAINING, "wandTraining").setCreativeTab(CreativeTabs.tabCombat);

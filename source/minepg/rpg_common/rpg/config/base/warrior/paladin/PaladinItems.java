@@ -1,4 +1,4 @@
-package rpg.config.paladin;
+package rpg.config.base.warrior.paladin;
 
 import net.minecraftforge.common.Configuration;
 

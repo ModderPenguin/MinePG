@@ -1,4 +1,4 @@
-package rpg.config.berserker;
+package rpg.config.base.warrior.berserker;
 
 import net.minecraftforge.common.Configuration;
 

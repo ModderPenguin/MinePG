@@ -1,4 +1,4 @@
-package rpg.config.druid;
+package rpg.config.base.mage.druid;
 
 import net.minecraftforge.common.Configuration;
 

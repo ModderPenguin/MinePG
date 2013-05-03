@@ -1,4 +1,4 @@
-package rpg.config.sorcerer;
+package rpg.config.base.mage.sorcerer;
 
 import net.minecraftforge.common.Configuration;
 

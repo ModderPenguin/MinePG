@@ -1,9 +1,9 @@
-package rpg.config.berserker;
+package rpg.config.base.mage.druid;
 
 import net.minecraftforge.common.Configuration;
 
-public class BerserkerArmor {
-
+public class DruidArmor {
+	
 	
 	
 	public static void load(Configuration config) {

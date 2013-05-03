@@ -1,13 +1,16 @@
-package rpg.config.sorcerer;
+package rpg.config.base.warrior.berserker;
 
 import net.minecraftforge.common.Configuration;
 
-public class SorcererWeapons {	
+public class BerserkerArmor {
+
+	
 	
 	public static void load(Configuration config) {
-	    
+		
 	}
 	
 	public static void addNames() {
+		
 	}
 }

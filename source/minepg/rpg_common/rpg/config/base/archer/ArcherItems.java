@@ -1,4 +1,4 @@
-package rpg.config.archer;
+package rpg.config.base.archer;
 
 import net.minecraftforge.common.Configuration;
 

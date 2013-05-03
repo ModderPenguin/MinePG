@@ -1,4 +1,4 @@
-package rpg.config.paladin;
+package rpg.config.base.warrior.paladin;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

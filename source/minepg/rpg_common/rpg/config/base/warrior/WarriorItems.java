@@ -1,4 +1,4 @@
-package rpg.config.warrior;
+package rpg.config.base.warrior;
 
 import net.minecraftforge.common.Configuration;
 

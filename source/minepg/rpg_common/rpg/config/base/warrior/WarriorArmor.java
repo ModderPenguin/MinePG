@@ -1,11 +1,9 @@
-package rpg.config.archer;
+package rpg.config.base.warrior;
 
 import net.minecraftforge.common.Configuration;
 
-public class ArcherArmor {
+public class WarriorArmor {
 
-	
-	
 	public static void load(Configuration config) {
 		
 	}

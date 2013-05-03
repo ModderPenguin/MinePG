@@ -1,4 +1,4 @@
-package rpg.config.warrior;
+package rpg.config.base.warrior;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

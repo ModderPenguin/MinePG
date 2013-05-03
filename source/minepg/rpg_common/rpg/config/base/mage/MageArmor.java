@@ -1,4 +1,4 @@
-package rpg.config.mage;
+package rpg.config.base.mage;
 
 import net.minecraftforge.common.Configuration;
 
