@@ -5,9 +5,11 @@ import java.util.logging.Logger;
 
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
+import rpg.client.HudOverlayHandler;
 import rpg.comm.ConnectionHandler;
 import rpg.config.RPGConfig;
 import rpg.handlers.MinePGPacketHandler;
+import rpg.handlers.events.KarmaEventHandler;
 import rpg.lib.Reference;
 import rpg.sounds.SoundLoader;
 import rpg.storage.RPGStorage;
@@ -24,8 +26,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
-@NetworkMod(tinyPacketHandler = MinePGPacketHandler.class, clientSideRequired = true, serverSideRequired = false)
+//@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
+//@NetworkMod(tinyPacketHandler = MinePGPacketHandler.class, clientSideRequired = true, serverSideRequired = false)
 public class RPG {
 	
 	@Instance("RPG")
@@ -47,7 +49,9 @@ public class RPG {
 		{
 			MinecraftForge.EVENT_BUS.register(new SoundLoader());
 		}
-		RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));		
+		RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));	
+		
+		//MinecraftForge.EVENT_BUS.register(new KarmaEventHandler());
 	}
 
 	@Init

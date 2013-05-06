@@ -29,10 +29,12 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 
 	public static final int MAX_KARMA_VALUE = 50;
 
-	private boolean dirty = true;
-	private float karma;
-	private byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent.values().length];
-	private String playersClass;
+	public boolean dirty = true;
+	public boolean hasClassBeenChosen = false;
+	public float karma = 0;
+	public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent.values().length];
+	public String playersClass = "";
+	public int danris = 0;
 	
 	private final EntityPlayer player;
 
@@ -50,7 +52,8 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		NBTTagCompound nbt = new NBTTagCompound();
 		
 		nbt.setString("playersClass", playersClass);
-		
+		nbt.setBoolean("hasClassBeenChosen", hasClassBeenChosen);
+		nbt.setInteger("danris", danris);
 		nbt.setFloat("karma", karma);
 
 		NBTTagList eventList = new NBTTagList();
@@ -70,7 +73,8 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
 		
 		playersClass = nbt.getString("playersClass");
-		
+		hasClassBeenChosen = nbt.getBoolean("hasClassBeenChosen");
+		danris = nbt.getInteger("danris");
 		karma = nbt.getFloat("karma");
 
 		NBTTagList eventList = nbt.getTagList("events");
@@ -83,6 +87,19 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		}
 	}
 	
+	public boolean getHasClassBeenChosen() {
+		return hasClassBeenChosen;
+	}
+	
+	public boolean setHasClassBeenChosen(boolean hasClassBeenChosen) {
+		if(this.hasClassBeenChosen != hasClassBeenChosen) {
+			this.hasClassBeenChosen = hasClassBeenChosen;
+			setDirty();
+			return hasClassBeenChosen;
+		}
+		return this.hasClassBeenChosen;
+	}
+	
 	public String getPlayersClass() {
 		return playersClass;
 	}
@@ -91,6 +108,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		if(this.playersClass != playersClass) {
 			this.playersClass = playersClass;
 			setDirty();
+			return playersClass;
 		}
 		
 		return this.playersClass;
@@ -114,6 +132,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 				this.karma = -MAX_KARMA_VALUE;
 			}
 			setDirty();
+			return karma;
 		}
 		
 		return this.karma;
@@ -171,6 +190,19 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		public int getMaxCount() {
 			return maxCount;
 		}
+	}
+	
+	public int getCurrency() {
+		return danris;
+	}
+
+	public int setCurrency(int danris) {
+		if(this.danris != danris) {
+			this.danris = danris;
+			setDirty();
+			return danris;
+		}
+		return this.danris;
 	}
 
 	/**

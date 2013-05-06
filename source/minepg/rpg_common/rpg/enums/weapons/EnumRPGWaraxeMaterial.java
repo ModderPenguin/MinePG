@@ -61,8 +61,6 @@ public enum EnumRPGWaraxeMaterial {
     {
         switch (this)
         {
-            case TRAINING:
-                return RPGItems.trainingIngot.itemID;
             case TAURITE:
                 return RPGItems.taurite.itemID;
             default:      

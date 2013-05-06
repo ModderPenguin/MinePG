@@ -30,10 +30,8 @@ public class PacketClassUpdate extends MinePGPacket {
 
 	@Override
 	protected void execute(EntityPlayer player, Side side) {
-		if (side.isServer()) {
-			PlayerInformation info = PlayerInformation.forPlayer(player);
-			info.setPlayersClass(newClass);
-		}
+		PlayerInformation info = PlayerInformation.forPlayer(player);
+		info.setPlayersClass(newClass);
 	}
 
 }

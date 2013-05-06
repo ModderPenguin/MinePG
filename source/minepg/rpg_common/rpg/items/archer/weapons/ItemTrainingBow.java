@@ -3,15 +3,15 @@ package rpg.items.archer.weapons;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import rpg.PlayerClassHandler;
 import rpg.items.ItemRPGBow;
 import rpg.playerinfo.PlayerInformation;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
-public class ItemTrainingBow extends ItemRPGBow
-{
-    public ItemTrainingBow(int par1, String name)
-    {
+public class ItemTrainingBow extends ItemRPGBow {
+    
+	public ItemTrainingBow(int par1, String name) {
         super(par1, name);
     }
     

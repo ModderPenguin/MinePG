@@ -1,5 +1,7 @@
 package rpg.client.gui;
 
+import java.util.Random;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
@@ -8,6 +10,7 @@ import rpg.BaseClassList;
 import rpg.gui.ContainerEmpty;
 import rpg.network.packet.PacketClassUpdate;
 import rpg.playerinfo.PlayerInformation;
+import rpg.world.gen.WorldGenRandom;
 import rpg.worldgen.feature.WorldGenArcherStarterChest;
 
 public class GuiChooseClass extends GuiContainer {
@@ -58,7 +61,17 @@ public class GuiChooseClass extends GuiContainer {
 				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Warrior");
 				break;
 		}
+        
+        Random rand = new Random();
 		
+        WorldGenRandom randomGen = new WorldGenRandom();
+        randomGen.generate(mc.theWorld, rand, x, y, z);
+        randomGen.generate2(mc.theWorld, rand, x, y + 1, z);
+        randomGen.generate3(mc.theWorld, rand, x, y + 2, z);
+        randomGen.generate4(mc.theWorld, rand, x, y + 3, z);
+        randomGen.generate5(mc.theWorld, rand, x, y + 4, z);
+        randomGen.generate6(mc.theWorld, rand, x, y + 5, z);
+        
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");

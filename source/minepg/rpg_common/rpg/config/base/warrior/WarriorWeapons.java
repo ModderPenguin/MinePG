@@ -7,6 +7,7 @@ import rpg.enums.EnumRPGToolMaterial;
 import rpg.enums.weapons.EnumRPGWaraxeMaterial;
 import rpg.items.warrior.weapons.ItemTrainingSword;
 import rpg.items.warrior.weapons.ItemTrainingWaraxe;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class WarriorWeapons {
@@ -18,8 +19,8 @@ public class WarriorWeapons {
 	public static Item swordTraining;
 	
 	public static void load(Configuration config) {
-	    waraxeTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training WarAxe ID", 1015).getInt(10);
-        swordTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training WarAxe ID", 1015).getInt(10);
+	    waraxeTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training WarAxe ID", 1016).getInt();
+        swordTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Sword ID", 1017).getInt();
         
         waraxeTraining = new ItemTrainingWaraxe(waraxeTrainingID, EnumRPGWaraxeMaterial.TRAINING, 100, 1, "waraxeTraining").setCreativeTab(CreativeTabs.tabCombat);
         swordTraining = new ItemTrainingSword(swordTrainingID, EnumRPGToolMaterial.TRAINING, "swordTraining").setCreativeTab(CreativeTabs.tabCombat);

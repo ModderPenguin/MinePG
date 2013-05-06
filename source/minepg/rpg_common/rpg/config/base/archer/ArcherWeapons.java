@@ -1,8 +1,8 @@
 package rpg.config.base.archer;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
+import rpg.config.RPGCreativeTabs;
 import rpg.items.RPGItem;
 import rpg.items.archer.weapons.ItemTrainingBow;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -19,12 +19,12 @@ public class ArcherWeapons {
 		bowTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Bow ID", 1012).getInt();
 		arrowTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Arrow ID", 1013).getInt();
 		
-		bowTraining = new ItemTrainingBow(bowTrainingID, "bowTraining").setCreativeTab(CreativeTabs.tabCombat);
-		arrowTraining = new RPGItem(arrowTrainingID, "arrowTraining").setCreativeTab(CreativeTabs.tabCombat);
+		bowTraining = new ItemTrainingBow(bowTrainingID, "bowTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
+		arrowTraining = new RPGItem(arrowTrainingID, "arrowTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
 	}
 	
 	public static void addNames() {
-		LanguageRegistry.addName(bowTraining, "Training Bow");
 		LanguageRegistry.addName(arrowTraining, "Training Arrow");
+		LanguageRegistry.addName(bowTraining, "Training Bow");
 	}
 }

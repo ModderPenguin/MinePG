@@ -19,8 +19,7 @@ public class WorldGenArcherStarterChest {
         world = theWorld;
         x = i;
         y = j;
-        z = k;
-        
+        z = k; 
     }
     
     public void generateChest() {
