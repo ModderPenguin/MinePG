@@ -11,4 +11,16 @@ Extras
 BiomeGenBase biomegenbase = world.getWorldChunkManager().getBiomeGenAt(blockX + 16, blockZ + 16);       
 if (biomegenbase == BiomeGenBase.desert ) {
          //for loop / generation code here
-         }
+}
+
+
+//add as one of the mobs
+The creeper first:
+Let's face it, creepers are stupid. They kill themselves for some unknown reason for the sake of harming you. So, I've come up with a creeper that can still blow you to bits, without hurting itself. It works as follows:
+The creeper, in its neutral state, looks the same as most creepers, but when it detects you, its chest opens up into a pair of wings with which it will chase you down. And inside the now-exposed chest you can find a deadly chemical factory that fires missiles... Exploding missiles. You may want to decrease the spawn rate or simply stick them in some sort of expert mode.
+Now, for the boss.
+As I mentioned before, why do the creepers want to destroy you? Well, to make room for more creepers! To live, creepers require large amounts of redstone for energy, and meat for protein. The missiles help them to mine the redstone, and kill their prey. But creepers aren't mere predators... They are a deadly hive-mind bent on destroying the universe!
+See, some female creepers are given not just redstone and protein, but also a good amount of *insert magical stone (MS) here.* This MS gives them immense power and, guess what... Size and reproductive ability. Creepers on MS are turned into...
+CREEPER QUEENS!!!
+The Creeper Queen is a eight-block-high egg-laying machine with an unusually bad attitude, and it provides telekinetic signals to its underlings (much of which consists of "DESTROY *noun*!!!"). When the Queen is destroyed, the smaller creepers will scatter, and any existing eggs will be left unprotected for you to destroy, bake, or incubate (pets?).
+It's a bit far-fetched, but I think it's awesome.
