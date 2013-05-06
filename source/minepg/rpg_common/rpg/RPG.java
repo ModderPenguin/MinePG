@@ -26,8 +26,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-//@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
-//@NetworkMod(tinyPacketHandler = MinePGPacketHandler.class, clientSideRequired = true, serverSideRequired = false)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
+@NetworkMod(tinyPacketHandler = MinePGPacketHandler.class, clientSideRequired = true, serverSideRequired = false)
 public class RPG {
 	
 	@Instance("RPG")
@@ -50,8 +50,6 @@ public class RPG {
 			MinecraftForge.EVENT_BUS.register(new SoundLoader());
 		}
 		RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));	
-		
-		//MinecraftForge.EVENT_BUS.register(new KarmaEventHandler());
 	}
 
 	@Init

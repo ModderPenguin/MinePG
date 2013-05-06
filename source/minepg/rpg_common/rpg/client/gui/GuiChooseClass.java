@@ -1,16 +1,17 @@
 package rpg.client.gui;
 
-import java.util.Random;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.storage.WorldInfo;
 import rpg.BaseClassList;
+import rpg.config.armor.BAArmor;
+import rpg.config.base.archer.ArcherWeapons;
+import rpg.config.base.mage.MageWeapons;
 import rpg.gui.ContainerEmpty;
 import rpg.network.packet.PacketClassUpdate;
 import rpg.playerinfo.PlayerInformation;
-import rpg.world.gen.WorldGenRandom;
 import rpg.worldgen.feature.WorldGenArcherStarterChest;
 
 public class GuiChooseClass extends GuiContainer {
@@ -48,36 +49,36 @@ public class GuiChooseClass extends GuiContainer {
 		
         switch(button.id) {
 			case 0:
-				new PacketClassUpdate("Archer").sendToServer();
+				PacketClassUpdate archerUpdatePacket = new PacketClassUpdate("Archer");
+				archerUpdatePacket.generatePacket();
+				archerUpdatePacket.sendToServer();
 				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Archer");
-		        archerStarterChest.generateChest();
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.bowTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.arrowTraining, 32));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(BAArmor.tunicTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(BAArmor.legsTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(BAArmor.bootsTraining, 1));
 				break;
 			case 1:
-				new PacketClassUpdate("Mage").sendToServer();
+				PacketClassUpdate mageUpdatePacket = new PacketClassUpdate("Mage");
+				mageUpdatePacket.generatePacket();
+				mageUpdatePacket.sendToServer();
 				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Mage");
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageWeapons.staffTraining, 1));
 				break;
 			case 2:
-				new PacketClassUpdate("Warrior").sendToServer();
+				PacketClassUpdate warriorUpdatePacket = new PacketClassUpdate("Warrior");
+				warriorUpdatePacket.generatePacket();
+				warriorUpdatePacket.sendToServer();
 				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Warrior");
 				break;
 		}
-        
-        Random rand = new Random();
-		
-        WorldGenRandom randomGen = new WorldGenRandom();
-        randomGen.generate(mc.theWorld, rand, x, y, z);
-        randomGen.generate2(mc.theWorld, rand, x, y + 1, z);
-        randomGen.generate3(mc.theWorld, rand, x, y + 2, z);
-        randomGen.generate4(mc.theWorld, rand, x, y + 3, z);
-        randomGen.generate5(mc.theWorld, rand, x, y + 4, z);
-        randomGen.generate6(mc.theWorld, rand, x, y + 5, z);
         
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
-		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this chest. It contains the items you will need for your journey");
-		mc.thePlayer.sendChatToPlayer("[MinePG] ¤AHint: ¤FThe chest should be somewhere near you...");
+		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this equipment, learn to use it");
 		mc.thePlayer.closeScreen();
 	}
 
