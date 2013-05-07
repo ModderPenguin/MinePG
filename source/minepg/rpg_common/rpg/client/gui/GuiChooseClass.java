@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.storage.WorldInfo;
 import rpg.BaseClassList;
-import rpg.config.armor.BAArmor;
+import rpg.config.base.archer.ArcherArmor;
 import rpg.config.base.archer.ArcherWeapons;
 import rpg.config.base.mage.MageWeapons;
 import rpg.gui.ContainerEmpty;
@@ -55,9 +55,9 @@ public class GuiChooseClass extends GuiContainer {
 				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Archer");
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.bowTraining, 1));
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.arrowTraining, 32));
-				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(BAArmor.tunicTraining, 1));
-				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(BAArmor.legsTraining, 1));
-				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(BAArmor.bootsTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.tunicTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.legsTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.bootsTraining, 1));
 				break;
 			case 1:
 				PacketClassUpdate mageUpdatePacket = new PacketClassUpdate("Mage");

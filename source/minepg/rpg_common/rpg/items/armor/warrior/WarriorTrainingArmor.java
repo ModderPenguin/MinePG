@@ -5,23 +5,23 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
-import rpg.config.armor.PKArmor;
+import rpg.config.base.warrior.WarriorArmor;
 import rpg.enums.EnumRPGArmorMaterial;
 import rpg.items.armor.ItemRPGArmor;
 
 @SuppressWarnings("deprecation")
-public class PKTrainingArmor extends ItemRPGArmor implements IArmorTextureProvider {
+public class WarriorTrainingArmor extends ItemRPGArmor implements IArmorTextureProvider {
 		
-	public PKTrainingArmor(int itemid, EnumRPGArmorMaterial material, int par3, int par4, String name) {
+	public WarriorTrainingArmor(int itemid, EnumRPGArmorMaterial material, int par3, int par4, String name) {
 		super(itemid, material, par3, par4, name);
 	}
 	
 	public String getArmorTextureFile(ItemStack itemstack) {
-		if (itemstack.itemID == PKArmor.helmetTraining.itemID || itemstack.itemID == PKArmor.cuirassTraining.itemID || itemstack.itemID == PKArmor.sabatonsTraining.itemID)
+		if (itemstack.itemID == WarriorArmor.helmetTraining.itemID || itemstack.itemID == WarriorArmor.cuirassTraining.itemID || itemstack.itemID == WarriorArmor.sabatonsTraining.itemID)
 		{
 		    return "/mods/rpg/textures/armor/pk/training_1.png";
 		}
-		else if (itemstack.itemID == PKArmor.greavesTraining.itemID)
+		else if (itemstack.itemID == WarriorArmor.greavesTraining.itemID)
 		{
 		    return "/mods/rpg/textures/armor/pk/training_2.png";
 		}

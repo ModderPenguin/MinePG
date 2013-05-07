@@ -5,19 +5,19 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
-import rpg.config.armor.DSArmor;
+import rpg.config.base.mage.MageArmor;
 import rpg.enums.EnumRPGArmorMaterial;
 import rpg.items.armor.ItemRPGArmor;
 
 @SuppressWarnings("deprecation")
-public class DSTrainingArmor extends ItemRPGArmor implements IArmorTextureProvider {
+public class MageTrainingArmor extends ItemRPGArmor implements IArmorTextureProvider {
 		
-	public DSTrainingArmor(int itemid, EnumRPGArmorMaterial material, int par3, int par4, String name) {
+	public MageTrainingArmor(int itemid, EnumRPGArmorMaterial material, int par3, int par4, String name) {
 		super(itemid, material, par3, par4, name);
 	}
 	
 	public String getArmorTextureFile(ItemStack itemstack) {
-		if (itemstack.itemID == DSArmor.hatTraining.itemID || itemstack.itemID == DSArmor.robeTraining.itemID || itemstack.itemID == DSArmor.sandalsTraining.itemID)
+		if (itemstack.itemID == MageArmor.hatTraining.itemID || itemstack.itemID == MageArmor.robeTraining.itemID || itemstack.itemID == MageArmor.sandalsTraining.itemID)
 		{
 		    return "/mods/rpg/textures/armor/ds/training_1.png";
 		} else {
