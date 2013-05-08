@@ -3,11 +3,8 @@ package rpg.items.archer.weapons;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import rpg.items.ItemRPGBow;
-import rpg.playerinfo.PlayerInformation;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ItemTrainingBow extends ItemRPGBow {
     
@@ -15,16 +12,16 @@ public class ItemTrainingBow extends ItemRPGBow {
         super(par1, name);
     }
     
-    public void addPlayerClassHandlerrmation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        PlayerInformation playerInfo = PlayerInformation.forPlayer(par2EntityPlayer);
-    	// Checks the players class and colored item name accordingly
-        if(playerInfo.getPlayersClass() == "Archer") {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        // Checks the players class and colored item name accordingly
+        //if(playerInfo.getPlayersClass() == "Archer") {
             par3List.add("A Bow used in");
             par3List.add("training");
             par3List.add("");
             par3List.add("Class: ¤AArcher");
-        } else {
-            par3List.add("Class: ¤4Archer");
-        }
+        //} else {
+            //par3List.add("Class: ¤4Archer");
+        //}
     }
 }

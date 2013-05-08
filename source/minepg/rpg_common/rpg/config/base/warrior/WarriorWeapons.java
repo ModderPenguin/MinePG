@@ -7,7 +7,6 @@ import rpg.enums.EnumRPGToolMaterial;
 import rpg.enums.weapons.EnumRPGWaraxeMaterial;
 import rpg.items.warrior.weapons.ItemTrainingSword;
 import rpg.items.warrior.weapons.ItemTrainingWaraxe;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class WarriorWeapons {

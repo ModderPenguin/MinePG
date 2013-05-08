@@ -3,7 +3,6 @@ package rpg.client.renderers;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;

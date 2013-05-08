@@ -1,7 +1,7 @@
 package rpg.network.packet;
 
-import rpg.playerinfo.PlayerInformation;
 import net.minecraft.entity.player.EntityPlayer;
+import rpg.playerinfo.PlayerInfoFake;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
@@ -30,8 +30,7 @@ public class PacketClassUpdate extends MinePGPacket {
 
 	@Override
 	protected void execute(EntityPlayer player, Side side) {
-		PlayerInformation info = PlayerInformation.forPlayer(player);
-		info.setPlayersClass(newClass);
+		PlayerInfoFake.setPlayersClass(newClass);
 	}
 
 }

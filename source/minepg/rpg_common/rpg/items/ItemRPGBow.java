@@ -16,7 +16,6 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import rpg.config.base.archer.ArcherWeapons;
 import rpg.lib.Reference;
-import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -140,8 +139,7 @@ public class ItemRPGBow extends RPGItem
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {        
-        PlayerInformation playerInfo = PlayerInformation.forPlayer(par3EntityPlayer);
-    	//if(playerInfo.getPlayersClass() == "Archer" || playerInfo.getPlayersClass() == "Sniper" || playerInfo.getPlayersClass() == "Assassin" ||
+        //if(playerInfo.getPlayersClass() == "Archer" || playerInfo.getPlayersClass() == "Sniper" || playerInfo.getPlayersClass() == "Assassin" ||
         		//playerInfo.getPlayersClass() == "Woodsmen" || playerInfo.getPlayersClass() == "Hunter") {
             ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
             MinecraftForge.EVENT_BUS.post(event);

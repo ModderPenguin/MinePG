@@ -5,11 +5,10 @@ import java.util.logging.Logger;
 
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-import rpg.client.HudOverlayHandler;
 import rpg.comm.ConnectionHandler;
 import rpg.config.RPGConfig;
+import rpg.config.RPGCreativeTabs;
 import rpg.handlers.MinePGPacketHandler;
-import rpg.handlers.events.KarmaEventHandler;
 import rpg.lib.Reference;
 import rpg.sounds.SoundLoader;
 import rpg.storage.RPGStorage;
@@ -56,6 +55,7 @@ public class RPG {
 	public void load(FMLInitializationEvent event) {
 		proxy.registerRenderers();
 		proxy.registerKeyBindings();
+		RPGCreativeTabs.addTabNames();
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		NetworkRegistry.instance().registerConnectionHandler(new ConnectionHandler());
 		MinecraftForge.EVENT_BUS.register(RPGStorage.RandomManager);

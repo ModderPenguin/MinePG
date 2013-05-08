@@ -12,5 +12,5 @@ public class CreativeTabArcherItems extends CreativeTabs {
 	
 	public ItemStack getIconItemStack() {
         return new ItemStack(ArcherWeapons.bowTraining, 1);
-}
+	}
 }

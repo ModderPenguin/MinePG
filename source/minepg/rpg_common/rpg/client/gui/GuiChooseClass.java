@@ -4,15 +4,15 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.storage.WorldInfo;
 import rpg.BaseClassList;
 import rpg.config.base.archer.ArcherArmor;
 import rpg.config.base.archer.ArcherWeapons;
+import rpg.config.base.mage.MageArmor;
 import rpg.config.base.mage.MageWeapons;
+import rpg.config.base.warrior.WarriorArmor;
+import rpg.config.base.warrior.WarriorWeapons;
 import rpg.gui.ContainerEmpty;
-import rpg.network.packet.PacketClassUpdate;
-import rpg.playerinfo.PlayerInformation;
-import rpg.worldgen.feature.WorldGenArcherStarterChest;
+import rpg.playerinfo.PlayerInfoFake;
 
 public class GuiChooseClass extends GuiContainer {
 
@@ -37,22 +37,11 @@ public class GuiChooseClass extends GuiContainer {
 	}
 	
 	public void actionPerformed(GuiButton button) {
-	    WorldInfo worldInfo = mc.theWorld.getWorldInfo();
-	    int x = worldInfo.getSpawnX();
-        int y = worldInfo.getSpawnY();
-        int z = worldInfo.getSpawnZ();
-        WorldGenArcherStarterChest archerStarterChest = new WorldGenArcherStarterChest(mc.theWorld, x, y, z);
-        
-        PlayerInformation playerInfo = PlayerInformation.forPlayer(mc.thePlayer);
-        
         mc.thePlayer.addExperienceLevel(1);
 		
         switch(button.id) {
 			case 0:
-				PacketClassUpdate archerUpdatePacket = new PacketClassUpdate("Archer");
-				archerUpdatePacket.generatePacket();
-				archerUpdatePacket.sendToServer();
-				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Archer");
+				PlayerInfoFake.setPlayersClass("Archer");
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.bowTraining, 1));
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.arrowTraining, 32));
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.tunicTraining, 1));
@@ -60,20 +49,23 @@ public class GuiChooseClass extends GuiContainer {
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.bootsTraining, 1));
 				break;
 			case 1:
-				PacketClassUpdate mageUpdatePacket = new PacketClassUpdate("Mage");
-				mageUpdatePacket.generatePacket();
-				mageUpdatePacket.sendToServer();
-				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Mage");
+				PlayerInfoFake.setPlayersClass("Mage");
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageWeapons.staffTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageArmor.hatTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageArmor.robeTraining, 1));
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageArmor.sandalsTraining, 1));
 				break;
 			case 2:
-				PacketClassUpdate warriorUpdatePacket = new PacketClassUpdate("Warrior");
-				warriorUpdatePacket.generatePacket();
-				warriorUpdatePacket.sendToServer();
-				mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the Warrior");
+				PlayerInfoFake.setPlayersClass("Warrior");
+				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorWeapons.swordTraining, 1));
+                mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.helmetTraining, 1));
+                mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.cuirassTraining, 1));
+                mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.greavesTraining, 1));
+                mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.sabatonsTraining, 1));
 				break;
 		}
         
+        mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the " + PlayerInfoFake.getPlayersClass());
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");

@@ -8,8 +8,6 @@ import rpg.config.base.mage.MageItems;
 import rpg.config.base.warrior.WarriorItems;
 import rpg.items.materials.ItemTaurite;
 import rpg.items.materials.ItemTauriteCloth;
-import rpg.items.materials.ItemTrainingCloth;
-import rpg.items.materials.ItemTrainingIngot;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class RPGItems {

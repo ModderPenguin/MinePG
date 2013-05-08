@@ -1,18 +1,11 @@
 package rpg.playerinfo;
 
-import java.util.Arrays;
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-
-import com.google.common.collect.Lists;
-import com.google.common.primitives.Bytes;
-import com.google.common.primitives.UnsignedBytes;
 
 public final class PlayerInformation implements IExtendedEntityProperties {
 
@@ -27,7 +20,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		target.registerExtendedProperties(IDENTIFIER, source.getExtendedProperties(IDENTIFIER));
 	}
 
-	public static final int MAX_KARMA_VALUE = 50;
+	public static final int MAX_KARMA_VALUE = 99999999;
 
 	public boolean dirty = true;
 	public boolean hasClassBeenChosen = false;
@@ -132,7 +125,6 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 				this.karma = -MAX_KARMA_VALUE;
 			}
 			setDirty();
-			return karma;
 		}
 		
 		return this.karma;
@@ -200,7 +192,10 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		if(this.danris != danris) {
 			this.danris = danris;
 			setDirty();
-			return danris;
+		}
+		if(this.danris > 999999) {
+			this.danris = 999999;
+			setDirty();
 		}
 		return this.danris;
 	}

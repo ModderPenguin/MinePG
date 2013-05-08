@@ -1,11 +1,9 @@
 package rpg.client.gui;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import rpg.RPG;
-import rpg.enums.EnumGui;
 import rpg.gui.ContainerEmpty;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class GuiLoreStartingPage extends GuiContainer {
 
