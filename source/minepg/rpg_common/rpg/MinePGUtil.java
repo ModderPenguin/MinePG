@@ -10,15 +10,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 
+import rpg.lib.Reference;
+
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.InsnList;
 
 public final class MinePGUtil {
 
-	private static final String ENTITY_DATA = "rpg";
-	public static final String PARTICLE_TEXTURE_FILE = "/mods/rpg/textures/particles.png";
-	public static final String EVENT_HANDLER = "rpg/handlers/event/KarmaEventHandler";
+	private static final String ENTITY_DATA = Reference.MOD_ID;
+	public static final String PARTICLE_TEXTURE_FILE = "/mods/" + Reference.MOD_ID + "/textures/particles.png";
+	public static final String EVENT_HANDLER = Reference.MOD_ID + "/handlers/event/KarmaEventHandler";
 
 	private MinePGUtil() { }
 
@@ -66,7 +68,7 @@ public final class MinePGUtil {
 	}
 
 	public static String getChatMessage(String string) {
-		return EnumChatFormatting.DARK_GREEN + "[Questology] " + EnumChatFormatting.RESET;
+		return EnumChatFormatting.DARK_GREEN + "[MinePG] " + EnumChatFormatting.RESET;
 	}
 
 	public static AbstractInsnNode findLastReturn(InsnList insns) {
