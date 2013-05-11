@@ -8,6 +8,7 @@ import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.server.MinecraftServer;
 import rpg.RPG;
 import rpg.enums.EnumGui;
+import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -15,7 +16,9 @@ public class ConnectionHandler implements IConnectionHandler {
 	
 	@Override
 	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
-		((EntityPlayerMP) player).openGui(RPG.instance, EnumGui.LoreStartingPage.getIndex(), ((EntityPlayerMP) player).worldObj, 0, 0, 0);
+		PlayerInformation playerInfo = PlayerInformation.forPlayer((EntityPlayerMP)player);		
+	    if(playerInfo.getPlayersClass() == "")
+	        ((EntityPlayerMP) player).openGui(RPG.instance, EnumGui.LoreStartingPage.getIndex(), ((EntityPlayerMP) player).worldObj, 0, 0, 0);
 	}
 
 	@Override

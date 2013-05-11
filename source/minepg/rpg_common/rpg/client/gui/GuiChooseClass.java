@@ -12,7 +12,9 @@ import rpg.config.base.mage.MageWeapons;
 import rpg.config.base.warrior.WarriorArmor;
 import rpg.config.base.warrior.WarriorWeapons;
 import rpg.gui.ContainerEmpty;
-import rpg.playerinfo.PlayerInfoFake;
+import rpg.network.packet.PacketPlayerInfo;
+import rpg.playerinfo.PlayerInformation;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiChooseClass extends GuiContainer {
 
@@ -39,9 +41,12 @@ public class GuiChooseClass extends GuiContainer {
 	public void actionPerformed(GuiButton button) {
         mc.thePlayer.addExperienceLevel(1);
 		
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(mc.thePlayer);
+        
         switch(button.id) {
 			case 0:
-				PlayerInfoFake.setPlayersClass("Archer");
+			    playerInfo.setPlayersClass("Archer");
+			    PacketDispatcher.sendPacketToServer(new PacketPlayerInfo(playerInfo).generatePacket());
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.bowTraining, 1));
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.arrowTraining, 32));
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.tunicTraining, 1));
@@ -49,15 +54,17 @@ public class GuiChooseClass extends GuiContainer {
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.bootsTraining, 1));
 				break;
 			case 1:
-				PlayerInfoFake.setPlayersClass("Mage");
+			    playerInfo.setPlayersClass("Mage");
+			    PacketDispatcher.sendPacketToServer(new PacketPlayerInfo(playerInfo).generatePacket());
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageWeapons.staffTraining, 1));
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageArmor.hatTraining, 1));
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageArmor.robeTraining, 1));
 				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(MageArmor.sandalsTraining, 1));
 				break;
 			case 2:
-				PlayerInfoFake.setPlayersClass("Warrior");
-				mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorWeapons.swordTraining, 1));
+			    playerInfo.setPlayersClass("Warrior");
+			    PacketDispatcher.sendPacketToServer(new PacketPlayerInfo(playerInfo).generatePacket());
+			    mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorWeapons.swordTraining, 1));
                 mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.helmetTraining, 1));
                 mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.cuirassTraining, 1));
                 mc.thePlayer.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.greavesTraining, 1));
@@ -65,7 +72,7 @@ public class GuiChooseClass extends GuiContainer {
 				break;
 		}
         
-        mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the " + PlayerInfoFake.getPlayersClass());
+        mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the " + playerInfo.getPlayersClass());
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
 		mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");

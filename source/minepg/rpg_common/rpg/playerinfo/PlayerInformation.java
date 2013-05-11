@@ -1,14 +1,18 @@
 package rpg.playerinfo;
 
+import java.io.File;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import rpg.DownloadHelper;
+import cpw.mods.fml.common.network.Player;
 
 public final class PlayerInformation implements IExtendedEntityProperties {
-
+    
 	public static final String IDENTIFIER = "minpg_playerinfo";
 
 	public static PlayerInformation forPlayer(Entity player) {
@@ -23,10 +27,9 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 	public static final int MAX_KARMA_VALUE = 99999999;
 
 	public boolean dirty = true;
-	public boolean hasClassBeenChosen = false;
 	public float karma = 0;
 	public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent.values().length];
-	public String playersClass = "";
+	public String playersClass;
 	public int danris = 0;
 	
 	private final EntityPlayer player;
@@ -45,7 +48,6 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		NBTTagCompound nbt = new NBTTagCompound();
 		
 		nbt.setString("playersClass", playersClass);
-		nbt.setBoolean("hasClassBeenChosen", hasClassBeenChosen);
 		nbt.setInteger("danris", danris);
 		nbt.setFloat("karma", karma);
 
@@ -58,7 +60,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		}
 		nbt.setTag("events", eventList);
 		
-		nbtPlayer.setCompoundTag(IDENTIFIER, nbt);
+		nbtPlayer.setCompoundTag(IDENTIFIER, player.getEntityData());
 	}
 
 	@Override
@@ -66,7 +68,6 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
 		
 		playersClass = nbt.getString("playersClass");
-		hasClassBeenChosen = nbt.getBoolean("hasClassBeenChosen");
 		danris = nbt.getInteger("danris");
 		karma = nbt.getFloat("karma");
 
@@ -80,18 +81,14 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		}
 	}
 	
-	public boolean getHasClassBeenChosen() {
-		return hasClassBeenChosen;
-	}
+	private String getSaveFolder(EntityPlayer player) {
+        return DownloadHelper.getDir() + "/saves/" + player.worldObj.getSaveHandler().getWorldDirectoryName() + "/minepg/";
+    }
 	
-	public boolean setHasClassBeenChosen(boolean hasClassBeenChosen) {
-		if(this.hasClassBeenChosen != hasClassBeenChosen) {
-			this.hasClassBeenChosen = hasClassBeenChosen;
-			setDirty();
-			return hasClassBeenChosen;
-		}
-		return this.hasClassBeenChosen;
-	}
+	public boolean hasPlayerFile(Player player) {
+        File playerSaveFile = new File(getSaveFolder((EntityPlayer) player) + ((EntityPlayer) player).username + ".rpg");
+        return playerSaveFile.exists();
+    }
 	
 	public String getPlayersClass() {
 		return playersClass;
@@ -101,14 +98,9 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 		if(this.playersClass != playersClass) {
 			this.playersClass = playersClass;
 			setDirty();
-			return playersClass;
 		}
 		
 		return this.playersClass;
-	}
-	
-	public String modifyPlayersClass(String classChangingTo) {
-		return setPlayersClass(classChangingTo);
 	}
 	
 	public float getKarma() {

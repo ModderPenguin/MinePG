@@ -9,6 +9,7 @@ import rpg.comm.ConnectionHandler;
 import rpg.config.RPGConfig;
 import rpg.config.RPGCreativeTabs;
 import rpg.handlers.MinePGPacketHandler;
+import rpg.handlers.events.GenericEventHandler;
 import rpg.lib.Reference;
 import rpg.sounds.SoundLoader;
 import rpg.storage.RPGStorage;
@@ -24,6 +25,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 @NetworkMod(tinyPacketHandler = MinePGPacketHandler.class, clientSideRequired = true, serverSideRequired = false)
@@ -48,17 +50,24 @@ public class RPG {
 		{
 			MinecraftForge.EVENT_BUS.register(new SoundLoader());
 		}
-		RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));	
+		RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
 	}
 
 	@Init
 	public void load(FMLInitializationEvent event) {
 		proxy.registerRenderers();
 		proxy.registerKeyBindings();
+		
 		RPGCreativeTabs.addTabNames();
+		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		NetworkRegistry.instance().registerConnectionHandler(new ConnectionHandler());
+		
 		MinecraftForge.EVENT_BUS.register(RPGStorage.RandomManager);
+		
+		GenericEventHandler handler = new GenericEventHandler();
+        MinecraftForge.EVENT_BUS.register(handler);
+        GameRegistry.registerPlayerTracker(handler);
 	}
 
 	@PostInit

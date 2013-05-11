@@ -4,7 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import rpg.enums.weapons.EnumRPGHammerMaterial;
-import rpg.items.paladin.weapons.ItemTrainingHammer;
+import rpg.items.warrior.weapons.ItemTrainingHammer;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class PaladinWeapons {

@@ -34,8 +34,7 @@ public class GuiLoreStartingPage extends GuiContainer {
 		drawString(fontRenderer, "one to wait for an update for new stuff, he took action. He prepared to go out", 2, 40, 0xFFFFFF);
 		drawString(fontRenderer, "and find new adventures, new battles, new purposes for the life he lives. What", 2, 50, 0xFFFFFF);
 		drawString(fontRenderer, "he did not know was a great evil was growing, and he needs all the luck he can", 2, 60, 0xFFFFFF);
-		drawString(fontRenderer, "growing, and he needs all the luck he can get to stop this great darkness that", 2, 70, 0xFFFFFF);
-		drawString(fontRenderer, "get to stop this great darkness that plagues Minecraftia.", 2, 80, 0xFFFFFF);
-		drawString(fontRenderer, "Now your story starts here...... good luck.", 2, 100, 0xFFFFFF);
+		drawString(fontRenderer, "get to stop this great darkness that plagues Minecraftia.", 2, 70, 0xFFFFFF);
+		drawString(fontRenderer, "Now your story starts here...... good luck.", 2, 90, 0xFFFFFF);
 	}
 }

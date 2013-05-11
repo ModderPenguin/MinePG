@@ -36,8 +36,7 @@ public abstract class MinePGPacket {
     static {
         
     	addMapping(0, PacketPlayerInfo.class);
-    	addMapping(1, PacketClassUpdate.class);
-
+    	
         idMapping = ImmutableBiMap.copyOf(idMapping);
     }
 

@@ -17,6 +17,5 @@ public class RPGItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
 	    this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + (this.getUnlocalizedName().substring(5)));
-	    System.out.println("[MinePG Textures] Texture Loaded: " + (this.getUnlocalizedName().substring(5)) + ".png");
 	}
 }

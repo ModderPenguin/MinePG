@@ -7,7 +7,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -53,7 +52,7 @@ public class ItemRPGBow extends RPGItem
 
         boolean flag = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (flag || par3EntityPlayer.inventory.hasItem(Item.arrow.itemID))
+        if (flag || par3EntityPlayer.inventory.hasItem(ArcherWeapons.arrowTraining.itemID))
         {
             float f = (float)j / 20.0F;
             f = (f * f + f * 2.0F) / 3.0F;
@@ -103,7 +102,7 @@ public class ItemRPGBow extends RPGItem
             }
             else
             {
-                par3EntityPlayer.inventory.consumeInventoryItem(Item.arrow.itemID);
+                par3EntityPlayer.inventory.consumeInventoryItem(ArcherWeapons.arrowTraining.itemID);
             }
 
             if (!par2World.isRemote)
@@ -138,7 +137,8 @@ public class ItemRPGBow extends RPGItem
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {        
+    {
+        //PlayerInformation playerInfo = PlayerInformation.forPlayer(par3EntityPlayer);
         //if(playerInfo.getPlayersClass() == "Archer" || playerInfo.getPlayersClass() == "Sniper" || playerInfo.getPlayersClass() == "Assassin" ||
         		//playerInfo.getPlayersClass() == "Woodsmen" || playerInfo.getPlayersClass() == "Hunter") {
             ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);

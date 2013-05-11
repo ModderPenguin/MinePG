@@ -8,6 +8,7 @@ import net.minecraftforge.common.IArmorTextureProvider;
 import rpg.config.base.mage.MageArmor;
 import rpg.enums.EnumRPGArmorMaterial;
 import rpg.items.armor.ItemRPGArmor;
+import rpg.playerinfo.PlayerInformation;
 
 @SuppressWarnings("deprecation")
 public class MageTrainingArmor extends ItemRPGArmor implements IArmorTextureProvider {
@@ -26,7 +27,27 @@ public class MageTrainingArmor extends ItemRPGArmor implements IArmorTextureProv
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        par3List.add("Class: §CDruid, §CSorcerer");
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player, List par3List, boolean par4) {
+	    PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
+        // Checks the players class and colored item name accordingly
+        if(PlayerInfoFake.getPlayersClass() == "Mage" && player.experienceLevel >= 1) {
+            par3List.add("Class: ¤AMage, ¤4Alchemist");
+            par3List.add("Level: ¤A1");
+        } else if(PlayerInfoFake.getPlayersClass() == "Alchemist" && player.experienceLevel >= 1) {
+            par3List.add("Class: ¤4Mage, ¤AAlchemist");
+            par3List.add("Level: ¤41");
+        } else if(PlayerInfoFake.getPlayersClass() == "Mage" && player.experienceLevel != 1) {
+            par3List.add("Class: ¤AMage, ¤4Alchemist");
+            par3List.add("Level: ¤41");
+        } else if(PlayerInfoFake.getPlayersClass() == "Alchemist" && player.experienceLevel != 1) {
+            par3List.add("Class: ¤4Mage, ¤AAlchemist");
+            par3List.add("Level: ¤41");
+        } else if((PlayerInfoFake.getPlayersClass() != "Mage" || PlayerInfoFake.getPlayersClass() != "Alchemist") && player.experienceLevel == 1) {
+            par3List.add("Class: ¤4Mage, ¤4Alchemist");
+            par3List.add("Level: ¤A1");
+        } else {
+            par3List.add("Class: ¤4Mage, ¤4Alchemist");
+            par3List.add("Level: ¤41");
+        }
     }
 }
