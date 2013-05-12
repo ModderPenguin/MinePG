@@ -43,7 +43,6 @@ public final class PlayerInformation implements IExtendedEntityProperties {
     public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent
             .values().length];
     public String playersClass;
-
     public int danris = 0;
 
     private final EntityPlayer player;

@@ -12,13 +12,29 @@ public class PacketPlayerInfo extends MinePGPacket {
 
     private String playersClass;
     private float karma;
+    private int danris;
 
     public PacketPlayerInfo() {
+    }
+
+    @Override
+    protected void writeData(ByteArrayDataOutput out) {
+        out.writeUTF(playersClass);
+        out.writeFloat(karma);
+        out.writeInt(danris);
+    }
+
+    @Override
+    protected void readData(ByteArrayDataInput in) {
+        playersClass = in.readUTF();
+        karma = in.readFloat();
+        danris = in.readInt();
     }
 
     public PacketPlayerInfo(PlayerInformation playerInformation) {
         playersClass = playerInformation.getPlayersClass();
         karma = playerInformation.getKarma();
+        danris = playerInformation.getCurrency();
     }
 
     @Override
@@ -27,18 +43,7 @@ public class PacketPlayerInfo extends MinePGPacket {
             PlayerInformation info = PlayerInformation.forPlayer(player);
             info.setPlayersClass(playersClass);
             info.setKarma(karma);
+            info.setCurrency(danris);
         }
-    }
-
-    @Override
-    protected void readData(ByteArrayDataInput in) {
-        playersClass = in.readUTF();
-        karma = in.readFloat();
-    }
-
-    @Override
-    protected void writeData(ByteArrayDataOutput out) {
-        out.writeUTF(playersClass);
-        out.writeFloat(karma);
     }
 }
