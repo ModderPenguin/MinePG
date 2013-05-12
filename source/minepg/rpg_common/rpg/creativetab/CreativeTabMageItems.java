@@ -9,7 +9,8 @@ public class CreativeTabMageItems extends CreativeTabs {
     public CreativeTabMageItems(String label) {
         super(label);
     }
-    
+
+    @Override
     public ItemStack getIconItemStack() {
         return new ItemStack(MageWeapons.staffTraining, 1);
     }

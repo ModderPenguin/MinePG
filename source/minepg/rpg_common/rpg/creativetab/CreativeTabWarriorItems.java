@@ -9,7 +9,8 @@ public class CreativeTabWarriorItems extends CreativeTabs {
     public CreativeTabWarriorItems(String label) {
         super(label);
     }
-    
+
+    @Override
     public ItemStack getIconItemStack() {
         return new ItemStack(WarriorWeapons.swordTraining, 1);
     }

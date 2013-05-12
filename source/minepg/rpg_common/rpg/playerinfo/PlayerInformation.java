@@ -1,201 +1,197 @@
 package rpg.playerinfo;
 
-import java.io.File;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import rpg.DownloadHelper;
-import cpw.mods.fml.common.network.Player;
 
 public final class PlayerInformation implements IExtendedEntityProperties {
-    
-	public static final String IDENTIFIER = "minpg_playerinfo";
 
-	public static PlayerInformation forPlayer(Entity player) {
-		return (PlayerInformation)player.getExtendedProperties(IDENTIFIER);
-	}
+    public static enum CountableKarmaEvent {
+        PIGMEN_ATTACK(1), CREATE_SNOWGOLEM(2), CREATE_IRONGOLEM(3);
 
-	// called by the ASM hook in EntityPlayer.clonePlayer
-	public static void handlePlayerClone(EntityPlayer source, EntityPlayer target) {
-		target.registerExtendedProperties(IDENTIFIER, source.getExtendedProperties(IDENTIFIER));
-	}
+        private final int maxCount;
 
-	public static final int MAX_KARMA_VALUE = 99999999;
+        private CountableKarmaEvent(int maxCount) {
+            this.maxCount = maxCount;
+        }
 
-	public boolean dirty = true;
-	public float karma = 0;
-	public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent.values().length];
-	public String playersClass;
-	public int danris = 0;
-	
-	private final EntityPlayer player;
-
-	public PlayerInformation(EntityPlayer player) {
-		this.player = player;
-	}
-
-	@Override
-	public void init(Entity entity, World world) {
-		// nothing for now
-	}
-
-	@Override
-	public void saveNBTData(NBTTagCompound nbtPlayer) {
-		NBTTagCompound nbt = new NBTTagCompound();
-		
-		nbt.setString("playersClass", playersClass);
-		nbt.setInteger("danris", danris);
-		nbt.setFloat("karma", karma);
-
-		NBTTagList eventList = new NBTTagList();
-		for (int i = 0; i < eventAmounts.length; i++) {
-			NBTTagCompound evtInfo = new NBTTagCompound();
-			evtInfo.setByte("id", (byte)i);
-			evtInfo.setByte("value", eventAmounts[i]);
-			eventList.appendTag(evtInfo);
-		}
-		nbt.setTag("events", eventList);
-		
-		nbtPlayer.setCompoundTag(IDENTIFIER, player.getEntityData());
-	}
-
-	@Override
-	public void loadNBTData(NBTTagCompound playerNbt) {
-		NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
-		
-		playersClass = nbt.getString("playersClass");
-		danris = nbt.getInteger("danris");
-		karma = nbt.getFloat("karma");
-
-		NBTTagList eventList = nbt.getTagList("events");
-		for (int i = 0; i < eventList.tagCount(); i++) {
-			NBTTagCompound evtInfo = (NBTTagCompound)eventList.tagAt(i);
-			byte eventId = evtInfo.getByte("id");
-			if (eventId >= 0 && eventId < eventAmounts.length) {
-				eventAmounts[eventId] = evtInfo.getByte("value");
-			}
-		}
-	}
-	
-	private String getSaveFolder(EntityPlayer player) {
-        return DownloadHelper.getDir() + "/saves/" + player.worldObj.getSaveHandler().getWorldDirectoryName() + "/minepg/";
+        public int getMaxCount() {
+            return maxCount;
+        }
     }
-	
-	public boolean hasPlayerFile(Player player) {
-        File playerSaveFile = new File(getSaveFolder((EntityPlayer) player) + ((EntityPlayer) player).username + ".rpg");
-        return playerSaveFile.exists();
+
+    public static final String IDENTIFIER = "minepg_playerinfo";
+
+    public static final int MAX_KARMA_VALUE = 99999999;
+
+    public static PlayerInformation forPlayer(Entity player) {
+        return (PlayerInformation) player.getExtendedProperties(IDENTIFIER);
     }
-	
-	public String getPlayersClass() {
-		return playersClass;
-	}
-	
-	public String setPlayersClass(String playersClass) {
-		if(this.playersClass != playersClass) {
-			this.playersClass = playersClass;
-			setDirty();
-		}
-		
-		return this.playersClass;
-	}
-	
-	public float getKarma() {
-		return karma;
-	}
 
-	public float setKarma(float karma) {
-		if (this.karma != karma) {
-			this.karma = karma;
-			if (this.karma > MAX_KARMA_VALUE) {
-				this.karma = MAX_KARMA_VALUE;
-			}
-			if (this.karma < -MAX_KARMA_VALUE) {
-				this.karma = -MAX_KARMA_VALUE;
-			}
-			setDirty();
-		}
-		
-		return this.karma;
-	}
+    // called by the ASM hook in EntityPlayer.clonePlayer
+    public static void handlePlayerClone(EntityPlayer source,
+            EntityPlayer target) {
+        target.registerExtendedProperties(IDENTIFIER,
+                source.getExtendedProperties(IDENTIFIER));
+    }
 
-	public float modifyKarma(float modifier) {
-		player.worldObj.playSoundAtEntity(player, "minepgkarma.karma" + (modifier < 0 ? "down" : "up"), 1, 1);
+    public boolean dirty = true;
+    public float karma = 0;
+    public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent
+            .values().length];
+    public String playersClass;
 
-		return setKarma(karma + modifier);
-	}
+    public int danris = 0;
 
-	public float modifyKarmaWithMax(float modifier, float max) {
-		if (karma < max) {
-			modifyKarma(modifier);
-		}
-		
-		return karma;
-	}
+    private final EntityPlayer player;
 
-	public float modifyKarmaWithMin(float modifier, float min) {
-		if (karma > min) {
-			modifyKarma(modifier);
-		}
-		
-		return karma;
-	}
+    public PlayerInformation(EntityPlayer player) {
+        this.player = player;
+    }
 
-	public byte getEventAmount(CountableKarmaEvent event) {
-		return eventAmounts[event.ordinal()];
-	}
+    public int getCurrency() {
+        return danris;
+    }
 
-	public boolean setEventAmount(CountableKarmaEvent event, int amount) {
-		if (amount < event.getMaxCount() && eventAmounts[event.ordinal()] != amount) {
-			eventAmounts[event.ordinal()] = (byte)amount;
-			setDirty();
-			return true;
-		} else {
-			return false;
-		}
-	}
+    public byte getEventAmount(CountableKarmaEvent event) {
+        return eventAmounts[event.ordinal()];
+    }
 
-	public boolean increaseEventAmount(PlayerInformation.CountableKarmaEvent event) {
-		return setEventAmount(event, eventAmounts[event.ordinal()] + 1);
-	}
+    public float getKarma() {
+        return karma;
+    }
 
-	public static enum CountableKarmaEvent {
-		PIGMEN_ATTACK(1), CREATE_SNOWGOLEM(2), CREATE_IRONGOLEM(3);
+    public String getPlayersClass() {
+        return playersClass;
+    }
 
-		private final int maxCount;
+    public boolean increaseEventAmount(
+            PlayerInformation.CountableKarmaEvent event) {
+        return setEventAmount(event, eventAmounts[event.ordinal()] + 1);
+    }
 
-		private CountableKarmaEvent(int maxCount) {
-			this.maxCount = maxCount;
-		}
+    @Override
+    public void init(Entity entity, World world) {
 
-		public int getMaxCount() {
-			return maxCount;
-		}
-	}
-	
-	public int getCurrency() {
-		return danris;
-	}
+    }
 
-	public int setCurrency(int danris) {
-		if(this.danris != danris) {
-			this.danris = danris;
-			setDirty();
-		}
-		if(this.danris > 999999) {
-			this.danris = 999999;
-			setDirty();
-		}
-		return this.danris;
-	}
+    @Override
+    public void loadNBTData(NBTTagCompound playerNbt) {
+        NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
 
-	/**
-	 * marks that this needs to be resend to the client
-	 */
-	public void setDirty() {
-		dirty = true;
-	}
+        playersClass = nbt.getString("playersClass");
+
+        System.out
+                .println("Debug message. If this has been printed to the console then NBTData has been read.");
+        danris = nbt.getInteger("danris");
+        karma = nbt.getFloat("karma");
+
+        NBTTagList eventList = nbt.getTagList("events");
+        for (int i = 0; i < eventList.tagCount(); i++) {
+            NBTTagCompound evtInfo = (NBTTagCompound) eventList.tagAt(i);
+            byte eventId = evtInfo.getByte("id");
+            if (eventId >= 0 && eventId < eventAmounts.length) {
+                eventAmounts[eventId] = evtInfo.getByte("value");
+            }
+        }
+    }
+
+    public float modifyKarma(float modifier) {
+        player.worldObj.playSoundAtEntity(player, "minepg.karma"
+                + (modifier < 0 ? "down" : "up"), 1, 1);
+
+        return setKarma(karma + modifier);
+    }
+
+    public float modifyKarmaWithMax(float modifier, float max) {
+        if (karma < max) {
+            modifyKarma(modifier);
+        }
+
+        return karma;
+    }
+
+    public float modifyKarmaWithMin(float modifier, float min) {
+        if (karma > min) {
+            modifyKarma(modifier);
+        }
+
+        return karma;
+    }
+
+    @Override
+    public void saveNBTData(NBTTagCompound compound) {
+        NBTTagCompound nbt = new NBTTagCompound();
+
+        nbt.setString("playersClass", playersClass);
+        nbt.setInteger("danris", danris);
+        nbt.setFloat("karma", karma);
+
+        NBTTagList eventList = new NBTTagList();
+        for (int i = 0; i < eventAmounts.length; i++) {
+            NBTTagCompound evtInfo = new NBTTagCompound();
+            evtInfo.setByte("id", (byte) i);
+            evtInfo.setByte("value", eventAmounts[i]);
+            eventList.appendTag(evtInfo);
+        }
+        nbt.setTag("events", eventList);
+
+        compound.setCompoundTag(IDENTIFIER, player.getEntityData());
+    }
+
+    public int setCurrency(int danris) {
+        if (this.danris != danris) {
+            this.danris = danris;
+            setDirty();
+        }
+        if (this.danris > 999999) {
+            this.danris = 999999;
+            setDirty();
+        }
+        return this.danris;
+    }
+
+    /**
+     * marks that this needs to be resend to the client
+     */
+    public void setDirty() {
+        dirty = true;
+    }
+
+    public boolean setEventAmount(CountableKarmaEvent event, int amount) {
+        if (amount < event.getMaxCount()
+                && eventAmounts[event.ordinal()] != amount) {
+            eventAmounts[event.ordinal()] = (byte) amount;
+            setDirty();
+            return true;
+        } else
+            return false;
+    }
+
+    public float setKarma(float karma) {
+        if (this.karma != karma) {
+            this.karma = karma;
+            if (this.karma > MAX_KARMA_VALUE) {
+                this.karma = MAX_KARMA_VALUE;
+            }
+            if (this.karma < -MAX_KARMA_VALUE) {
+                this.karma = -MAX_KARMA_VALUE;
+            }
+            setDirty();
+        }
+
+        return this.karma;
+    }
+
+    public String setPlayersClass(String playersClass) {
+        if (this.playersClass != playersClass) {
+            this.playersClass = playersClass;
+            setDirty();
+        }
+
+        return this.playersClass;
+    }
 }

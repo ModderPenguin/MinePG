@@ -13,27 +13,27 @@ import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
-	@Override
-	public void registerRenderers() {
-		RenderingRegistry.registerEntityRenderingHandler(EntityWandTrainingBolt.class, new RenderWandTrainingBolt());
-	}
-	
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		if(ID == EnumGui.ChooseClass.getIndex()) {
-			return new GuiChooseClass();
-		} else if(ID == EnumGui.LoreStartingPage.getIndex()) {
-			return new GuiLoreStartingPage();
-		}// else if(ID == EnumGui.PlayerStats.getIndex()) {
-			//return new GuiPlayerStats();
-		//}
-		
-		return null;
-	}
-	
-	@Override
-	public void registerKeyBindings() {
-		
-		KeyBindingRegistry.registerKeyBinding(new PlayerStatsKey());
-	}
+
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world,
+            int x, int y, int z) {
+        if (ID == EnumGui.ChooseClass.getIndex())
+            return new GuiChooseClass();
+        else if (ID == EnumGui.LoreStartingPage.getIndex())
+            return new GuiLoreStartingPage();
+
+        return null;
+    }
+
+    @Override
+    public void registerKeyBindings() {
+
+        KeyBindingRegistry.registerKeyBinding(new PlayerStatsKey());
+    }
+
+    @Override
+    public void registerRenderers() {
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityWandTrainingBolt.class, new RenderWandTrainingBolt());
+    }
 }

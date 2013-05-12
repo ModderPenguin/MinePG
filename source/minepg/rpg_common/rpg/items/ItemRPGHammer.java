@@ -15,11 +15,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemRPGHammer extends RPGItem {
-	private int weaponDamage;
+
+    private int weaponDamage;
     private final EnumRPGHammerMaterial toolMaterial;
     private final int healAmount;
-    public ItemRPGHammer(int id, EnumRPGHammerMaterial material, int healAmount, String name)
-    {
+
+    public ItemRPGHammer(int id, EnumRPGHammerMaterial material,
+            int healAmount, String name) {
         super(id, name);
         this.toolMaterial = material;
         this.maxStackSize = 1;
@@ -29,23 +31,21 @@ public class ItemRPGHammer extends RPGItem {
         this.healAmount = healAmount;
     }
 
-    public int func_82803_g()
-    {
-        return this.toolMaterial.getDamageVsEntity();
-    }
-    
+    @Override
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        // Checks the players class and colored item name accordingly
-        if(PlayerClassHandler.getPlayersClass() == "Warrior") {
+    public void addInformation(ItemStack par1ItemStack,
+            EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        // Checks the players class and colored item name
+        // accordingly
+        if (PlayerClassHandler.getPlayersClass() == "Warrior") {
             par3List.add("Class: §AWarrior");
             par3List.add("Class: §4Paladin");
             par3List.add("Class: §4Angelic Warrior");
-        } else if(PlayerClassHandler.getPlayersClass() == "Paladin") {
+        } else if (PlayerClassHandler.getPlayersClass() == "Paladin") {
             par3List.add("Class: §AWarrior");
             par3List.add("Class: §APaladin");
             par3List.add("Class: §4Angelic Warrior");
-        } else if(PlayerClassHandler.getPlayersClass() == "Angel") {
+        } else if (PlayerClassHandler.getPlayersClass() == "Angel") {
             par3List.add("Class: §AWarrior");
             par3List.add("Class: §APaladin");
             par3List.add("Class: §AAngelic Warrior");
@@ -56,84 +56,95 @@ public class ItemRPGHammer extends RPGItem {
         }
     }
 
-    /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
-     * the damage on the stack.
-     */
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving)
-    {
-        par1ItemStack.damageItem(1, par3EntityLiving);
-        return true;
+    public int func_82803_g() {
+        return this.toolMaterial.getDamageVsEntity();
     }
 
     /**
      * Returns the damage against a given entity.
      */
-    public int getDamageVsEntity(Entity par1Entity)
-    {
+    @Override
+    public int getDamageVsEntity(Entity par1Entity) {
         return this.weaponDamage;
     }
 
-    @SideOnly(Side.CLIENT)
-
     /**
-     * Returns True is the item is renderer in full 3D when hold.
+     * Return whether this item is repairable in an anvil.
      */
-    public boolean isFull3D()
-    {
-        return true;
+    @Override
+    public boolean getIsRepairable(ItemStack par1ItemStack,
+            ItemStack par2ItemStack) {
+        return this.toolMaterial.getHammerCraftingMaterial() == par2ItemStack.itemID ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
-     * returns the action that specifies what animation to play when the items is being used
+     * Return the enchantability factor of the item, most of
+     * the time is based on material.
      */
-    public EnumAction getItemUseAction(ItemStack par1ItemStack)
-    {
+    @Override
+    public int getItemEnchantability() {
+        return this.toolMaterial.getEnchantability();
+    }
+
+    /**
+     * returns the action that specifies what animation to
+     * play when the items is being used
+     */
+    @Override
+    public EnumAction getItemUseAction(ItemStack par1ItemStack) {
         return EnumAction.block;
     }
 
     /**
      * How long it takes to use or consume an item
      */
-    public int getMaxItemUseDuration(ItemStack par1ItemStack)
-    {
+    @Override
+    public int getMaxItemUseDuration(ItemStack par1ItemStack) {
         return 72000;
-    }
-
-    /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
-     */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {        
-        if(PlayerClassHandler.getPlayersClass() == "Paladin" || PlayerClassHandler.getPlayersClass() == "Angel") {
-            par3EntityPlayer.heal(this.healAmount);
-            return par1ItemStack;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Return the enchantability factor of the item, most of the time is based on material.
-     */
-    public int getItemEnchantability()
-    {
-        return this.toolMaterial.getEnchantability();
     }
 
     /**
      * Return the name for this tool's material.
      */
-    public String getToolMaterialName()
-    {
+    public String getToolMaterialName() {
         return this.toolMaterial.toString();
     }
 
     /**
-     * Return whether this item is repairable in an anvil.
+     * Current implementations of this method in child
+     * classes do not use the entry argument beside ev. They
+     * just raise the damage on the stack.
      */
-    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-    {
-        return this.toolMaterial.getHammerCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+    @Override
+    public boolean hitEntity(ItemStack par1ItemStack,
+            EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
+        par1ItemStack.damageItem(1, par3EntityLiving);
+        return true;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    /**
+     * Returns True is the item is renderer in full 3D when hold.
+     */
+    public boolean isFull3D() {
+        return true;
+    }
+
+    /**
+     * Called whenever this item is equipped and the right
+     * mouse button is pressed. Args: itemStack, world,
+     * entityPlayer
+     */
+    @Override
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer) {
+        if (PlayerClassHandler.getPlayersClass() == "Paladin"
+                || PlayerClassHandler.getPlayersClass() == "Angel") {
+            par3EntityPlayer.heal(this.healAmount);
+            return par1ItemStack;
+        } else
+            return null;
     }
 }

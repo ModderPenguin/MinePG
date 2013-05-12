@@ -5,6 +5,6 @@ import org.objectweb.asm.tree.MethodNode;
 
 public interface ClassTransformer {
 
-	public void transformMethod(ClassNode clazz, MethodNode method);
+    public void transformMethod(ClassNode clazz, MethodNode method);
 
 }

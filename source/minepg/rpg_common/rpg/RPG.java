@@ -10,9 +10,9 @@ import rpg.config.RPGConfig;
 import rpg.config.RPGCreativeTabs;
 import rpg.handlers.MinePGPacketHandler;
 import rpg.handlers.events.GenericEventHandler;
+import rpg.handlers.events.KarmaEventHandler;
 import rpg.lib.Reference;
 import rpg.sounds.SoundLoader;
-import rpg.storage.RPGStorage;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -30,47 +30,50 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 @NetworkMod(tinyPacketHandler = MinePGPacketHandler.class, clientSideRequired = true, serverSideRequired = false)
 public class RPG {
-	
-	@Instance("RPG")
-	public static RPG instance;
 
-	@SidedProxy(clientSide = "rpg.client.ClientProxy", serverSide = "rpg.CommonProxy")
-	public static CommonProxy proxy;
-	
-	public static Logger logger = Logger.getLogger("MinePG");
-	
-	public static File modDirectory;
-	
-	public static int minodimensionid = 10;
-	
-    @PreInit
-	public void preInit(FMLPreInitializationEvent event) {
-		modDirectory = new File(event.getModConfigurationDirectory().getParent());
-		if(FMLCommonHandler.instance().getSide().isClient())
-		{
-			MinecraftForge.EVENT_BUS.register(new SoundLoader());
-		}
-		RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
-	}
+    @Instance("RPG")
+    public static RPG instance;
 
-	@Init
-	public void load(FMLInitializationEvent event) {
-		proxy.registerRenderers();
-		proxy.registerKeyBindings();
-		
-		RPGCreativeTabs.addTabNames();
-		
-		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
-		NetworkRegistry.instance().registerConnectionHandler(new ConnectionHandler());
-		
-		MinecraftForge.EVENT_BUS.register(RPGStorage.RandomManager);
-		
-		GenericEventHandler handler = new GenericEventHandler();
+    @SidedProxy(clientSide = "rpg.client.ClientProxy", serverSide = "rpg.CommonProxy")
+    public static CommonProxy proxy;
+
+    public static Logger logger = Logger.getLogger("MinePG");
+
+    public static File modDirectory;
+
+    public static int minodimensionid = 10;
+
+    @Init
+    public void load(FMLInitializationEvent event) {
+        proxy.registerRenderers();
+        proxy.registerKeyBindings();
+
+        RPGCreativeTabs.addTabNames();
+
+        NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+        NetworkRegistry.instance().registerConnectionHandler(
+                new ConnectionHandler());
+
+        KarmaEventHandler karmaHandler = new KarmaEventHandler();
+        MinecraftForge.EVENT_BUS.register(karmaHandler);
+
+        GenericEventHandler handler = new GenericEventHandler();
         MinecraftForge.EVENT_BUS.register(handler);
         GameRegistry.registerPlayerTracker(handler);
-	}
+    }
 
-	@PostInit
-	public void postInit(FMLPostInitializationEvent event) {
-	}
+    @PostInit
+    public void postInit(FMLPostInitializationEvent event) {
+    }
+
+    @PreInit
+    public void preInit(FMLPreInitializationEvent event) {
+        modDirectory = new File(event.getModConfigurationDirectory()
+                .getParent());
+        if (FMLCommonHandler.instance().getSide().isClient()) {
+            MinecraftForge.EVENT_BUS.register(new SoundLoader());
+        }
+        RPGConfig.loadConfig(new Configuration(event
+                .getSuggestedConfigurationFile()));
+    }
 }

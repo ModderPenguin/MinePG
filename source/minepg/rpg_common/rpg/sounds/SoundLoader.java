@@ -1,22 +1,32 @@
 package rpg.sounds;
 
-import rpg.RPG;
+import java.net.URL;
+
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;
+import rpg.lib.Reference;
 
-public class SoundLoader {	
-	@ForgeSubscribe
-	public void loadSounds(SoundLoadEvent event) {
-		try
-		{
-			final String []soundFiles = {
-					
-			};
-			for (int i = 0; i < soundFiles.length; i++){
-				event.manager.soundPoolSounds.addSound(soundFiles[i], RPG.class.getResource("/mods/rpg/sounds/" + soundFiles[i]));
-			}
-		} catch (Exception e) {
-			System.err.println("[MinePG] Failed to register one or more sounds.");
-		}
-	}
+public class SoundLoader {
+
+    public static boolean didSoundsLoad;
+
+    private static final String[] SOUNDS = { "karmaup", "karmadown",
+            "karmaerror" };
+
+    private URL getSound(String sound) {
+        return getClass().getResource(
+                "/mods/" + Reference.MOD_ID + "/resource/sound/" + sound
+                        + ".ogg");
+    }
+
+    @ForgeSubscribe
+    public void onSoundLoad(SoundLoadEvent evt) {
+        for (String sound : SOUNDS) {
+            evt.manager.soundPoolSounds.addSound("minepg/" + sound + ".ogg",
+                    getSound(sound));
+            System.out.println("[MinePG Sound Loader] Loading sounds...");
+            System.out.println("[MinePG Sound Loader] Sounds Loaded");
+            SoundLoader.didSoundsLoad = true;
+        }
+    }
 }

@@ -17,34 +17,33 @@ import cpw.mods.fml.relauncher.IClassTransformer;
 
 public class MinePGClassTransformer implements IClassTransformer {
 
-	private static final Map<String, ClassTransformer> visitors;
+    private static final Map<String, ClassTransformer> visitors;
 
-	static {
-		ImmutableMap.Builder<String, ClassTransformer> builder = ImmutableMap.builder();
+    static {
+        ImmutableMap.Builder<String, ClassTransformer> builder = ImmutableMap
+                .builder();
 
-		
+        visitors = builder.build();
+    }
 
-		visitors = builder.build();
-	}
+    @Override
+    public byte[] transform(String name, String transformedName, byte[] bytes) {
+        if (visitors.containsKey(transformedName)) {
+            ClassReader reader = new ClassReader(bytes);
+            ClassTransformer transformer = visitors.get(transformedName);
 
-	@Override
-	public byte[] transform(String name, String transformedName, byte[] bytes) {
-		if (visitors.containsKey(transformedName)) {
-			ClassReader reader = new ClassReader(bytes);
-			ClassTransformer transformer = visitors.get(transformedName);
+            ClassNode clazz = new ClassNode(Opcodes.ASM4);
+            reader.accept(clazz, 0);
 
-			ClassNode clazz = new ClassNode(Opcodes.ASM4);
-			reader.accept(clazz, 0);
+            for (MethodNode method : clazz.methods) {
+                transformer.transformMethod(clazz, method);
+            }
 
-			for (MethodNode method : clazz.methods) {
-				transformer.transformMethod(clazz, method);
-			}
-
-			ClassWriter writer = new ClassWriter(COMPUTE_MAXS | COMPUTE_FRAMES);
-			clazz.accept(writer);
-			bytes = writer.toByteArray();
-		}
-		return bytes;
-	}
+            ClassWriter writer = new ClassWriter(COMPUTE_MAXS | COMPUTE_FRAMES);
+            clazz.accept(writer);
+            bytes = writer.toByteArray();
+        }
+        return bytes;
+    }
 
 }

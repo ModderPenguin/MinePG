@@ -6,12 +6,12 @@ import net.minecraft.inventory.Slot;
 
 public class SlotNoPickup extends Slot {
 
-	public SlotNoPickup(IInventory inventory, int id, int x, int y) {
-		super(inventory, id, x, y);
-	}
+    public SlotNoPickup(IInventory inventory, int id, int x, int y) {
+        super(inventory, id, x, y);
+    }
 
-	@Override
-	public boolean canTakeStack(EntityPlayer par1EntityPlayer) {
-		return false;
-	}
+    @Override
+    public boolean canTakeStack(EntityPlayer par1EntityPlayer) {
+        return false;
+    }
 }

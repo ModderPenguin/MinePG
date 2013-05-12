@@ -6,11 +6,12 @@ import rpg.config.base.archer.ArcherWeapons;
 
 public class CreativeTabArcherItems extends CreativeTabs {
 
-	public CreativeTabArcherItems(String label) {
-		super(label);
-	}
-	
-	public ItemStack getIconItemStack() {
+    public CreativeTabArcherItems(String label) {
+        super(label);
+    }
+
+    @Override
+    public ItemStack getIconItemStack() {
         return new ItemStack(ArcherWeapons.bowTraining, 1);
-	}
+    }
 }

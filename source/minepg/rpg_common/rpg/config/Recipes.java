@@ -1,8 +1,8 @@
 package rpg.config;
 
 public class Recipes {
-	
-	public void loadRecipes() {
-		
-	}
+
+    public void loadRecipes() {
+
+    }
 }

@@ -4,66 +4,67 @@ import net.minecraft.item.Item;
 import rpg.config.RPGItems;
 
 public enum EnumRPGWandMaterial {
-	TRAINING(32, 1, 1),
-	TAURITE(200, 5, 10);
+    TRAINING(32, 1, 1), TAURITE(200, 5, 10);
 
     /**
-     * The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32)
+     * The number of uses this material allows. (wood = 59,
+     * stone = 131, iron = 250, diamond = 1561, gold = 32)
      */
     private final int maxUses;
 
     /** Damage versus entities. */
     private final int damageVsEntity;
 
-    /** Defines the natural enchantability factor of the material. */
+    /**
+     * Defines the natural enchantability factor of the
+     * material.
+     */
     private final int enchantability;
 
-    //Added by forge for custom Armor materials.
+    // Added by forge for custom Armor materials.
     public Item customCraftingMaterial = null;
 
-    private EnumRPGWandMaterial(int par3, int par4, int par5)
-    {
+    private EnumRPGWandMaterial(int par3, int par4, int par5) {
         this.maxUses = par3;
         this.damageVsEntity = par4;
         this.enchantability = par5;
     }
 
     /**
-     * The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32)
-     */
-    public int getMaxUses()
-    {
-        return this.maxUses;
-    }
-
-    /**
      * Damage versus entities.
      */
-    public int getDamageVsEntity()
-    {
+    public int getDamageVsEntity() {
         return this.damageVsEntity;
     }
 
     /**
-     * Return the natural enchantability factor of the material.
+     * Return the natural enchantability factor of the
+     * material.
      */
-    public int getEnchantability()
-    {
+    public int getEnchantability() {
         return this.enchantability;
     }
 
     /**
-     * Return the crafting material for this tool material, used to determine the item that can be used to repair a tool
-     * with an anvil
+     * The number of uses this material allows. (wood = 59,
+     * stone = 131, iron = 250, diamond = 1561, gold = 32)
      */
-    public int getWandCraftingMaterial()
-    {
-        switch (this)
-        {
-        	case TAURITE:
-        		return RPGItems.taurite.itemID;
-            default:      
-            	return (customCraftingMaterial == null ? 0 : customCraftingMaterial.itemID);
+    public int getMaxUses() {
+        return this.maxUses;
+    }
+
+    /**
+     * Return the crafting material for this tool material,
+     * used to determine the item that can be used to repair
+     * a tool with an anvil
+     */
+    public int getWandCraftingMaterial() {
+        switch (this) {
+        case TAURITE:
+            return RPGItems.taurite.itemID;
+        default:
+            return (customCraftingMaterial == null ? 0
+                    : customCraftingMaterial.itemID);
         }
     }
 }

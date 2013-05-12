@@ -4,7 +4,7 @@ import rpg.items.RPGItem;
 
 public class ItemTauriteCloth extends RPGItem {
 
-	public ItemTauriteCloth(int id, String textureFileName) {
-		super(id, textureFileName);
-	}
+    public ItemTauriteCloth(int id, String textureFileName) {
+        super(id, textureFileName);
+    }
 }
