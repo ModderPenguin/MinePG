@@ -11,6 +11,7 @@ import rpg.config.RPGCreativeTabs;
 import rpg.handlers.MinePGPacketHandler;
 import rpg.handlers.events.GenericEventHandler;
 import rpg.handlers.events.KarmaEventHandler;
+import rpg.items.ItemModelRegisters;
 import rpg.lib.Reference;
 import rpg.sounds.SoundLoader;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -49,6 +50,8 @@ public class RPG {
         proxy.registerKeyBindings();
 
         RPGCreativeTabs.addTabNames();
+        
+        ItemModelRegisters.registerItemModelRenderers();
 
         NetworkRegistry.instance().registerGuiHandler(instance, proxy);
         NetworkRegistry.instance().registerConnectionHandler(

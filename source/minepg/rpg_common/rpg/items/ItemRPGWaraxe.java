@@ -142,8 +142,8 @@ public class ItemRPGWaraxe extends RPGItem {
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
             EntityPlayer par3EntityPlayer) {
-        if (PlayerClassHandler.getPlayersClass() == "Berserker"
-                || PlayerClassHandler.getPlayersClass() == "Demon") {
+        //if (PlayerClassHandler.getPlayersClass() == "Berserker"
+                //|| PlayerClassHandler.getPlayersClass() == "Demon") {
             par3EntityPlayer.addPotionEffect(new PotionEffect(
                     Potion.damageBoost.id, this.durationOfPotionEffect,
                     this.amplifierOfPotionEffect));
@@ -154,7 +154,8 @@ public class ItemRPGWaraxe extends RPGItem {
                     Potion.moveSpeed.id, this.durationOfPotionEffect,
                     this.amplifierOfPotionEffect));
             return par1ItemStack;
-        } else
-            return null;
+        //} else {
+            
+        //}
     }
 }
