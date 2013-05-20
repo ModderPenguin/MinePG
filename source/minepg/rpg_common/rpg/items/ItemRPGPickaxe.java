@@ -8,8 +8,7 @@ import rpg.enums.EnumRPGToolMaterial;
 public class ItemRPGPickaxe extends ItemRPGTool {
 
     /**
-     * an array of the blocks this pickaxe is effective
-     * against
+     * an array of the blocks this pickaxe is effective against
      */
     public static final Block[] blocksEffectiveAgainst = new Block[] {
             Block.cobblestone, Block.stoneDoubleSlab, Block.stoneSingleSlab,
@@ -26,8 +25,7 @@ public class ItemRPGPickaxe extends ItemRPGTool {
     }
 
     /**
-     * Returns if the item (tool) can harvest results from
-     * the block type.
+     * Returns if the item (tool) can harvest results from the block type.
      */
     @Override
     public boolean canHarvestBlock(Block par1Block) {
@@ -51,9 +49,8 @@ public class ItemRPGPickaxe extends ItemRPGTool {
     }
 
     /**
-     * Returns the strength of the stack against a given
-     * block. 1.0F base, (Quality+1)*2 if correct blocktype,
-     * 1.5F if sword
+     * Returns the strength of the stack against a given block. 1.0F base, (Quality+1)*2 if correct blocktype, 1.5F if
+     * sword
      */
     @Override
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {

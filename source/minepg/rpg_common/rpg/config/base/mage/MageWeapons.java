@@ -29,9 +29,8 @@ public class MageWeapons {
                 "Training Wand ID", 1015).getInt();
 
         staffTraining = new ItemTrainingStaff(staffTrainingID,
-                EnumRPGStaffMaterial.TRAINING, "staffTraining")
-                .setCreativeTab(RPGCreativeTabs.tabMageItems)
-                .setFull3D();
+                EnumRPGStaffMaterial.TRAINING, "staffTraining").setCreativeTab(
+                RPGCreativeTabs.tabMageItems).setFull3D();
         wandTraining = new ItemTrainingWand(wandTrainingID,
                 EnumRPGWandMaterial.TRAINING, "wandTraining")
                 .setCreativeTab(RPGCreativeTabs.tabMageItems);

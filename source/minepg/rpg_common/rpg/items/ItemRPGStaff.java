@@ -77,8 +77,7 @@ public class ItemRPGStaff extends RPGItem {
     }
 
     /**
-     * Return the enchantability factor of the item, most of
-     * the time is based on material.
+     * Return the enchantability factor of the item, most of the time is based on material.
      */
     @Override
     public int getItemEnchantability() {
@@ -86,8 +85,7 @@ public class ItemRPGStaff extends RPGItem {
     }
 
     /**
-     * returns the action that specifies what animation to
-     * play when the items is being used
+     * returns the action that specifies what animation to play when the items is being used
      */
     @Override
     public EnumAction getItemUseAction(ItemStack par1ItemStack) {
@@ -110,9 +108,8 @@ public class ItemRPGStaff extends RPGItem {
     }
 
     /**
-     * Current implementations of this method in child
-     * classes do not use the entry argument beside ev. They
-     * just raise the damage on the stack.
+     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+     * the damage on the stack.
      */
     @Override
     public boolean hitEntity(ItemStack par1ItemStack,
@@ -143,9 +140,7 @@ public class ItemRPGStaff extends RPGItem {
     }
 
     /**
-     * Called whenever this item is equipped and the right
-     * mouse button is pressed. Args: itemStack, world,
-     * entityPlayer
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,

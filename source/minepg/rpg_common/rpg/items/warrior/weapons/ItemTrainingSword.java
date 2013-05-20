@@ -18,18 +18,18 @@ public class ItemTrainingSword extends ItemRPGSword {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
             List par3List, boolean par4) {
-        PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerInfoFake.getPlayersClass() == "Warrior"
+        if (playerInfo.getPlayersClass() == "Warrior"
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤AWarrior");
             par3List.add("Level: ¤A1");
-        } else if (PlayerInfoFake.getPlayersClass() == "Warrior"
+        } else if (playerInfo.getPlayersClass() == "Warrior"
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤AWarrior");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() != "Warrior"
+        } else if (playerInfo.getPlayersClass() != "Warrior"
                 && player.experienceLevel == 1) {
             par3List.add("Class: ¤4Warrior");
             par3List.add("Level: ¤A1");

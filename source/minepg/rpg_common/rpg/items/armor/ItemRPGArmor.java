@@ -23,30 +23,26 @@ public class ItemRPGArmor extends RPGItem {
     private static final IBehaviorDispenseItem field_96605_cw = new BehaviorDispenseArmor();
 
     /**
-     * Returns the 'max damage' factor array for the armor,
-     * each piece of armor have a durability factor (that
-     * gets multiplied by armor material factor)
+     * Returns the 'max damage' factor array for the armor, each piece of armor have a durability factor (that gets
+     * multiplied by armor material factor)
      */
     public static int[] getMaxDamageArray() {
         return maxDamageArray;
     }
 
     /**
-     * Stores the armor type: 0 is helmet, 1 is plate, 2 is
-     * legs and 3 is boots
+     * Stores the armor type: 0 is helmet, 1 is plate, 2 is legs and 3 is boots
      */
     public final int armorType;
 
     /**
-     * Holds the amount of damage that the armor reduces at
-     * full durability.
+     * Holds the amount of damage that the armor reduces at full durability.
      */
     public final int damageReduceAmount;
 
     /**
-     * Used on RenderPlayer to select the correspondent
-     * armor to be rendered on the player: 0 is cloth, 1 is
-     * chain, 2 is iron, 3 is diamond and 4 is gold.
+     * Used on RenderPlayer to select the correspondent armor to be rendered on the player: 0 is cloth, 1 is chain, 2 is
+     * iron, 3 is diamond and 4 is gold.
      */
     public final int renderIndex;
 
@@ -98,8 +94,7 @@ public class ItemRPGArmor extends RPGItem {
     }
 
     /**
-     * Return the enchantability factor of the item, most of
-     * the time is based on material.
+     * Return the enchantability factor of the item, most of the time is based on material.
      */
     @Override
     public int getItemEnchantability() {
@@ -107,9 +102,7 @@ public class ItemRPGArmor extends RPGItem {
     }
 
     /**
-     * Called whenever this item is equipped and the right
-     * mouse button is pressed. Args: itemStack, world,
-     * entityPlayer
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,

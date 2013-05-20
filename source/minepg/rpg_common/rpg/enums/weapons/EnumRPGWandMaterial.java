@@ -7,8 +7,7 @@ public enum EnumRPGWandMaterial {
     TRAINING(32, 1, 1), TAURITE(200, 5, 10);
 
     /**
-     * The number of uses this material allows. (wood = 59,
-     * stone = 131, iron = 250, diamond = 1561, gold = 32)
+     * The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32)
      */
     private final int maxUses;
 
@@ -16,8 +15,7 @@ public enum EnumRPGWandMaterial {
     private final int damageVsEntity;
 
     /**
-     * Defines the natural enchantability factor of the
-     * material.
+     * Defines the natural enchantability factor of the material.
      */
     private final int enchantability;
 
@@ -38,25 +36,22 @@ public enum EnumRPGWandMaterial {
     }
 
     /**
-     * Return the natural enchantability factor of the
-     * material.
+     * Return the natural enchantability factor of the material.
      */
     public int getEnchantability() {
         return this.enchantability;
     }
 
     /**
-     * The number of uses this material allows. (wood = 59,
-     * stone = 131, iron = 250, diamond = 1561, gold = 32)
+     * The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32)
      */
     public int getMaxUses() {
         return this.maxUses;
     }
 
     /**
-     * Return the crafting material for this tool material,
-     * used to determine the item that can be used to repair
-     * a tool with an anvil
+     * Return the crafting material for this tool material, used to determine the item that can be used to repair a tool
+     * with an anvil
      */
     public int getWandCraftingMaterial() {
         switch (this) {

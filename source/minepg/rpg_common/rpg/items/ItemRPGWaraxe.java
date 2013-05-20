@@ -50,8 +50,7 @@ public class ItemRPGWaraxe extends RPGItem {
     }
 
     /**
-     * Returns if the item (tool) can harvest results from
-     * the block type.
+     * Returns if the item (tool) can harvest results from the block type.
      */
     @Override
     public boolean canHarvestBlock(Block par1Block) {
@@ -81,8 +80,7 @@ public class ItemRPGWaraxe extends RPGItem {
     }
 
     /**
-     * Return the enchantability factor of the item, most of
-     * the time is based on material.
+     * Return the enchantability factor of the item, most of the time is based on material.
      */
     @Override
     public int getItemEnchantability() {
@@ -90,8 +88,7 @@ public class ItemRPGWaraxe extends RPGItem {
     }
 
     /**
-     * returns the action that specifies what animation to
-     * play when the items is being used
+     * returns the action that specifies what animation to play when the items is being used
      */
     @Override
     public EnumAction getItemUseAction(ItemStack par1ItemStack) {
@@ -114,9 +111,8 @@ public class ItemRPGWaraxe extends RPGItem {
     }
 
     /**
-     * Current implementations of this method in child
-     * classes do not use the entry argument beside ev. They
-     * just raise the damage on the stack.
+     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+     * the damage on the stack.
      */
     @Override
     public boolean hitEntity(ItemStack par1ItemStack,
@@ -135,27 +131,23 @@ public class ItemRPGWaraxe extends RPGItem {
     }
 
     /**
-     * Called whenever this item is equipped and the right
-     * mouse button is pressed. Args: itemStack, world,
-     * entityPlayer
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
             EntityPlayer par3EntityPlayer) {
-        //if (PlayerClassHandler.getPlayersClass() == "Berserker"
-                //|| PlayerClassHandler.getPlayersClass() == "Demon") {
-            par3EntityPlayer.addPotionEffect(new PotionEffect(
-                    Potion.damageBoost.id, this.durationOfPotionEffect,
-                    this.amplifierOfPotionEffect));
-            par3EntityPlayer.addPotionEffect(new PotionEffect(
-                    Potion.resistance.id, this.durationOfPotionEffect,
-                    this.amplifierOfPotionEffect));
-            par3EntityPlayer.addPotionEffect(new PotionEffect(
-                    Potion.moveSpeed.id, this.durationOfPotionEffect,
-                    this.amplifierOfPotionEffect));
-            return par1ItemStack;
-        //} else {
-            
-        //}
+        // if (PlayerClassHandler.getPlayersClass() == "Berserker"
+        // || PlayerClassHandler.getPlayersClass() == "Demon") {
+        par3EntityPlayer.addPotionEffect(new PotionEffect(
+                Potion.damageBoost.id, this.durationOfPotionEffect,
+                this.amplifierOfPotionEffect));
+        par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.resistance.id,
+                this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+        par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.moveSpeed.id,
+                this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+        return par1ItemStack;
+        // } else {
+
+        // }
     }
 }

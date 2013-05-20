@@ -28,8 +28,7 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Returns if the item (tool) can harvest results from
-     * the block type.
+     * Returns if the item (tool) can harvest results from the block type.
      */
     @Override
     public boolean canHarvestBlock(Block par1Block) {
@@ -59,8 +58,7 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Return the enchantability factor of the item, most of
-     * the time is based on material.
+     * Return the enchantability factor of the item, most of the time is based on material.
      */
     @Override
     public int getItemEnchantability() {
@@ -68,8 +66,7 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * returns the action that specifies what animation to
-     * play when the items is being used
+     * returns the action that specifies what animation to play when the items is being used
      */
     @Override
     public EnumAction getItemUseAction(ItemStack par1ItemStack) {
@@ -85,9 +82,8 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Returns the strength of the stack against a given
-     * block. 1.0F base, (Quality+1)*2 if correct blocktype,
-     * 1.5F if sword
+     * Returns the strength of the stack against a given block. 1.0F base, (Quality+1)*2 if correct blocktype, 1.5F if
+     * sword
      */
     @Override
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
@@ -110,9 +106,8 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Current implementations of this method in child
-     * classes do not use the entry argument beside ev. They
-     * just raise the damage on the stack.
+     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+     * the damage on the stack.
      */
     @Override
     public boolean hitEntity(ItemStack par1ItemStack,
@@ -143,9 +138,7 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Called whenever this item is equipped and the right
-     * mouse button is pressed. Args: itemStack, world,
-     * entityPlayer
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,

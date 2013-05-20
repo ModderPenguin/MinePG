@@ -138,7 +138,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         }
         nbt.setTag("events", eventList);
 
-        compound.setCompoundTag(IDENTIFIER, player.getEntityData());
+        compound.setCompoundTag(IDENTIFIER, nbt);
     }
 
     public int setCurrency(int danris) {

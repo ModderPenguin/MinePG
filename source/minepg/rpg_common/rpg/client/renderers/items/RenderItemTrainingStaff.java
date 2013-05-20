@@ -48,27 +48,38 @@ public class RenderItemTrainingStaff implements IItemRenderer {
                     + Reference.MOD_ID
                     + "/textures/items/staffs/trainingStaff.png");
 
-            GL11.glRotatef(180F, 1.0F, 1.0F, 0.0F);
-            
+            @SuppressWarnings("unused")
             boolean isFirstPerson = false;
-            
+
             if (data[1] != null && data[1] instanceof EntityPlayer) {
                 if (!((EntityPlayer) data[1] == Minecraft.getMinecraft().renderViewEntity
                         && Minecraft.getMinecraft().gameSettings.thirdPersonView == 0 && !((Minecraft
                         .getMinecraft().currentScreen instanceof GuiInventory || Minecraft
                         .getMinecraft().currentScreen instanceof GuiContainerCreative) && RenderManager.instance.playerViewY == 180.0F))) {
-
+                    /*
+                     * The first parameter of this method is the forward-back axis
+                     * 
+                     * Second parameter is the up-down axis
+                     * 
+                     * Third paramter is the left-right axis
+                     */
+                    GL11.glTranslatef(0.25F, 0.0F, 0.0F);
+                    GL11.glRotatef(180F, 1.0F, 1.0F, 0.0F);
+                    GL11.glRotatef(45F, 0.0F, 0.0F, 1.0F);
+                    GL11.glTranslatef(1.0F, 0.0F, 0.0F);
+                } else {
+                    isFirstPerson = true;
                 }
             } else {
                 /*
-                 * The first parameter of this method is the
-                 * up-down axis
+                 * The first parameter of this method is the up-down axis
                  * 
                  * Second parameter is the forward-back axis
                  * 
                  * Third paramter is the left-right axis
                  */
-                GL11.glTranslatef(0.0F, -1.0F, 0.0F);
+                GL11.glTranslatef(1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(180F, 1.0F, 1.0F, 0.0F);
             }
 
             float scale = 1.3F;

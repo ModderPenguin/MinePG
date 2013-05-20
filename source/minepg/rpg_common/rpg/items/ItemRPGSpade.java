@@ -6,8 +6,7 @@ import rpg.enums.EnumRPGToolMaterial;
 public class ItemRPGSpade extends ItemRPGTool {
 
     /**
-     * an array of the blocks this spade is effective
-     * against
+     * an array of the blocks this spade is effective against
      */
     public static final Block[] blocksEffectiveAgainst = new Block[] {
             Block.grass, Block.dirt, Block.sand, Block.gravel, Block.snow,
@@ -20,8 +19,7 @@ public class ItemRPGSpade extends ItemRPGTool {
     }
 
     /**
-     * Returns if the item (tool) can harvest results from
-     * the block type.
+     * Returns if the item (tool) can harvest results from the block type.
      */
     @Override
     public boolean canHarvestBlock(Block par1Block) {

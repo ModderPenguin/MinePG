@@ -7,20 +7,17 @@ public enum EnumRPGToolMaterial {
     TRAINING(1, 32, 1.0F, 1, 1), TAURITE(1, 200, 4.0F, 5, 10);
 
     /**
-     * The level of material this tool can harvest (3 =
-     * DIAMOND, 2 = IRON, 1 = STONE, 0 = IRON/GOLD)
+     * The level of material this tool can harvest (3 = DIAMOND, 2 = IRON, 1 = STONE, 0 = IRON/GOLD)
      */
     private final int harvestLevel;
 
     /**
-     * The number of uses this material allows. (wood = 59,
-     * stone = 131, iron = 250, diamond = 1561, gold = 32)
+     * The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32)
      */
     private final int maxUses;
 
     /**
-     * The strength of this tool material against blocks
-     * which it is effective against.
+     * The strength of this tool material against blocks which it is effective against.
      */
     private final float efficiencyOnProperMaterial;
 
@@ -28,8 +25,7 @@ public enum EnumRPGToolMaterial {
     private final int damageVsEntity;
 
     /**
-     * Defines the natural enchantability factor of the
-     * material.
+     * Defines the natural enchantability factor of the material.
      */
     private final int enchantability;
 
@@ -53,41 +49,36 @@ public enum EnumRPGToolMaterial {
     }
 
     /**
-     * The strength of this tool material against blocks
-     * which it is effective against.
+     * The strength of this tool material against blocks which it is effective against.
      */
     public float getEfficiencyOnProperMaterial() {
         return this.efficiencyOnProperMaterial;
     }
 
     /**
-     * Return the natural enchantability factor of the
-     * material.
+     * Return the natural enchantability factor of the material.
      */
     public int getEnchantability() {
         return this.enchantability;
     }
 
     /**
-     * The level of material this tool can harvest (3 =
-     * DIAMOND, 2 = IRON, 1 = STONE, 0 = IRON/GOLD)
+     * The level of material this tool can harvest (3 = DIAMOND, 2 = IRON, 1 = STONE, 0 = IRON/GOLD)
      */
     public int getHarvestLevel() {
         return this.harvestLevel;
     }
 
     /**
-     * The number of uses this material allows. (wood = 59,
-     * stone = 131, iron = 250, diamond = 1561, gold = 32)
+     * The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32)
      */
     public int getMaxUses() {
         return this.maxUses;
     }
 
     /**
-     * Return the crafting material for this tool material,
-     * used to determine the item that can be used to repair
-     * a tool with an anvil
+     * Return the crafting material for this tool material, used to determine the item that can be used to repair a tool
+     * with an anvil
      */
     public int getToolCraftingMaterial() {
         switch (this) {

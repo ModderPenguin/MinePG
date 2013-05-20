@@ -8,6 +8,8 @@ import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.server.MinecraftServer;
 import rpg.RPG;
 import rpg.enums.EnumGui;
+import rpg.network.packet.PacketUpdatePlayersClassName;
+import rpg.playerinfo.PlayerInformation;
 import rpg.sounds.SoundLoader;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.Player;
@@ -42,16 +44,18 @@ public class ConnectionHandler implements IConnectionHandler {
     @Override
     public void playerLoggedIn(Player player, NetHandler netHandler,
             INetworkManager manager) {
-        //PlayerInformation playerInfo = PlayerInformation.forPlayer((EntityPlayerMP)player);
-        //if (playerInfo.getPlayersClass() == "") {
+        PlayerInformation playerInfo = PlayerInformation
+                .forPlayer((EntityPlayerMP) player);
+        if (playerInfo.getPlayersClass().equals("")) {
             ((EntityPlayerMP) player).openGui(RPG.instance,
                     EnumGui.LoreStartingPage.getIndex(),
                     ((EntityPlayerMP) player).worldObj, 0, 0, 0);
-        //}// else {
-            //((EntityPlayerMP) player)
-                    //.sendChatToPlayer("<Mysterious Voice> Welcome back master "
-                            //+ playerInfo.getPlayersClass());
-        //}
+        } else {
+            ((EntityPlayerMP) player)
+                    .sendChatToPlayer("<Mysterious Voice> Welcome back master "
+                            + playerInfo.getPlayersClass());
+            new PacketUpdatePlayersClassName().sendToServer();
+        }
 
         if (SoundLoader.didSoundsLoad == true) {
             ((EntityPlayerMP) player)

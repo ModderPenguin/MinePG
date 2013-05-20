@@ -9,16 +9,14 @@ public enum EnumRPGArmorMaterial {
             new int[] { 1, 1, 1, 1 }, 1);
 
     /**
-     * Holds the maximum damage factor (each piece multiply
-     * this by it's own value) of the material, this is the
-     * item damage (how much can absorb before breaks)
+     * Holds the maximum damage factor (each piece multiply this by it's own value) of the material, this is the item
+     * damage (how much can absorb before breaks)
      */
     private int maxDamageFactor;
 
     /**
-     * Holds the damage reduction (each 1 points is half a
-     * shield on gui) of each piece of armor (helmet, plate,
-     * legs and boots)
+     * Holds the damage reduction (each 1 points is half a shield on gui) of each piece of armor (helmet, plate, legs
+     * and boots)
      */
     private int[] damageReductionAmountArray;
 
@@ -35,9 +33,8 @@ public enum EnumRPGArmorMaterial {
     }
 
     /**
-     * Return the crafting material for this armor material,
-     * used to determine the item that can be used to repair
-     * a piece of armor with an anvil
+     * Return the crafting material for this armor material, used to determine the item that can be used to repair a
+     * piece of armor with an anvil
      */
     public int getArmorCraftingMaterial() {
         switch (this) {
@@ -50,17 +47,15 @@ public enum EnumRPGArmorMaterial {
     }
 
     /**
-     * Return the damage reduction (each 1 point is a half a
-     * shield on gui) of the piece index passed (0 = helmet,
-     * 1 = plate, 2 = legs and 3 = boots)
+     * Return the damage reduction (each 1 point is a half a shield on gui) of the piece index passed (0 = helmet, 1 =
+     * plate, 2 = legs and 3 = boots)
      */
     public int getDamageReductionAmount(int par1) {
         return this.damageReductionAmountArray[par1];
     }
 
     /**
-     * Returns the durability for a armor slot of for this
-     * type.
+     * Returns the durability for a armor slot of for this type.
      */
     public int getDurability(int par1) {
         return ItemRPGArmor.getMaxDamageArray()[par1] * this.maxDamageFactor;

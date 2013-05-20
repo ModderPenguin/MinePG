@@ -50,7 +50,7 @@ public class RPG {
         proxy.registerKeyBindings();
 
         RPGCreativeTabs.addTabNames();
-        
+
         ItemModelRegisters.registerItemModelRenderers();
 
         NetworkRegistry.instance().registerGuiHandler(instance, proxy);

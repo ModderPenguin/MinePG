@@ -14,8 +14,7 @@ import net.minecraft.util.EnumFacing;
 final class BehaviorDispenseArmor extends BehaviorDefaultDispenseItem {
 
     /**
-     * Dispense the specified stack, play the dispense sound
-     * and spawn particles.
+     * Dispense the specified stack, play the dispense sound and spawn particles.
      */
     @Override
     protected ItemStack dispenseStack(IBlockSource par1IBlockSource,
