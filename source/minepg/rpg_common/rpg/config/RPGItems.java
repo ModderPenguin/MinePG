@@ -17,7 +17,7 @@ public class RPGItems {
 
     public static Item taurite;
     public static Item tauriteCloth;
-
+    
     public static void addNames() {
         ArcherItems.addNames();
         MageItems.addNames();

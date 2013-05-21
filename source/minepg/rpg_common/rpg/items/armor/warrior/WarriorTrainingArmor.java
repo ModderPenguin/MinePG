@@ -2,21 +2,26 @@ package rpg.items.armor.warrior;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
 import rpg.config.base.warrior.WarriorArmor;
-import rpg.items.armor.ItemRPGArmor;
+import rpg.lib.Reference;
 import rpg.playerinfo.PlayerInformation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SuppressWarnings("deprecation")
-public class WarriorTrainingArmor extends ItemRPGArmor implements
+public class WarriorTrainingArmor extends ItemArmor implements
         IArmorTextureProvider {
 
     public WarriorTrainingArmor(int itemid, EnumArmorMaterial material,
             int par3, int par4, String name) {
-        super(itemid, material, par3, par4, name);
+        super(itemid, material, par3, par4);
+        this.setUnlocalizedName(name);
     }
 
     @Override
@@ -85,10 +90,28 @@ public class WarriorTrainingArmor extends ItemRPGArmor implements
         if (itemstack.itemID == WarriorArmor.helmetTraining.itemID
                 || itemstack.itemID == WarriorArmor.cuirassTraining.itemID
                 || itemstack.itemID == WarriorArmor.sabatonsTraining.itemID)
-            return "/mods/rpg/textures/armor/pk/training_1.png";
+            return "/mods/rpg/textures/armor/warriorTraining_1.png";
         else if (itemstack.itemID == WarriorArmor.greavesTraining.itemID)
-            return "/mods/rpg/textures/armor/pk/training_2.png";
-
-        return null;
+            return "/mods/rpg/textures/armor/warriorTraining_2.png";
+        else
+            return null;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconregister) {
+        if(this.itemID == WarriorArmor.helmetTraining.itemID) {
+            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
+                    + this.getUnlocalizedName().substring(5));
+        } else if(this.itemID == WarriorArmor.cuirassTraining.itemID) {
+            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
+                    + this.getUnlocalizedName().substring(5));
+        } else if(this.itemID == WarriorArmor.greavesTraining.itemID) {
+            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
+                    + this.getUnlocalizedName().substring(5));
+        } else if(this.itemID == WarriorArmor.sabatonsTraining.itemID) {
+            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
+                    + this.getUnlocalizedName().substring(5));
+        }
     }
 }

@@ -5,24 +5,23 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
 import rpg.config.base.archer.ArcherArmor;
-import rpg.items.armor.ItemRPGArmor;
+import rpg.lib.Reference;
 import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SuppressWarnings("deprecation")
-public class ArcherTrainingArmor extends ItemRPGArmor implements
+public class ArcherTrainingArmor extends ItemArmor implements
         IArmorTextureProvider {
-
-    final int armorType;
 
     public ArcherTrainingArmor(int itemid, EnumArmorMaterial trainingarmor,
             int par3, int par4, String name) {
-        super(itemid, trainingarmor, par3, par4, name);
-        this.armorType = par4;
+        super(itemid, trainingarmor, par3, par4);
+        this.setUnlocalizedName(name);
     }
 
     @Override
@@ -64,16 +63,25 @@ public class ArcherTrainingArmor extends ItemRPGArmor implements
     public String getArmorTextureFile(ItemStack itemstack) {
         if (itemstack.itemID == ArcherArmor.tunicTraining.itemID
                 || itemstack.itemID == ArcherArmor.bootsTraining.itemID)
-            return "/mods/rpg/textures/armor/ba/training_1.png";
+            return "/mods/rpg/textures/armor/archerTraining_1.png";
         else if (itemstack.itemID == ArcherArmor.legsTraining.itemID)
-            return "/mods/rpg/textures/armor/ba/training_2.png";
-
-        return null;
+            return "/mods/rpg/textures/armor/archerTraining_2.png";
+        else
+            return null;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-
+        if(this.itemID == ArcherArmor.tunicTraining.itemID) {
+            this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":"
+                    + this.getUnlocalizedName().substring(5));
+        } else if(this.itemID == ArcherArmor.legsTraining.itemID) {
+            this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":"
+                    + this.getUnlocalizedName().substring(5));
+        } else if(this.itemID == ArcherArmor.bootsTraining.itemID) {
+            this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":"
+                    + this.getUnlocalizedName().substring(5));
+        }
     }
 }

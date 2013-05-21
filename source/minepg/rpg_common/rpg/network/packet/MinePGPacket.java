@@ -43,27 +43,6 @@ public abstract class MinePGPacket {
         idMapping.put(Integer.valueOf(id), clazz);
     }
 
-    public static void execute(ByteArrayDataInput input, int packetId,
-            EntityPlayer player) {
-        Class<? extends MinePGPacket> packetClass = idMapping.get(Integer
-                .valueOf(packetId));
-        if (packetClass == null) {
-            logger.warning("Recieved unknown Packet-Id " + packetId);
-        } else {
-            try {
-                MinePGPacket parsedPacket = packetClass.newInstance();
-                parsedPacket.readData(input);
-                parsedPacket.execute(player,
-                        player.worldObj.isRemote ? Side.CLIENT : Side.SERVER);
-            } catch (Exception e) {
-                logger.warning("Exception during packet handling: "
-                        + e.getClass().getSimpleName() + " (" + e.getMessage()
-                        + ")");
-                e.printStackTrace();
-            }
-        }
-    }
-
     protected static final <E extends Enum<E>> E readEnum(
             Class<? extends E> clazz, ByteArrayDataInput in) {
         E[] enums = clazz.getEnumConstants();
@@ -93,9 +72,7 @@ public abstract class MinePGPacket {
         return PacketDispatcher.getTinyPacket(RPG.instance, (short) packetId,
                 output.toByteArray());
     }
-
-    protected abstract void readData(ByteArrayDataInput in);
-
+    
     public final void sendToAll() {
         MinecraftServer.getServer().getConfigurationManager()
                 .sendPacketToAllPlayers(generatePacket());
@@ -151,4 +128,27 @@ public abstract class MinePGPacket {
     }
 
     protected abstract void writeData(ByteArrayDataOutput out);
+    
+    protected abstract void readData(ByteArrayDataInput in);
+    
+    public static void execute(ByteArrayDataInput input, int packetId,
+            EntityPlayer player) {
+        Class<? extends MinePGPacket> packetClass = idMapping.get(Integer
+                .valueOf(packetId));
+        if (packetClass == null) {
+            logger.warning("Recieved unknown Packet-Id " + packetId);
+        } else {
+            try {
+                MinePGPacket parsedPacket = packetClass.newInstance();
+                parsedPacket.readData(input);
+                parsedPacket.execute(player,
+                        player.worldObj.isRemote ? Side.CLIENT : Side.SERVER);
+            } catch (Exception e) {
+                logger.warning("Exception during packet handling: "
+                        + e.getClass().getSimpleName() + " (" + e.getMessage()
+                        + ")");
+                e.printStackTrace();
+            }
+        }
+    }
 }

@@ -14,20 +14,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import rpg.config.base.archer.ArcherWeapons;
-import rpg.lib.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemRPGBow extends RPGItem {
 
-    String bowpull0 = Reference.MOD_ID + ":"
-            + this.getUnlocalizedName().substring(5) + "_pull_0";
-    String bowpull1 = Reference.MOD_ID + ":"
-            + this.getUnlocalizedName().substring(5) + "_pull_1";
-    String bowpull2 = Reference.MOD_ID + ":"
-            + this.getUnlocalizedName().substring(5) + "_pull_2";
-    public final String[] bowPullIconNameArray = new String[] { bowpull0,
-            bowpull1, bowpull2 };
+    public static final String[] bowPullIconNameArray = new String[] {"bow_pull_0", "bow_pull_1", "bow_pull_2"};
     @SideOnly(Side.CLIENT)
     private Icon[] iconArray;
 

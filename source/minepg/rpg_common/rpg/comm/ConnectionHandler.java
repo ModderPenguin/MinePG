@@ -8,7 +8,6 @@ import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.server.MinecraftServer;
 import rpg.RPG;
 import rpg.enums.EnumGui;
-import rpg.network.packet.PacketUpdatePlayersClassName;
 import rpg.playerinfo.PlayerInformation;
 import rpg.sounds.SoundLoader;
 import cpw.mods.fml.common.network.IConnectionHandler;
@@ -54,15 +53,12 @@ public class ConnectionHandler implements IConnectionHandler {
             ((EntityPlayerMP) player)
                     .sendChatToPlayer("<Mysterious Voice> Welcome back master "
                             + playerInfo.getPlayersClass());
-            new PacketUpdatePlayersClassName().sendToServer();
         }
 
         if (SoundLoader.didSoundsLoad == true) {
-            ((EntityPlayerMP) player)
-                    .sendChatToPlayer("[MinePG Sound Loader] Loaded Sounds Successfully");
+            System.out.println("[MinePG Sound Loader] Loaded Sounds Successfully");
         } else if (SoundLoader.didSoundsLoad == false) {
-            ((EntityPlayerMP) player)
-                    .sendChatToPlayer("[MinePG Sound Loader] Failed to load one or more sounds");
+            System.out.println("[MinePG Sound Loader] Failed to load one or more sounds");
         }
     }
 }

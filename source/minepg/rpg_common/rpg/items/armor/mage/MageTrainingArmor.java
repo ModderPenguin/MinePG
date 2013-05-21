@@ -18,8 +18,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class MageTrainingArmor extends ItemArmor implements
         IArmorTextureProvider {
 
-    String name;
-
     public MageTrainingArmor(int itemid, EnumArmorMaterial material, int par3,
             int par4, String name) {
         super(itemid, material, par3, par4);
@@ -65,7 +63,7 @@ public class MageTrainingArmor extends ItemArmor implements
         if (itemstack.itemID == MageArmor.hatTraining.itemID
                 || itemstack.itemID == MageArmor.robeTraining.itemID
                 || itemstack.itemID == MageArmor.sandalsTraining.itemID)
-            return "/mods/rpg/textures/armor/ds/training_1.png";
+            return "/mods/rpg/textures/armor/mageTraining_1.png";
         else
             return null;
     }
