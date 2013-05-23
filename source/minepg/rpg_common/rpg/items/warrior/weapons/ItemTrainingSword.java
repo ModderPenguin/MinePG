@@ -21,15 +21,15 @@ public class ItemTrainingSword extends ItemRPGSword {
         PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (playerInfo.getPlayersClass() == "Warrior"
+        if (playerInfo.getPlayersClass().equals("Warrior")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤AWarrior");
             par3List.add("Level: ¤A1");
-        } else if (playerInfo.getPlayersClass() == "Warrior"
+        } else if (playerInfo.getPlayersClass().equals("Warrior")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤AWarrior");
             par3List.add("Level: ¤41");
-        } else if (playerInfo.getPlayersClass() != "Warrior"
+        } else if (!playerInfo.getPlayersClass().equals("Warrior")
                 && player.experienceLevel == 1) {
             par3List.add("Class: ¤4Warrior");
             par3List.add("Level: ¤A1");

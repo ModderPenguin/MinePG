@@ -22,16 +22,16 @@ public class ItemTrainingWand extends ItemRPGWand {
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if ((PlayerInfoFake.getPlayersClass() == "Sorcerer" || PlayerInfoFake
-                .getPlayersClass() == "Mage") && player.experienceLevel >= 1) {
+        if ((PlayerInfoFake.getPlayersClass().equals("Sorcerer") || PlayerInfoFake
+                .getPlayersClass().equals("Mage")) && player.experienceLevel >= 1) {
             par3List.add("Class: ¤ASorcerer");
             par3List.add("Level: ¤A1");
-        } else if ((PlayerInfoFake.getPlayersClass() == "Sorcerer" || PlayerInfoFake
-                .getPlayersClass() == "Mage") && player.experienceLevel != 1) {
+        } else if ((PlayerInfoFake.getPlayersClass().equals("Sorcerer") || PlayerInfoFake
+                .getPlayersClass().equals("Mage")) && player.experienceLevel != 1) {
             par3List.add("Class: ¤ASorcerer");
             par3List.add("Level: ¤41");
-        } else if ((PlayerInfoFake.getPlayersClass() != "Sorcerer" || PlayerInfoFake
-                .getPlayersClass() != "Mage") && player.experienceLevel == 1) {
+        } else if ((!PlayerInfoFake.getPlayersClass().equals("Sorcerer") || !PlayerInfoFake
+                .getPlayersClass().equals("Mage")) && player.experienceLevel == 1) {
             par3List.add("Class: ¤4Sorcerer");
             par3List.add("Level: ¤A1");
         } else {

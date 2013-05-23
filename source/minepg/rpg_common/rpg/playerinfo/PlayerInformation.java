@@ -31,17 +31,15 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         return (PlayerInformation) player.getExtendedProperties(IDENTIFIER);
     }
 
-    // called by the ASM hook in EntityPlayer.clonePlayer
-    public static void handlePlayerClone(EntityPlayer source,
-            EntityPlayer target) {
-        target.registerExtendedProperties(IDENTIFIER,
-                source.getExtendedProperties(IDENTIFIER));
-    }
-
+    //private int feild_abcd_a = 0;
+    //public int ticksExisted;
+    
     public boolean dirty = true;
+    //private int karmaLevel;
     private float karma = 0;
+    //private int karmaTotal;
     public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent
-            .values().length];
+                                          .values().length];
     private String playersClass;
     private int danris = 0;
 
@@ -49,6 +47,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 
     public PlayerInformation(EntityPlayer player) {
         this.player = player;
+        //this.ticksExisted = player.ticksExisted;
     }
 
     public int getCurrency() {
@@ -83,10 +82,10 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 
         playersClass = nbt.getString("playersClass");
 
-        System.out
-                .println("Debug message. If this has been printed to the console then NBTData has been read.");
         danris = nbt.getInteger("danris");
         karma = nbt.getFloat("karma");
+        //karmaLevel = nbt.getInteger("karmaLevel");
+        //karmaTotal = nbt.getInteger("karmaTotal");
 
         NBTTagList eventList = nbt.getTagList("events");
         for (int i = 0; i < eventList.tagCount(); i++) {
@@ -128,6 +127,8 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         nbt.setString("playersClass", playersClass);
         nbt.setInteger("danris", danris);
         nbt.setFloat("karma", karma);
+        //nbt.setInteger("karmaLevel", karmaLevel);
+        //nbt.setInteger("karmaTotal", karmaTotal);
 
         NBTTagList eventList = new NBTTagList();
         for (int i = 0; i < eventAmounts.length; i++) {
@@ -193,4 +194,48 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 
         return this.playersClass;
     }
+    
+    /*
+    public int xpBarCap()
+    {
+        return this.karmaLevel >= 30 ? 62 + (this.karmaLevel - 30) * 7 : (this.karmaLevel >= 15 ? 17 + (this.karmaLevel - 15) * 3 : 17);
+    }
+    
+    public void addKarma(int par1)
+    {
+        int j = Integer.MAX_VALUE - this.karmaTotal;
+
+        if (par1 > j)
+        {
+            par1 = j;
+        }
+
+        this.karma += (float)par1 / (float)this.xpBarCap();
+
+        for (this.karmaTotal += par1; this.karma >= 1.0F; this.karma /= (float)this.xpBarCap())
+        {
+            this.karma = (this.karma - 1.0F) * (float)this.xpBarCap();
+            this.addExperienceLevel(1);
+        }
+    }
+    
+    public void addKarmaLevel(int par1)
+    {
+        this.karmaLevel += par1;
+
+        if (this.karmaLevel < 0)
+        {
+            this.karmaLevel = 0;
+            this.karma = 0.0F;
+            this.karmaTotal = 0;
+        }
+
+        if (par1 > 0 && this.karmaLevel % 5 == 0 && (float)this.feild_abcd_a < (float)this.ticksExisted - 100.0F)
+        {
+            float f = this.experienceLevel > 30 ? 1.0F : (float)this.experienceLevel / 30.0F;
+            this.worldObj.playSoundAtEntity(this, "random.levelup", f * 0.75F, 1.0F);
+            this.feild_abcd_a = this.ticksExisted;
+        }
+        
+    }*/
 }

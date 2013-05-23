@@ -22,16 +22,16 @@ public class ItemTrainingHammer extends ItemRPGHammer {
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if ((PlayerInfoFake.getPlayersClass() == "Paladin" || PlayerInfoFake
-                .getPlayersClass() == "Warrior") && player.experienceLevel >= 1) {
+        if ((PlayerInfoFake.getPlayersClass().equals("Paladin") || PlayerInfoFake
+                .getPlayersClass().equals("Warrior")) && player.experienceLevel >= 1) {
             par3List.add("Class: ¤APaladin");
             par3List.add("Level: ¤A1");
-        } else if ((PlayerInfoFake.getPlayersClass() == "Paladin" || PlayerInfoFake
-                .getPlayersClass() == "Warrior") && player.experienceLevel != 1) {
+        } else if ((PlayerInfoFake.getPlayersClass().equals("Paladin") || PlayerInfoFake
+                .getPlayersClass().equals("Warrior")) && player.experienceLevel != 1) {
             par3List.add("Class: ¤APaladin");
             par3List.add("Level: ¤41");
-        } else if ((PlayerInfoFake.getPlayersClass() != "Paladin" || PlayerInfoFake
-                .getPlayersClass() != "Warrior") && player.experienceLevel == 1) {
+        } else if ((!PlayerInfoFake.getPlayersClass().equals("Paladin") || !PlayerInfoFake
+                .getPlayersClass().equals("Warrior")) && player.experienceLevel == 1) {
             par3List.add("Class: ¤4Paladin");
             par3List.add("Level: ¤A1");
         } else {

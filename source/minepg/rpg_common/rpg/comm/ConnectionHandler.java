@@ -8,6 +8,7 @@ import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.server.MinecraftServer;
 import rpg.RPG;
 import rpg.enums.EnumGui;
+import rpg.network.packet.PacketPlayerInfo;
 import rpg.playerinfo.PlayerInformation;
 import rpg.sounds.SoundLoader;
 import cpw.mods.fml.common.network.IConnectionHandler;
@@ -53,6 +54,7 @@ public class ConnectionHandler implements IConnectionHandler {
             ((EntityPlayerMP) player)
                     .sendChatToPlayer("<Mysterious Voice> Welcome back master "
                             + playerInfo.getPlayersClass());
+            new PacketPlayerInfo(playerInfo).sendToPlayer((EntityPlayerMP) player);
         }
 
         if (SoundLoader.didSoundsLoad == true) {

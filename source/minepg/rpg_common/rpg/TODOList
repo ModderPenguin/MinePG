@@ -1,9 +1,13 @@
 TODO List
 
-1* Fix up player class loading
-2* Make Items usable by only their class
-3* Finish Karma bar
+1! Make Items usable by only their class
+2! Change Karma bar image
+3* Change what events affect karma.
 
+
+Key:
+* = Just a thing on the TODO list.
+! = Something very, Very, VERY!!! important on the TODO list.
 
 Extras
 
@@ -14,7 +18,7 @@ if (biomegenbase == BiomeGenBase.desert ) {
 }
 
 
-//add as one of the mobs
+//add as one of the mobs (Idea by DrWheat [I think...] from PMC)
 The creeper first:
 Let's face it, creepers are stupid. They kill themselves for some unknown reason for the sake of harming you. So, I've come up with a creeper that can still blow you to bits, without hurting itself. It works as follows:
 The creeper, in its neutral state, looks the same as most creepers, but when it detects you, its chest opens up into a pair of wings with which it will chase you down. And inside the now-exposed chest you can find a deadly chemical factory that fires missiles... Exploding missiles. You may want to decrease the spawn rate or simply stick them in some sort of expert mode.

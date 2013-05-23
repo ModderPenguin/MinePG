@@ -22,15 +22,15 @@ public class ItemTrainingWaraxe extends ItemRPGWaraxe {
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerInfoFake.getPlayersClass() == "Berserker"
+        if (PlayerInfoFake.getPlayersClass().equals("Berserker")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤ABerserker");
             par3List.add("Level: ¤A1");
-        } else if (PlayerInfoFake.getPlayersClass() == "Berserker"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Berserker")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤ABerserker");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() != "Berserker"
+        } else if (!PlayerInfoFake.getPlayersClass().equals("Berserker")
                 && player.experienceLevel == 1) {
             par3List.add("Class: ¤4Berserker");
             par3List.add("Level: ¤A1");

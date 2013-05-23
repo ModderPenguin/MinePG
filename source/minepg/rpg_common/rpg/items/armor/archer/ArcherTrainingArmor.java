@@ -31,24 +31,24 @@ public class ArcherTrainingArmor extends ItemArmor implements
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerInfoFake.getPlayersClass() == "Archer"
+        if (PlayerInfoFake.getPlayersClass().equals("Archer")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤AArcher, ¤4Berserker");
             par3List.add("Level: ¤A1");
-        } else if (PlayerInfoFake.getPlayersClass() == "Berserker"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Berserker")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤4Archer, ¤ABerserker");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() == "Archer"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Archer")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤AArcher, ¤4Berserker");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() == "Berserker"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Berserker")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤4Archer, ¤ABerserker");
             par3List.add("Level: ¤41");
-        } else if ((PlayerInfoFake.getPlayersClass() != "Archer" || PlayerInfoFake
-                .getPlayersClass() != "Berserker")
+        } else if ((!PlayerInfoFake.getPlayersClass().equals("Archer") || !PlayerInfoFake
+                .getPlayersClass().equals("Berserker"))
                 && player.experienceLevel == 1) {
             par3List.add("Class: ¤4Archer, ¤4Berserker");
             par3List.add("Level: ¤A1");

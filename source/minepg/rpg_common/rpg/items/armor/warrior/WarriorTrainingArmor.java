@@ -31,50 +31,50 @@ public class WarriorTrainingArmor extends ItemArmor implements
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerInfoFake.getPlayersClass() == "Warrior"
+        if (PlayerInfoFake.getPlayersClass().equals("Warrior")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤AWarrior, ¤4Knight,");
             par3List.add("        ¤4Paladin, ¤4Angel");
             par3List.add("Level: ¤A1");
-        } else if (PlayerInfoFake.getPlayersClass() == "Knight"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Knight")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤4Warrior, ¤AKnight,");
             par3List.add("        ¤4Paladin, ¤4Angel");
             par3List.add("Level: ¤A1");
-        } else if (PlayerInfoFake.getPlayersClass() == "Paladin"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Paladin")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤4Warrior, ¤4Knight,");
             par3List.add("        ¤APaladin, ¤4Angel");
             par3List.add("Level: ¤A1");
-        } else if (PlayerInfoFake.getPlayersClass() == "Angel"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Angel")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤4Warrior, ¤4Knight,");
             par3List.add("        ¤4Paladin, ¤AAngel");
             par3List.add("Level: ¤A1");
-        } else if (PlayerInfoFake.getPlayersClass() == "Warrior"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Warrior")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤AWarrior, ¤4Knight,");
             par3List.add("        ¤4Paladin, ¤4Angel");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() == "Knight"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Knight")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤4Warrior, ¤AKnight,");
             par3List.add("        ¤4Paladin, ¤4Angel");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() == "Paladin"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Paladin")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤4Warrior, ¤4Knight,");
             par3List.add("        ¤APaladin, ¤4Angel");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() == "Angel"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Angel")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤AWarrior, ¤4Knight,");
             par3List.add("        ¤4Paladin, ¤4Angel");
             par3List.add("Level: ¤41");
-        } else if ((PlayerInfoFake.getPlayersClass() != "Warrior"
-                || PlayerInfoFake.getPlayersClass() != "Knight"
-                || PlayerInfoFake.getPlayersClass() != "Paladin" || PlayerInfoFake
-                .getPlayersClass() != "Angel") && player.experienceLevel == 1) {
+        } else if ((!PlayerInfoFake.getPlayersClass().equals("Warrior")
+                || !PlayerInfoFake.getPlayersClass().equals("Knight")
+                || !PlayerInfoFake.getPlayersClass().equals("Paladin") || !PlayerInfoFake
+                .getPlayersClass().equals("Angel")) && player.experienceLevel == 1) {
             par3List.add("Class: ¤4Warrior, ¤4Knight,");
             par3List.add("        ¤4Paladin, ¤4Angel");
             par3List.add("Level: ¤A1");

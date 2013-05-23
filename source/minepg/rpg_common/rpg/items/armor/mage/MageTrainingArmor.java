@@ -31,24 +31,24 @@ public class MageTrainingArmor extends ItemArmor implements
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerInfoFake.getPlayersClass() == "Mage"
+        if (PlayerInfoFake.getPlayersClass().equals("Mage")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤AMage, ¤4Alchemist");
             par3List.add("Level: ¤A1");
-        } else if (PlayerInfoFake.getPlayersClass() == "Alchemist"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Alchemist")
                 && player.experienceLevel >= 1) {
             par3List.add("Class: ¤4Mage, ¤AAlchemist");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() == "Mage"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Mage")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤AMage, ¤4Alchemist");
             par3List.add("Level: ¤41");
-        } else if (PlayerInfoFake.getPlayersClass() == "Alchemist"
+        } else if (PlayerInfoFake.getPlayersClass().equals("Alchemist")
                 && player.experienceLevel != 1) {
             par3List.add("Class: ¤4Mage, ¤AAlchemist");
             par3List.add("Level: ¤41");
-        } else if ((PlayerInfoFake.getPlayersClass() != "Mage" || PlayerInfoFake
-                .getPlayersClass() != "Alchemist")
+        } else if ((!PlayerInfoFake.getPlayersClass().equals("Mage") || !PlayerInfoFake
+                .getPlayersClass().equals("Alchemist"))
                 && player.experienceLevel == 1) {
             par3List.add("Class: ¤4Mage, ¤4Alchemist");
             par3List.add("Level: ¤A1");
