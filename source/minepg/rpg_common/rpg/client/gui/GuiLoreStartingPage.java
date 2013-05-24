@@ -47,9 +47,9 @@ public class GuiLoreStartingPage extends GuiContainer {
                 2, 90, 0xFFFFFF);
         drawString(fontRenderer,
                 "get to stop this great darkness that plagues Minecraftia.", 2,
-                70, 0xFFFFFF);
+                100, 0xFFFFFF);
         drawString(fontRenderer, "Now your story starts here...... good luck.",
-                2, 100, 0xFFFFFF);
+                2, 110, 0xFFFFFF);
     }
 
     @Override
