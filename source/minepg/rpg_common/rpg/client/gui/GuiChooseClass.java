@@ -10,6 +10,7 @@ import rpg.gui.ContainerEmpty;
 import rpg.network.packet.PacketChoseArcher;
 import rpg.network.packet.PacketChoseMage;
 import rpg.network.packet.PacketChoseWarrior;
+import rpg.network.packet.PacketPlayerInfo;
 import rpg.playerinfo.PlayerInformation;
 
 public class GuiChooseClass extends GuiContainer {
@@ -55,6 +56,7 @@ public class GuiChooseClass extends GuiContainer {
         mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
         mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this equipment, learn to use it");
         mc.thePlayer.closeScreen();
+        new PacketPlayerInfo(playerInfo).sendToPlayer(mc.thePlayer);
         MinecraftForge.EVENT_BUS.register(new HudOverlayHandler());
     }
 

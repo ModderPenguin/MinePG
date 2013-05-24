@@ -33,28 +33,28 @@ public class MageTrainingArmor extends ItemArmor implements
         // accordingly
         if (PlayerInfoFake.getPlayersClass().equals("Mage")
                 && player.experienceLevel >= 1) {
-            par3List.add("Class: ¤AMage, ¤4Alchemist");
-            par3List.add("Level: ¤A1");
+            par3List.add("Class: \u00a7AMage, \u00a74Alchemist");
+            par3List.add("Level: \u00a7A1");
         } else if (PlayerInfoFake.getPlayersClass().equals("Alchemist")
                 && player.experienceLevel >= 1) {
-            par3List.add("Class: ¤4Mage, ¤AAlchemist");
-            par3List.add("Level: ¤41");
+            par3List.add("Class: \u00a74Mage, \u00a7AAlchemist");
+            par3List.add("Level: \u00a741");
         } else if (PlayerInfoFake.getPlayersClass().equals("Mage")
                 && player.experienceLevel != 1) {
-            par3List.add("Class: ¤AMage, ¤4Alchemist");
-            par3List.add("Level: ¤41");
+            par3List.add("Class: \u00a7AMage, \u00a74Alchemist");
+            par3List.add("Level: \u00a741");
         } else if (PlayerInfoFake.getPlayersClass().equals("Alchemist")
                 && player.experienceLevel != 1) {
-            par3List.add("Class: ¤4Mage, ¤AAlchemist");
-            par3List.add("Level: ¤41");
+            par3List.add("Class: \u00a74Mage, \u00a7AAlchemist");
+            par3List.add("Level: \u00a741");
         } else if ((!PlayerInfoFake.getPlayersClass().equals("Mage") || !PlayerInfoFake
                 .getPlayersClass().equals("Alchemist"))
                 && player.experienceLevel == 1) {
-            par3List.add("Class: ¤4Mage, ¤4Alchemist");
-            par3List.add("Level: ¤A1");
+            par3List.add("Class: \u00a74Mage, \u00a74Alchemist");
+            par3List.add("Level: \u00a7A1");
         } else {
-            par3List.add("Class: ¤4Mage, ¤4Alchemist");
-            par3List.add("Level: ¤41");
+            par3List.add("Class: \u00a74Mage, \u00a74Alchemist");
+            par3List.add("Level: \u00a741");
         }
     }
 

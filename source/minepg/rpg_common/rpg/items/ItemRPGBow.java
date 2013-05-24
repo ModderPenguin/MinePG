@@ -1,5 +1,7 @@
 package rpg.items;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
@@ -14,6 +16,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import rpg.config.base.archer.ArcherWeapons;
+import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,6 +31,31 @@ public class ItemRPGBow extends RPGItem {
         this.maxStackSize = 1;
         this.setMaxDamage(384);
         this.setCreativeTab(CreativeTabs.tabCombat);
+    }
+    
+    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
+            List par3List, boolean par4) {
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
+        // Checks the players class and colored item name
+        // accordingly
+        if (playerInfo.getPlayersClass().equals("Archer")
+                && player.experienceLevel >= 1) {
+            par3List.add("Class: \u00a7AArcher");
+            par3List.add("Level: \u00a7A1");
+        } else if (playerInfo.getPlayersClass().equals("Archer")
+                && player.experienceLevel != 1) {
+            par3List.add("Class: \u00a7AArcher");
+            par3List.add("Level: \u00a741");
+        } else if (!playerInfo.getPlayersClass().equals("Archer")
+                && player.experienceLevel == 1) {
+            par3List.add("Class: \u00a74Archer");
+            par3List.add("Level: \u00a7A1");
+       } else {
+            par3List.add("Class: \u00a74Archer");
+            par3List.add("Level: \u00a741");
+        }
     }
 
     @SideOnly(Side.CLIENT)

@@ -10,8 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import rpg.PlayerClassHandler;
 import rpg.enums.weapons.EnumRPGStaffMaterial;
+import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,29 +28,29 @@ public class ItemRPGStaff extends RPGItem {
         this.setCreativeTab(CreativeTabs.tabCombat);
         this.weaponDamage = 4 + material.getDamageVsEntity();
     }
-
+    
     @Override
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public void addInformation(ItemStack par1ItemStack,
-            EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
+            List par3List, boolean par4) {
+        PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerClassHandler.getPlayersClass() == "Mage") {
-            par3List.add("Class: §AMage");
-            par3List.add("Class: §4Naturalist");
-            par3List.add("Class: §4Druid");
-        } else if (PlayerClassHandler.getPlayersClass() == "Naturalist") {
-            par3List.add("Class: §AMage");
-            par3List.add("Class: §ANaturalist");
-            par3List.add("Class: §4Druid");
-        } else if (PlayerClassHandler.getPlayersClass() == "Druid") {
-            par3List.add("Class: §AMage");
-            par3List.add("Class: §ANaturalist");
-            par3List.add("Class: §ADruid");
+        if (PlayerInfoFake.getPlayersClass().equals("Mage")
+                && player.experienceLevel >= 1) {
+            par3List.add("Class: \u00a7AMage");
+            par3List.add("Level: \u00a7A1");
+        } else if (PlayerInfoFake.getPlayersClass().equals("Mage")
+                && player.experienceLevel != 1) {
+            par3List.add("Class: \u00a7AMage");
+            par3List.add("Level: \u00a741");
+        } else if (!PlayerInfoFake.getPlayersClass().equals("Mage")
+                && player.experienceLevel == 1) {
+            par3List.add("Class: \u00a74Mage");
+            par3List.add("Level: \u00a7A1");
         } else {
-            par3List.add("Class: §4Mage");
-            par3List.add("Class: §4Naturalist");
-            par3List.add("Class: §4Druid");
+            par3List.add("Class: \u00a74Mage");
+            par3List.add("Level: \u00a741");
         }
     }
 

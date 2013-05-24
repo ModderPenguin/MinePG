@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import rpg.PlayerClassHandler;
 import rpg.enums.weapons.EnumRPGWaraxeMaterial;
+import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -35,17 +35,29 @@ public class ItemRPGWaraxe extends RPGItem {
         this.durationOfPotionEffect = duration;
         this.amplifierOfPotionEffect = amplifier;
     }
-
+    
     @Override
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public void addInformation(ItemStack par1ItemStack,
-            EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
+            List par3List, boolean par4) {
+        PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerClassHandler.getPlayersClass() == "Berserker") {
-            par3List.add("Class: §ABerserker");
+        if (PlayerInfoFake.getPlayersClass().equals("Berserker")
+                && player.experienceLevel >= 1) {
+            par3List.add("Class: \u00a7ABerserker");
+            par3List.add("Level: \u00a7A1");
+        } else if (PlayerInfoFake.getPlayersClass().equals("Berserker")
+                && player.experienceLevel != 1) {
+            par3List.add("Class: \u00a7ABerserker");
+            par3List.add("Level: \u00a741");
+        } else if (!PlayerInfoFake.getPlayersClass().equals("Berserker")
+                && player.experienceLevel == 1) {
+            par3List.add("Class: \u00a74Berserker");
+            par3List.add("Level: \u00a7A1");
         } else {
-            par3List.add("Class: §4Berserker");
+            par3List.add("Class: \u00a74Berserker");
+            par3List.add("Level: \u00a741");
         }
     }
 

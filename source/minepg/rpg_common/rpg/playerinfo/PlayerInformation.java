@@ -25,7 +25,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
 
     public static final String IDENTIFIER = "minepg_playerinfo";
 
-    public static final int MAX_KARMA_VALUE = 99999999;
+    public static final int MAX_KARMA_VALUE = 100;
 
     public static PlayerInformation forPlayer(Entity player) {
         return (PlayerInformation) player.getExtendedProperties(IDENTIFIER);
@@ -40,7 +40,8 @@ public final class PlayerInformation implements IExtendedEntityProperties {
     //private int karmaTotal;
     public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent
                                           .values().length];
-    private String playersClass;
+    private String playersClass = "";
+    private boolean shouldUseMysteriousVoice = false;
     private int danris = 0;
 
     private final EntityPlayer player;
@@ -81,6 +82,8 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
 
         playersClass = nbt.getString("playersClass");
+        
+        shouldUseMysteriousVoice = nbt.getBoolean("shouldUseMysteriousVoice");
 
         danris = nbt.getInteger("danris");
         karma = nbt.getFloat("karma");
@@ -125,6 +128,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         NBTTagCompound nbt = new NBTTagCompound();
 
         nbt.setString("playersClass", playersClass);
+        nbt.setBoolean("shouldUseMysteriousVoice", shouldUseMysteriousVoice);
         nbt.setInteger("danris", danris);
         nbt.setFloat("karma", karma);
         //nbt.setInteger("karmaLevel", karmaLevel);
@@ -193,6 +197,19 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         }
 
         return this.playersClass;
+    }
+    
+    public boolean getShouldUseMysteriousVoice() {
+        return shouldUseMysteriousVoice;
+    }
+    
+    public boolean setShouldUseMysteriousVoice(boolean shouldUseMysteriousVoice) {
+        if(this.shouldUseMysteriousVoice != shouldUseMysteriousVoice) {
+            this.shouldUseMysteriousVoice = shouldUseMysteriousVoice;
+            setDirty();
+        }
+        
+        return this.shouldUseMysteriousVoice;
     }
     
     /*

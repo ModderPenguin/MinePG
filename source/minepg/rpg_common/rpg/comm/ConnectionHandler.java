@@ -51,9 +51,16 @@ public class ConnectionHandler implements IConnectionHandler {
                     EnumGui.LoreStartingPage.getIndex(),
                     ((EntityPlayerMP) player).worldObj, 0, 0, 0);
         } else {
-            ((EntityPlayerMP) player)
-                    .sendChatToPlayer("<Mysterious Voice> Welcome back master "
-                            + playerInfo.getPlayersClass());
+            if(!playerInfo.getShouldUseMysteriousVoice()) {
+                ((EntityPlayerMP) player)
+                .sendChatToPlayer("<Mysterious Voice> Welcome back master "
+                        + playerInfo.getPlayersClass());
+            }
+            else {
+                ((EntityPlayerMP) player)
+                .sendChatToPlayer("<Dagon> Welcome back master "
+                        + playerInfo.getPlayersClass());
+            }
             new PacketPlayerInfo(playerInfo).sendToPlayer((EntityPlayerMP) player);
         }
 

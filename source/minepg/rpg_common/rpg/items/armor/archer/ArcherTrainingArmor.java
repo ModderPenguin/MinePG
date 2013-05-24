@@ -33,28 +33,28 @@ public class ArcherTrainingArmor extends ItemArmor implements
         // accordingly
         if (PlayerInfoFake.getPlayersClass().equals("Archer")
                 && player.experienceLevel >= 1) {
-            par3List.add("Class: ¤AArcher, ¤4Berserker");
-            par3List.add("Level: ¤A1");
+            par3List.add("Class: \u00a7AArcher, \u00a74Berserker");
+            par3List.add("Level: \u00a7A1");
         } else if (PlayerInfoFake.getPlayersClass().equals("Berserker")
                 && player.experienceLevel >= 1) {
-            par3List.add("Class: ¤4Archer, ¤ABerserker");
-            par3List.add("Level: ¤41");
+            par3List.add("Class: \u00a74Archer, \u00a7ABerserker");
+            par3List.add("Level: \u00a741");
         } else if (PlayerInfoFake.getPlayersClass().equals("Archer")
                 && player.experienceLevel != 1) {
-            par3List.add("Class: ¤AArcher, ¤4Berserker");
-            par3List.add("Level: ¤41");
+            par3List.add("Class: \u00a7AArcher, \u00a74Berserker");
+            par3List.add("Level: \u00a741");
         } else if (PlayerInfoFake.getPlayersClass().equals("Berserker")
                 && player.experienceLevel != 1) {
-            par3List.add("Class: ¤4Archer, ¤ABerserker");
-            par3List.add("Level: ¤41");
+            par3List.add("Class: \u00a74Archer, \u00a7ABerserker");
+            par3List.add("Level: \u00a741");
         } else if ((!PlayerInfoFake.getPlayersClass().equals("Archer") || !PlayerInfoFake
                 .getPlayersClass().equals("Berserker"))
                 && player.experienceLevel == 1) {
-            par3List.add("Class: ¤4Archer, ¤4Berserker");
-            par3List.add("Level: ¤A1");
+            par3List.add("Class: \u00a74Archer, \u00a74Berserker");
+            par3List.add("Level: \u00a7A1");
         } else {
-            par3List.add("Class: ¤4Archer, ¤4Berserker");
-            par3List.add("Level: ¤41");
+            par3List.add("Class: \u00a74Archer, \u00a74Berserker");
+            par3List.add("Level: \u00a741");
         }
     }
 
