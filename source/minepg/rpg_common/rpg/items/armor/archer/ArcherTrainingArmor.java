@@ -63,9 +63,9 @@ public class ArcherTrainingArmor extends ItemArmor implements
     public String getArmorTextureFile(ItemStack itemstack) {
         if (itemstack.itemID == ArcherArmor.tunicTraining.itemID
                 || itemstack.itemID == ArcherArmor.bootsTraining.itemID)
-            return "/mods/rpg/textures/armor/archerTraining_1.png";
+            return "/mods/" + Reference.MOD_ID + "/textures/armor/archerTraining_1.png";
         else if (itemstack.itemID == ArcherArmor.legsTraining.itemID)
-            return "/mods/rpg/textures/armor/archerTraining_2.png";
+            return "/mods/" + Reference.MOD_ID + "/textures/armor/archerTraining_2.png";
         else
             return null;
     }

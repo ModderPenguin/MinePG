@@ -90,9 +90,9 @@ public class WarriorTrainingArmor extends ItemArmor implements
         if (itemstack.itemID == WarriorArmor.helmetTraining.itemID
                 || itemstack.itemID == WarriorArmor.cuirassTraining.itemID
                 || itemstack.itemID == WarriorArmor.sabatonsTraining.itemID)
-            return "/mods/rpg/textures/armor/warriorTraining_1.png";
+            return "/mods/" + Reference.MOD_ID + "/textures/armor/warriorTraining_1.png";
         else if (itemstack.itemID == WarriorArmor.greavesTraining.itemID)
-            return "/mods/rpg/textures/armor/warriorTraining_2.png";
+            return "/mods/" + Reference.MOD_ID + "/textures/armor/warriorTraining_2.png";
         else
             return null;
     }
