@@ -30,6 +30,7 @@ public class PacketChoseArcher extends MinePGPacket {
                     ArcherArmor.legsTraining, 1));
             player.inventory.addItemStackToInventory(new ItemStack(
                     ArcherArmor.bootsTraining, 1));
+            new PacketPlayerInfo(playerInfo).sendToPlayer(player);
         }
     }
 

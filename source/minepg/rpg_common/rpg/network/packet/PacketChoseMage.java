@@ -28,6 +28,7 @@ public class PacketChoseMage extends MinePGPacket {
                     MageArmor.robeTraining, 1));
             player.inventory.addItemStackToInventory(new ItemStack(
                     MageArmor.sandalsTraining, 1));
+            new PacketPlayerInfo(playerInfo).sendToPlayer(player);
         }
     }
 

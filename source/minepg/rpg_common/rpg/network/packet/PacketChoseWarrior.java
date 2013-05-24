@@ -30,6 +30,7 @@ public class PacketChoseWarrior extends MinePGPacket {
                     WarriorArmor.greavesTraining, 1));
             player.inventory.addItemStackToInventory(new ItemStack(
                     WarriorArmor.sabatonsTraining, 1));
+            new PacketPlayerInfo(playerInfo).sendToPlayer(player);
         }
     }
 
