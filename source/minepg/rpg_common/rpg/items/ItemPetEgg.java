@@ -10,6 +10,4 @@ public class ItemPetEgg extends RPGItem {
         super(par1, name);
         this.petType = petType.getPetType();
     }
-    
-    
 }
