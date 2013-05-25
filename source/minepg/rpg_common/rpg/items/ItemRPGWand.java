@@ -10,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import rpg.client.entities.EntityWandTrainingBolt;
+import rpg.client.entities.EntityStaffTrainingBolt;
 import rpg.enums.weapons.EnumRPGWandMaterial;
 import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
@@ -149,7 +149,7 @@ public class ItemRPGWand extends RPGItem {
         par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F,
                 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
         if (!par2World.isRemote) {
-            par2World.spawnEntityInWorld(new EntityWandTrainingBolt(par2World,
+            par2World.spawnEntityInWorld(new EntityStaffTrainingBolt(par2World,
                     par3EntityPlayer));
         }
         return par1ItemStack;

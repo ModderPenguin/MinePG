@@ -26,7 +26,7 @@ public class ItemRPGStaff extends RPGItem {
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
         this.setCreativeTab(CreativeTabs.tabCombat);
-        this.weaponDamage = 4 + material.getDamageVsEntity();
+        this.weaponDamage = material.getDamageVsEntity();
     }
     
     @Override
@@ -107,17 +107,6 @@ public class ItemRPGStaff extends RPGItem {
         return this.toolMaterial.toString();
     }
 
-    /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
-     * the damage on the stack.
-     */
-    @Override
-    public boolean hitEntity(ItemStack par1ItemStack,
-            EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
-        par1ItemStack.damageItem(1, par3EntityLiving);
-        return true;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     /**
@@ -137,16 +126,5 @@ public class ItemRPGStaff extends RPGItem {
         }
 
         return true;
-    }
-
-    /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
-     */
-    @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer) {
-        par3EntityPlayer.setItemInUse(par1ItemStack,
-                this.getMaxItemUseDuration(par1ItemStack));
-        return par1ItemStack;
     }
 }

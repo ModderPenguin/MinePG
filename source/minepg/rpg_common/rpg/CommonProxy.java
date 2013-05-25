@@ -2,7 +2,7 @@ package rpg;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import rpg.client.entities.EntityWandTrainingBolt;
+import rpg.client.entities.EntityStaffTrainingBolt;
 import rpg.gui.GuiHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -31,7 +31,7 @@ public class CommonProxy implements IGuiHandler {
     public void init() {
         registerRenderers();
 
-        EntityRegistry.registerGlobalEntityID(EntityWandTrainingBolt.class,
+        EntityRegistry.registerGlobalEntityID(EntityStaffTrainingBolt.class,
                 "TrainingBolt", EntityRegistry.findGlobalUniqueEntityId());
     }
 
@@ -39,6 +39,5 @@ public class CommonProxy implements IGuiHandler {
 
     }
 
-    public void registerRenderers() {
-    }
+    public void registerRenderers() {}
 }
