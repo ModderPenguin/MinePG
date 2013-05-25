@@ -3,25 +3,24 @@ package rpg.client.renderers;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import rpg.client.entities.EntityWandTrainingBolt;
+import rpg.client.entities.EntityStaffTrainingBolt;
 
-public class RenderWandTrainingBolt extends Render {
+public class RenderStaffTrainingBolt extends Render {
 
     @Override
     public void doRender(Entity par1Entity, double par2, double par4,
             double par6, float par8, float par9) {
-        this.renderWandTrainingBolt((EntityWandTrainingBolt) par1Entity, par2,
+        this.renderWandTrainingBolt((EntityStaffTrainingBolt) par1Entity, par2,
                 par4, par6, par8, par9);
     }
 
-    public void renderWandTrainingBolt(EntityWandTrainingBolt par1EntityArrow,
+    public void renderWandTrainingBolt(EntityStaffTrainingBolt par1EntityArrow,
             double par2, double par4, double par6, float par8, float par9) {
-        this.loadTexture("/mods/rpg/textures/wandBolts/trainingBolt.png");
+        this.loadTexture("/mods/rpg/textures/bolts/wandBolts/trainingBolt.png");
         GL11.glPushMatrix();
         GL11.glTranslatef((float) par2, (float) par4, (float) par6);
         GL11.glRotatef(
@@ -44,12 +43,6 @@ public class RenderWandTrainingBolt extends Render {
         float f9 = (10 + b0 * 10) / 32.0F;
         float f10 = 0.05625F;
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        float f11 = par1EntityArrow.arrowShake - par9;
-
-        if (f11 > 0.0F) {
-            float f12 = -MathHelper.sin(f11 * 3.0F) * f11;
-            GL11.glRotatef(f12, 0.0F, 0.0F, 1.0F);
-        }
 
         GL11.glRotatef(45.0F, 1.0F, 0.0F, 0.0F);
         GL11.glScalef(f10, f10, f10);

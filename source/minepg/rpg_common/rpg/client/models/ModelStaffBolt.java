@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelWandBolt extends ModelBase {
+public class ModelStaffBolt extends ModelBase {
 
     // fields
     ModelRenderer BoltBody;
@@ -15,7 +15,7 @@ public class ModelWandBolt extends ModelBase {
     ModelRenderer BoltPointFront;
     ModelRenderer BoltPointTop;
 
-    public ModelWandBolt() {
+    public ModelStaffBolt() {
         textureWidth = 64;
         textureHeight = 32;
 
