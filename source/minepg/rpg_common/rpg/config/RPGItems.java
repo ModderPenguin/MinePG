@@ -5,7 +5,6 @@ import net.minecraftforge.common.Configuration;
 import rpg.config.base.archer.ArcherItems;
 import rpg.config.base.mage.MageItems;
 import rpg.config.base.warrior.WarriorItems;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class RPGItems {
 
@@ -20,8 +19,8 @@ public class RPGItems {
         MageItems.addNames();
         WarriorItems.addNames();
         
-        LanguageRegistry.addName(taurite, "Taurite");
-        LanguageRegistry.addName(tauriteCloth, "Taurite Cloth");
+        //LanguageRegistry.addName(taurite, "Taurite");
+        ///LanguageRegistry.addName(tauriteCloth, "Taurite Cloth");
     }
 
     public static void load(Configuration config) {

@@ -18,7 +18,7 @@ public class PetItems {
     public static Item petEggWater;
     
     public static void load(Configuration config) {
-        petEggID = config.get(Configuration.CATEGORY_ITEM + Configuration.CATEGORY_SPLITTER, "Base Pet Egg ID", 500).getInt();
+        petEggID = config.get(RPGConfiguration.CATEGORY_PETS, "Base Pet Egg ID", 500).getInt();
         
         petEggMain = new ItemPetEgg(petEggID, "petEggMain", EnumPetType.MAIN).setCreativeTab(RPGCreativeTabs.tabPetItems);
         petEggAir = new ItemPetEgg(petEggID + 1, "petEggAir", EnumPetType.AIR).setCreativeTab(RPGCreativeTabs.tabPetItems);
