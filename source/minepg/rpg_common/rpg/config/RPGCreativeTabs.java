@@ -25,7 +25,7 @@ public class RPGCreativeTabs {
                 "itemGroup.mageItems", "en_US", "Mage Items");
         LanguageRegistry.instance().addStringLocalization(
                 "itemGroup.warriorItems", "en_US", "Warrior Items");
-        LanguageRegistry.instance().addStringLocalization(
-                "itemGroup.petItems", "en_US", "Pet Items");
+        LanguageRegistry.instance().addStringLocalization("itemGroup.petItems",
+                "en_US", "Pet Items");
     }
 }

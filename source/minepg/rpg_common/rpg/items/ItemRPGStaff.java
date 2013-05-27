@@ -28,7 +28,7 @@ public class ItemRPGStaff extends RPGItem {
         this.setCreativeTab(CreativeTabs.tabCombat);
         this.weaponDamage = material.getDamageVsEntity();
     }
-    
+
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer player,

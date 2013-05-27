@@ -36,7 +36,9 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityStaffTrainingBolt.class, new RenderStaffTrainingBolt());
 
-        EntityRegistry.registerGlobalEntityID(EntityStaffTrainingBolt.class, "staffTrainingBolt", EntityRegistry.findGlobalUniqueEntityId());
-        //EntityRegistry.registerModEntity(EntityStaffTrainingBolt.class, "staffTrainingBolt", EntityRegistry.findGlobalUniqueEntityId(), this, 350, 5, false);
+        EntityRegistry.registerGlobalEntityID(EntityStaffTrainingBolt.class,
+                "staffTrainingBolt", EntityRegistry.findGlobalUniqueEntityId());
+        // EntityRegistry.registerModEntity(EntityStaffTrainingBolt.class, "staffTrainingBolt",
+        // EntityRegistry.findGlobalUniqueEntityId(), this, 350, 5, false);
     }
 }

@@ -29,7 +29,7 @@ public class ItemRPGWand extends RPGItem {
         this.setCreativeTab(CreativeTabs.tabCombat);
         this.weaponDamage = 4 + material.getDamageVsEntity();
     }
-    
+
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
@@ -38,15 +38,18 @@ public class ItemRPGWand extends RPGItem {
         // Checks the players class and colored item name
         // accordingly
         if ((PlayerInfoFake.getPlayersClass().equals("Sorcerer") || PlayerInfoFake
-                .getPlayersClass().equals("Mage")) && player.experienceLevel >= 1) {
+                .getPlayersClass().equals("Mage"))
+                && player.experienceLevel >= 1) {
             par3List.add("Class: \u00a7ASorcerer");
             par3List.add("Level: \u00a7A1");
         } else if ((PlayerInfoFake.getPlayersClass().equals("Sorcerer") || PlayerInfoFake
-                .getPlayersClass().equals("Mage")) && player.experienceLevel != 1) {
+                .getPlayersClass().equals("Mage"))
+                && player.experienceLevel != 1) {
             par3List.add("Class: \u00a7ASorcerer");
             par3List.add("Level: \u00a741");
         } else if ((!PlayerInfoFake.getPlayersClass().equals("Sorcerer") || !PlayerInfoFake
-                .getPlayersClass().equals("Mage")) && player.experienceLevel == 1) {
+                .getPlayersClass().equals("Mage"))
+                && player.experienceLevel == 1) {
             par3List.add("Class: \u00a74Sorcerer");
             par3List.add("Level: \u00a7A1");
         } else {

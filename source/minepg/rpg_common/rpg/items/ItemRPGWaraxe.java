@@ -35,7 +35,7 @@ public class ItemRPGWaraxe extends RPGItem {
         this.durationOfPotionEffect = duration;
         this.amplifierOfPotionEffect = amplifier;
     }
-    
+
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer player,

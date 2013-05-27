@@ -29,7 +29,7 @@ public class ItemRPGSword extends RPGItem {
         this.setCreativeTab(CreativeTabs.tabCombat);
         this.weaponDamage = 4 + material.getDamageVsEntity();
     }
-    
+
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer player,

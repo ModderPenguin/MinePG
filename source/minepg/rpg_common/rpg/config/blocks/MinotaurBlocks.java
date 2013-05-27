@@ -26,7 +26,7 @@ public class MinotaurBlocks {
 
     public static void load(Configuration config) {
         tauriteBlockID = config.get(Configuration.CATEGORY_BLOCK,
-                "Taurite Block ID", 250).getInt();
+                "Taurite Block ID", 1100).getInt();
         oreTauriteID = config.get(Configuration.CATEGORY_BLOCK,
                 "Taurite Ore ID", 1101).getInt();
         portalMinoID = config.get(Configuration.CATEGORY_BLOCK,
@@ -38,5 +38,12 @@ public class MinotaurBlocks {
                 "tauriteOre").setCreativeTab(CreativeTabs.tabBlock);
         portalMino = new BlockPortalMino(portalMinoID).setCreativeTab(
                 CreativeTabs.tabBlock).setUnlocalizedName("minoPortal");
+    }
+
+    // @SuppressWarnings("deprecation")
+    public static void registerBlocks() {
+        // GameRegistry.registerBlock(blockTaurite);
+        // GameRegistry.registerBlock(oreTaurite);
+        // GameRegistry.registerBlock(portalMino);
     }
 }

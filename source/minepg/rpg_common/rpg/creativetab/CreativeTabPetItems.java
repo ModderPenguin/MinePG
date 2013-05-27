@@ -2,7 +2,7 @@ package rpg.creativetab;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import rpg.config.PetItems;
+import rpg.config.pets.PetItems;
 
 public class CreativeTabPetItems extends CreativeTabs {
 

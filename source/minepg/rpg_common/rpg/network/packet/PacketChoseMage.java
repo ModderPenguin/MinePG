@@ -15,7 +15,7 @@ public class PacketChoseMage extends MinePGPacket {
 
     @Override
     protected void execute(EntityPlayer player, Side side) {
-        if(side.isServer()) {
+        if (side.isServer()) {
             PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
             playerInfo.setCurrency(20);
             player.addExperienceLevel(1);
@@ -34,12 +34,12 @@ public class PacketChoseMage extends MinePGPacket {
 
     @Override
     protected void readData(ByteArrayDataInput in) {
-        
+
     }
 
     @Override
     protected void writeData(ByteArrayDataOutput out) {
-        
+
     }
 
 }

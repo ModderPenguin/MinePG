@@ -25,8 +25,8 @@ public class SoundLoader {
             evt.manager.soundPoolSounds.addSound("minepg/" + sound + ".ogg",
                     getSound(sound));
             System.out.println("[MinePG Sound Loader] Loading sounds...");
-            System.out.println("[MinePG Sound Loader] Sounds Loaded");
             SoundLoader.didSoundsLoad = true;
+            System.out.println("[MinePG Sound Loader] Sounds Loaded");
         }
     }
 }

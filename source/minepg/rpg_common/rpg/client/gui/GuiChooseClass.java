@@ -19,7 +19,7 @@ public class GuiChooseClass extends GuiContainer {
         super(new ContainerEmpty());
         starterList = BaseClassList.getStarterStringList();
     }
-   
+
     @Override
     @SuppressWarnings("unchecked")
     public void initGui() {
@@ -30,30 +30,36 @@ public class GuiChooseClass extends GuiContainer {
                     * 20, starterList[i]));
         }
     }
-    
+
     @Override
-    public void actionPerformed(GuiButton button) {        
-        switch(button.id) {
-            case 0:
-                new PacketChoseArcher().sendToServer();
-                break;
-            case 1:
-                new PacketChoseMage().sendToServer();
-                break;
-            case 2:
-                new PacketChoseWarrior().sendToServer();
-                break;
+    public void actionPerformed(GuiButton button) {
+        switch (button.id) {
+        case 0:
+            new PacketChoseArcher().sendToServer();
+            break;
+        case 1:
+            new PacketChoseMage().sendToServer();
+            break;
+        case 2:
+            new PacketChoseWarrior().sendToServer();
+            break;
         }
-        PlayerInformation playerInfo = PlayerInformation.forPlayer(mc.thePlayer);
-        mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the "
-                + playerInfo.getPlayersClass());
-        mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
-        mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
+        PlayerInformation playerInfo = PlayerInformation
+                .forPlayer(mc.thePlayer);
+        mc.thePlayer
+                .sendChatToPlayer("[MinePG] You have chosen the path of the "
+                        + playerInfo.getPlayersClass());
+        mc.thePlayer
+                .sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
+        mc.thePlayer
+                .sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
         mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");
-        mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
-        mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this equipment, learn to use it");
+        mc.thePlayer
+                .sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
+        mc.thePlayer
+                .sendChatToPlayer("<Mysterious Voice> Have this equipment, learn to use it");
         mc.thePlayer.closeScreen();
-        //MinecraftForge.EVENT_BUS.register(new HudOverlayHandler());
+        // MinecraftForge.EVENT_BUS.register(new HudOverlayHandler());
     }
 
     @Override
@@ -64,8 +70,6 @@ public class GuiChooseClass extends GuiContainer {
         drawString(fontRenderer, "Please pick your desired Class:", 3, 20,
                 0xFFFFFF);
     }
-
-
 
     @Override
     public void keyTyped(char i, int i1) {

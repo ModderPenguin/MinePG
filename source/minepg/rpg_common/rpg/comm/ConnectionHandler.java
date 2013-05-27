@@ -51,23 +51,25 @@ public class ConnectionHandler implements IConnectionHandler {
                     EnumGui.LoreStartingPage.getIndex(),
                     ((EntityPlayerMP) player).worldObj, 0, 0, 0);
         } else {
-            if(!playerInfo.getShouldUseMysteriousVoice()) {
+            if (!playerInfo.getShouldUseMysteriousVoice()) {
                 ((EntityPlayerMP) player)
-                .sendChatToPlayer("<Mysterious Voice> Welcome back master "
-                        + playerInfo.getPlayersClass());
-            }
-            else {
+                        .sendChatToPlayer("<Mysterious Voice> Welcome back master "
+                                + playerInfo.getPlayersClass());
+            } else {
                 ((EntityPlayerMP) player)
-                .sendChatToPlayer("<Dagon> Welcome back master "
-                        + playerInfo.getPlayersClass());
+                        .sendChatToPlayer("<Dagon> Welcome back master "
+                                + playerInfo.getPlayersClass());
             }
-            new PacketPlayerInfo(playerInfo).sendToPlayer((EntityPlayerMP) player);
+            new PacketPlayerInfo(playerInfo)
+                    .sendToPlayer((EntityPlayerMP) player);
         }
 
         if (SoundLoader.didSoundsLoad == true) {
-            System.out.println("[MinePG Sound Loader] Loaded Sounds Successfully");
+            System.out
+                    .println("[MinePG Sound Loader] Loaded Sounds Successfully");
         } else if (SoundLoader.didSoundsLoad == false) {
-            System.out.println("[MinePG Sound Loader] Failed to load one or more sounds");
+            System.out
+                    .println("[MinePG Sound Loader] Failed to load one or more sounds");
         }
     }
 }

@@ -5,6 +5,7 @@ import net.minecraftforge.common.Configuration;
 import rpg.config.base.archer.ArcherItems;
 import rpg.config.base.mage.MageItems;
 import rpg.config.base.warrior.WarriorItems;
+import rpg.config.pets.PetItems;
 
 public class RPGItems {
 
@@ -13,14 +14,14 @@ public class RPGItems {
 
     public static Item taurite;
     public static Item tauriteCloth;
-    
+
     public static void addNames() {
         ArcherItems.addNames();
         MageItems.addNames();
         WarriorItems.addNames();
-        
-        //LanguageRegistry.addName(taurite, "Taurite");
-        ///LanguageRegistry.addName(tauriteCloth, "Taurite Cloth");
+
+        // LanguageRegistry.addName(taurite, "Taurite");
+        // /LanguageRegistry.addName(tauriteCloth, "Taurite Cloth");
     }
 
     public static void load(Configuration config) {
@@ -34,9 +35,9 @@ public class RPGItems {
         tauriteClothID = config.get(Configuration.CATEGORY_ITEM,
                 "Taurite Cloth ID", 1101).getInt();
 
-        //taurite = new ItemTaurite(tauriteID, "taurite")
-                //.setCreativeTab(CreativeTabs.tabMaterials);
-        //tauriteCloth = new ItemTauriteCloth(tauriteClothID, "tauriteCloth")
-                //.setCreativeTab(CreativeTabs.tabMaterials);
+        // taurite = new ItemTaurite(tauriteID, "taurite")
+        // .setCreativeTab(CreativeTabs.tabMaterials);
+        // tauriteCloth = new ItemTauriteCloth(tauriteClothID, "tauriteCloth")
+        // .setCreativeTab(CreativeTabs.tabMaterials);
     }
 }

@@ -74,7 +74,8 @@ public class WarriorTrainingArmor extends ItemArmor implements
         } else if ((!PlayerInfoFake.getPlayersClass().equals("Warrior")
                 || !PlayerInfoFake.getPlayersClass().equals("Knight")
                 || !PlayerInfoFake.getPlayersClass().equals("Paladin") || !PlayerInfoFake
-                .getPlayersClass().equals("Angel")) && player.experienceLevel == 1) {
+                .getPlayersClass().equals("Angel"))
+                && player.experienceLevel == 1) {
             par3List.add("Class: \u00a74Warrior, \u00a74Knight,");
             par3List.add("        \u00a74Paladin, \u00a74Angel");
             par3List.add("Level: \u00a7A1");
@@ -90,26 +91,28 @@ public class WarriorTrainingArmor extends ItemArmor implements
         if (itemstack.itemID == WarriorArmor.helmetTraining.itemID
                 || itemstack.itemID == WarriorArmor.cuirassTraining.itemID
                 || itemstack.itemID == WarriorArmor.sabatonsTraining.itemID)
-            return "/mods/" + Reference.MOD_ID + "/textures/armor/warriorTraining_1.png";
+            return "/mods/" + Reference.MOD_ID
+                    + "/textures/armor/warriorTraining_1.png";
         else if (itemstack.itemID == WarriorArmor.greavesTraining.itemID)
-            return "/mods/" + Reference.MOD_ID + "/textures/armor/warriorTraining_2.png";
+            return "/mods/" + Reference.MOD_ID
+                    + "/textures/armor/warriorTraining_2.png";
         else
             return null;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconregister) {
-        if(this.itemID == WarriorArmor.helmetTraining.itemID) {
+        if (this.itemID == WarriorArmor.helmetTraining.itemID) {
             this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
                     + this.getUnlocalizedName().substring(5));
-        } else if(this.itemID == WarriorArmor.cuirassTraining.itemID) {
+        } else if (this.itemID == WarriorArmor.cuirassTraining.itemID) {
             this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
                     + this.getUnlocalizedName().substring(5));
-        } else if(this.itemID == WarriorArmor.greavesTraining.itemID) {
+        } else if (this.itemID == WarriorArmor.greavesTraining.itemID) {
             this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
                     + this.getUnlocalizedName().substring(5));
-        } else if(this.itemID == WarriorArmor.sabatonsTraining.itemID) {
+        } else if (this.itemID == WarriorArmor.sabatonsTraining.itemID) {
             this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
                     + this.getUnlocalizedName().substring(5));
         }

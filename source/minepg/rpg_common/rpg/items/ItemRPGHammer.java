@@ -31,7 +31,7 @@ public class ItemRPGHammer extends RPGItem {
         this.weaponDamage = material.getDamageVsEntity();
         this.healAmount = healAmount;
     }
-    
+
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
@@ -40,15 +40,18 @@ public class ItemRPGHammer extends RPGItem {
         // Checks the players class and colored item name
         // accordingly
         if ((PlayerInfoFake.getPlayersClass().equals("Paladin") || PlayerInfoFake
-                .getPlayersClass().equals("Warrior")) && player.experienceLevel >= 1) {
+                .getPlayersClass().equals("Warrior"))
+                && player.experienceLevel >= 1) {
             par3List.add("Class: \u00a7APaladin");
             par3List.add("Level: \u00a7A1");
         } else if ((PlayerInfoFake.getPlayersClass().equals("Paladin") || PlayerInfoFake
-                .getPlayersClass().equals("Warrior")) && player.experienceLevel != 1) {
+                .getPlayersClass().equals("Warrior"))
+                && player.experienceLevel != 1) {
             par3List.add("Class: \u00a7APaladin");
             par3List.add("Level: \u00a741");
         } else if ((!PlayerInfoFake.getPlayersClass().equals("Paladin") || !PlayerInfoFake
-                .getPlayersClass().equals("Warrior")) && player.experienceLevel == 1) {
+                .getPlayersClass().equals("Warrior"))
+                && player.experienceLevel == 1) {
             par3List.add("Class: \u00a74Paladin");
             par3List.add("Level: \u00a7A1");
         } else {

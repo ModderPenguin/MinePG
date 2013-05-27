@@ -63,9 +63,11 @@ public class ArcherTrainingArmor extends ItemArmor implements
     public String getArmorTextureFile(ItemStack itemstack) {
         if (itemstack.itemID == ArcherArmor.tunicTraining.itemID
                 || itemstack.itemID == ArcherArmor.bootsTraining.itemID)
-            return "/mods/" + Reference.MOD_ID + "/textures/armor/archerTraining_1.png";
+            return "/mods/" + Reference.MOD_ID
+                    + "/textures/armor/archerTraining_1.png";
         else if (itemstack.itemID == ArcherArmor.legsTraining.itemID)
-            return "/mods/" + Reference.MOD_ID + "/textures/armor/archerTraining_2.png";
+            return "/mods/" + Reference.MOD_ID
+                    + "/textures/armor/archerTraining_2.png";
         else
             return null;
     }
@@ -73,13 +75,13 @@ public class ArcherTrainingArmor extends ItemArmor implements
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        if(this.itemID == ArcherArmor.tunicTraining.itemID) {
+        if (this.itemID == ArcherArmor.tunicTraining.itemID) {
             this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":"
                     + this.getUnlocalizedName().substring(5));
-        } else if(this.itemID == ArcherArmor.legsTraining.itemID) {
+        } else if (this.itemID == ArcherArmor.legsTraining.itemID) {
             this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":"
                     + this.getUnlocalizedName().substring(5));
-        } else if(this.itemID == ArcherArmor.bootsTraining.itemID) {
+        } else if (this.itemID == ArcherArmor.bootsTraining.itemID) {
             this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":"
                     + this.getUnlocalizedName().substring(5));
         }

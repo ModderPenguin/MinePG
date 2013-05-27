@@ -63,7 +63,8 @@ public class MageTrainingArmor extends ItemArmor implements
         if (itemstack.itemID == MageArmor.hatTraining.itemID
                 || itemstack.itemID == MageArmor.robeTraining.itemID
                 || itemstack.itemID == MageArmor.sandalsTraining.itemID)
-            return "/mods/" + Reference.MOD_ID + "/textures/armor/mageTraining_1.png";
+            return "/mods/" + Reference.MOD_ID
+                    + "/textures/armor/mageTraining_1.png";
         else
             return null;
     }

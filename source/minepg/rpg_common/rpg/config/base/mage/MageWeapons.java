@@ -17,20 +17,20 @@ public class MageWeapons {
 
     public static void addNames() {
         LanguageRegistry.addName(staffTraining, "Training Staff");
-        //LanguageRegistry.addName(wandTraining, "Training Wand");
+        // LanguageRegistry.addName(wandTraining, "Training Wand");
     }
 
     public static void load(Configuration config) {
         staffTrainingID = config.get(Configuration.CATEGORY_ITEM,
                 "Training Staff ID", 1014).getInt();
-        //wandTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                //"Training Wand ID", 1015).getInt();
+        // wandTrainingID = config.get(Configuration.CATEGORY_ITEM,
+        // "Training Wand ID", 1015).getInt();
 
         staffTraining = new ItemTrainingStaff(staffTrainingID,
                 EnumRPGStaffMaterial.TRAINING, "staffTraining").setCreativeTab(
                 RPGCreativeTabs.tabMageItems).setFull3D();
-        //wandTraining = new ItemTrainingWand(wandTrainingID,
-                //EnumRPGWandMaterial.TRAINING, "wandTraining")
-                //.setCreativeTab(RPGCreativeTabs.tabMageItems);
+        // wandTraining = new ItemTrainingWand(wandTrainingID,
+        // EnumRPGWandMaterial.TRAINING, "wandTraining")
+        // .setCreativeTab(RPGCreativeTabs.tabMageItems);
     }
 }

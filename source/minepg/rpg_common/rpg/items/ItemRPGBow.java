@@ -22,7 +22,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemRPGBow extends RPGItem {
 
-    public static final String[] bowPullIconNameArray = new String[] {"bow_pull_0", "bow_pull_1", "bow_pull_2"};
+    public static final String[] bowPullIconNameArray = new String[] {
+            "bow_pull_0", "bow_pull_1", "bow_pull_2" };
     @SideOnly(Side.CLIENT)
     private Icon[] iconArray;
 
@@ -32,7 +33,7 @@ public class ItemRPGBow extends RPGItem {
         this.setMaxDamage(384);
         this.setCreativeTab(CreativeTabs.tabCombat);
     }
-    
+
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
@@ -52,7 +53,7 @@ public class ItemRPGBow extends RPGItem {
                 && player.experienceLevel == 1) {
             par3List.add("Class: \u00a74Archer");
             par3List.add("Level: \u00a7A1");
-       } else {
+        } else {
             par3List.add("Class: \u00a74Archer");
             par3List.add("Level: \u00a741");
         }

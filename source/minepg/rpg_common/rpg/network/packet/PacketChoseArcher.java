@@ -15,7 +15,7 @@ public class PacketChoseArcher extends MinePGPacket {
 
     @Override
     protected void execute(EntityPlayer player, Side side) {
-        if(side.isServer()) {
+        if (side.isServer()) {
             PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
             playerInfo.setPlayersClass("Archer");
             playerInfo.setCurrency(20);
@@ -36,12 +36,12 @@ public class PacketChoseArcher extends MinePGPacket {
 
     @Override
     protected void readData(ByteArrayDataInput in) {
-        
+
     }
 
     @Override
     protected void writeData(ByteArrayDataOutput out) {
-        
+
     }
 
 }

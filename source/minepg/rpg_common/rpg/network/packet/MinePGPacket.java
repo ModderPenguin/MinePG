@@ -72,7 +72,7 @@ public abstract class MinePGPacket {
         return PacketDispatcher.getTinyPacket(RPG.instance, (short) packetId,
                 output.toByteArray());
     }
-    
+
     public final void sendToAll() {
         MinecraftServer.getServer().getConfigurationManager()
                 .sendPacketToAllPlayers(generatePacket());
@@ -128,9 +128,9 @@ public abstract class MinePGPacket {
     }
 
     protected abstract void writeData(ByteArrayDataOutput out);
-    
+
     protected abstract void readData(ByteArrayDataInput in);
-    
+
     public static void execute(ByteArrayDataInput input, int packetId,
             EntityPlayer player) {
         Class<? extends MinePGPacket> packetClass = idMapping.get(Integer
