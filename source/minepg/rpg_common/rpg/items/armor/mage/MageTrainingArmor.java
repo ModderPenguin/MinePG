@@ -15,41 +15,32 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SuppressWarnings("deprecation")
-public class MageTrainingArmor extends ItemArmor implements
-        IArmorTextureProvider {
+public class MageTrainingArmor extends ItemArmor implements IArmorTextureProvider {
 
-    public MageTrainingArmor(int itemid, EnumArmorMaterial material, int par3,
-            int par4, String name) {
+    public MageTrainingArmor(int itemid, EnumArmorMaterial material, int par3, int par4, String name) {
         super(itemid, material, par3, par4);
         this.setUnlocalizedName(name);
     }
 
     @Override
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
-            List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player, List par3List, boolean par4) {
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerInfoFake.getPlayersClass().equals("Mage")
-                && player.experienceLevel >= 1) {
+        if (PlayerInfoFake.getPlayersClass().equals("Mage") && player.experienceLevel >= 1) {
             par3List.add("Class: \u00a7AMage, \u00a74Alchemist");
             par3List.add("Level: \u00a7A1");
-        } else if (PlayerInfoFake.getPlayersClass().equals("Alchemist")
-                && player.experienceLevel >= 1) {
+        } else if (PlayerInfoFake.getPlayersClass().equals("Alchemist") && player.experienceLevel >= 1) {
             par3List.add("Class: \u00a74Mage, \u00a7AAlchemist");
             par3List.add("Level: \u00a741");
-        } else if (PlayerInfoFake.getPlayersClass().equals("Mage")
-                && player.experienceLevel != 1) {
+        } else if (PlayerInfoFake.getPlayersClass().equals("Mage") && player.experienceLevel != 1) {
             par3List.add("Class: \u00a7AMage, \u00a74Alchemist");
             par3List.add("Level: \u00a741");
-        } else if (PlayerInfoFake.getPlayersClass().equals("Alchemist")
-                && player.experienceLevel != 1) {
+        } else if (PlayerInfoFake.getPlayersClass().equals("Alchemist") && player.experienceLevel != 1) {
             par3List.add("Class: \u00a74Mage, \u00a7AAlchemist");
             par3List.add("Level: \u00a741");
-        } else if ((!PlayerInfoFake.getPlayersClass().equals("Mage") || !PlayerInfoFake
-                .getPlayersClass().equals("Alchemist"))
-                && player.experienceLevel == 1) {
+        } else if ((!PlayerInfoFake.getPlayersClass().equals("Mage") || !PlayerInfoFake.getPlayersClass().equals("Alchemist")) && player.experienceLevel == 1) {
             par3List.add("Class: \u00a74Mage, \u00a74Alchemist");
             par3List.add("Level: \u00a7A1");
         } else {
@@ -60,11 +51,8 @@ public class MageTrainingArmor extends ItemArmor implements
 
     @Override
     public String getArmorTextureFile(ItemStack itemstack) {
-        if (itemstack.itemID == MageArmor.hatTraining.itemID
-                || itemstack.itemID == MageArmor.robeTraining.itemID
-                || itemstack.itemID == MageArmor.sandalsTraining.itemID)
-            return "/mods/" + Reference.MOD_ID
-                    + "/textures/armor/mageTraining_1.png";
+        if (itemstack.itemID == MageArmor.hatTraining.itemID || itemstack.itemID == MageArmor.robeTraining.itemID || itemstack.itemID == MageArmor.sandalsTraining.itemID)
+            return "/mods/" + Reference.MOD_ID + "/textures/armor/mageTraining_1.png";
         else
             return null;
     }
@@ -73,14 +61,11 @@ public class MageTrainingArmor extends ItemArmor implements
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconregister) {
         if (this.itemID == MageArmor.hatTraining.itemID) {
-            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
-                    + this.getUnlocalizedName().substring(5));
+            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName().substring(5));
         } else if (this.itemID == MageArmor.robeTraining.itemID) {
-            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
-                    + this.getUnlocalizedName().substring(5));
+            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName().substring(5));
         } else if (this.itemID == MageArmor.sandalsTraining.itemID) {
-            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":"
-                    + this.getUnlocalizedName().substring(5));
+            this.itemIcon = iconregister.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName().substring(5));
         }
     }
 }

@@ -51,8 +51,7 @@ public enum EnumRPGHammerMaterial {
         case TAURITE:
             return RPGItems.taurite.itemID;
         default:
-            return (customCraftingMaterial == null ? 0
-                    : customCraftingMaterial.itemID);
+            return (customCraftingMaterial == null ? 0 : customCraftingMaterial.itemID);
         }
     }
 

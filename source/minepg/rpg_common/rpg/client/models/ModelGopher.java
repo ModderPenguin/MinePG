@@ -79,8 +79,7 @@ public class ModelGopher extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3,
-            float f4, float f5) {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5);
         head.render(f5);
@@ -100,17 +99,14 @@ public class ModelGopher extends ModelBase {
         model.rotateAngleZ = z;
     }
 
-    public void setRotationAngles(float f, float f1, float f2, float f3,
-            float f4, float f5) {
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
         leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * .1F * f1;
-        leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI)
-                * .15F * f1;
+        leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * .15F * f1;
         leg1.rotateAngleY = 0.0F;
         leg2.rotateAngleY = 0.0F;
         leg3.rotateAngleX = MathHelper.cos(f * 0.6662F) * .1F * f1;
-        leg4.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI)
-                * .15F * f1;
+        leg4.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * .15F * f1;
         leg3.rotateAngleY = 0.0F;
         leg4.rotateAngleY = 0.0F;
     }

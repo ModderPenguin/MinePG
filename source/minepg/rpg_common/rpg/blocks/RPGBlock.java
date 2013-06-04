@@ -20,7 +20,6 @@ public class RPGBlock extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
-        this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":"
-                + (this.getUnlocalizedName().substring(6)));
+        this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + (this.getUnlocalizedName().substring(6)));
     }
 }

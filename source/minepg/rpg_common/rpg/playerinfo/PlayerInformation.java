@@ -35,13 +35,15 @@ public final class PlayerInformation implements IExtendedEntityProperties {
     // public int ticksExisted;
 
     public boolean dirty = true;
+    private int currentMana;
+    private final int maxMana = 100;
+    private int manaTimer = 0;
     // private int karmaLevel;
     private float karma = 0;
     // private int karmaTotal;
-    public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent
-            .values().length];
+    public byte[] eventAmounts = new byte[PlayerInformation.CountableKarmaEvent.values().length];
     private String playersClass = "";
-    private boolean shouldUseMysteriousVoice = false;
+    private boolean shouldUseMysteriousVoice = true;
     private int danris = 0;
 
     private final EntityPlayer player;
@@ -49,6 +51,58 @@ public final class PlayerInformation implements IExtendedEntityProperties {
     public PlayerInformation(EntityPlayer player) {
         this.player = player;
         // this.ticksExisted = player.ticksExisted;
+    }
+
+    public int getMana() {
+        return currentMana;
+    }
+
+    public int setMana(int currentMana) {
+        if (this.currentMana != currentMana) {
+            this.currentMana = currentMana;
+            setDirty();
+        }
+
+        return this.currentMana;
+    }
+    
+    public int getMaxMana() {
+        return this.maxMana;
+    }
+
+    public int getManaTimer() {
+        return this.manaTimer;
+    }
+    
+    public int setManaTimer(int manaTimer) {
+        if(this.manaTimer != manaTimer) {
+            this.manaTimer = manaTimer;
+            setDirty();
+        }
+        
+        return this.manaTimer;
+    }
+    
+    public int decreaseMana(int decrement) {
+        currentMana -= decrement;
+        setDirty();
+        if (currentMana < 0) {
+            currentMana = 0;
+            setDirty();
+        }
+
+        return currentMana;
+    }
+
+    public int increaseMana(int increment) {
+        currentMana += increment;
+        setDirty();
+        if (currentMana > 100) {
+            currentMana = 100;
+            setDirty();
+        }
+
+        return currentMana;
     }
 
     public int getCurrency() {
@@ -67,8 +121,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         return playersClass;
     }
 
-    public boolean increaseEventAmount(
-            PlayerInformation.CountableKarmaEvent event) {
+    public boolean increaseEventAmount(PlayerInformation.CountableKarmaEvent event) {
         return setEventAmount(event, eventAmounts[event.ordinal()] + 1);
     }
 
@@ -82,10 +135,10 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
 
         playersClass = nbt.getString("playersClass");
-
         shouldUseMysteriousVoice = nbt.getBoolean("shouldUseMysteriousVoice");
-
         danris = nbt.getInteger("danris");
+        currentMana = nbt.getInteger("currentMana");
+        manaTimer = nbt.getInteger("manaTimer");
         karma = nbt.getFloat("karma");
         // karmaLevel = nbt.getInteger("karmaLevel");
         // karmaTotal = nbt.getInteger("karmaTotal");
@@ -101,8 +154,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
     }
 
     public float modifyKarma(float modifier) {
-        player.worldObj.playSoundAtEntity(player, "minepg.karma"
-                + (modifier < 0 ? "down" : "up"), 1, 1);
+        player.worldObj.playSoundAtEntity(player, "minepg.karma" + (modifier < 0 ? "down" : "up"), 1, 1);
 
         return setKarma(karma + modifier);
     }
@@ -130,6 +182,8 @@ public final class PlayerInformation implements IExtendedEntityProperties {
         nbt.setString("playersClass", playersClass);
         nbt.setBoolean("shouldUseMysteriousVoice", shouldUseMysteriousVoice);
         nbt.setInteger("danris", danris);
+        nbt.setInteger("currentMana", currentMana);
+        nbt.setInteger("manaTimer", manaTimer);
         nbt.setFloat("karma", karma);
         // nbt.setInteger("karmaLevel", karmaLevel);
         // nbt.setInteger("karmaTotal", karmaTotal);
@@ -166,8 +220,7 @@ public final class PlayerInformation implements IExtendedEntityProperties {
     }
 
     public boolean setEventAmount(CountableKarmaEvent event, int amount) {
-        if (amount < event.getMaxCount()
-                && eventAmounts[event.ordinal()] != amount) {
+        if (amount < event.getMaxCount() && eventAmounts[event.ordinal()] != amount) {
             eventAmounts[event.ordinal()] = (byte) amount;
             setDirty();
             return true;

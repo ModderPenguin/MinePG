@@ -21,8 +21,7 @@ public class BlockPetEgg extends BlockDragonEgg {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
-        this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":"
-                + (this.getUnlocalizedName().substring(5)));
+        this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + (this.getUnlocalizedName().substring(5)));
     }
 
     @Override
@@ -31,8 +30,7 @@ public class BlockPetEgg extends BlockDragonEgg {
      */
     // This is the method to use to see if a furnace is nearby so that the egg can be incubated
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
-        par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID,
-                this.tickRate(par1World));
+        par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
     }
 
     @Override
@@ -41,21 +39,16 @@ public class BlockPetEgg extends BlockDragonEgg {
      * their own) Args: x, y, z, neighbor blockID
      */
     // This is the method to use to see if a furnace has been placed so that the egg can be incubated
-    public void onNeighborBlockChange(World par1World, int par2, int par3,
-            int par4, int par5) {
-        par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID,
-                this.tickRate(par1World));
+    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+        par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
     }
 
     @Override
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World par1World, int par2, int par3,
-            int par4, EntityPlayer par5EntityPlayer, int par6, float par7,
-            float par8, float par9) {
-        Minecraft.getMinecraft().thePlayer
-                .sendChatToPlayer("[Warning] That is an egg! Be more careful!");
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+        Minecraft.getMinecraft().thePlayer.sendChatToPlayer("[Warning] That is an egg! Be more careful!");
         return true;
     }
 
@@ -90,8 +83,7 @@ public class BlockPetEgg extends BlockDragonEgg {
      * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
      * coordinates.  Args: blockAccess, x, y, z, side
      */
-    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess,
-            int par2, int par3, int par4, int par5) {
+    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
         return true;
     }
 

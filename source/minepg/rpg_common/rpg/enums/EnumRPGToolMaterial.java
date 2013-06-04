@@ -32,8 +32,7 @@ public enum EnumRPGToolMaterial {
     // Added by forge for custom Armor materials.
     public Item customCraftingMaterial = null;
 
-    private EnumRPGToolMaterial(int par3, int par4, float par5, int par6,
-            int par7) {
+    private EnumRPGToolMaterial(int par3, int par4, float par5, int par6, int par7) {
         this.harvestLevel = par3;
         this.maxUses = par4;
         this.efficiencyOnProperMaterial = par5;
@@ -85,8 +84,7 @@ public enum EnumRPGToolMaterial {
         case TAURITE:
             return RPGItems.taurite.itemID;
         default:
-            return (customCraftingMaterial == null ? 0
-                    : customCraftingMaterial.itemID);
+            return (customCraftingMaterial == null ? 0 : customCraftingMaterial.itemID);
         }
     }
 }

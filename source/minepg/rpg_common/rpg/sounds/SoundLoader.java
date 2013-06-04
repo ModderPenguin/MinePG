@@ -10,20 +10,16 @@ public class SoundLoader {
 
     public static boolean didSoundsLoad;
 
-    private static final String[] SOUNDS = { "karmaup", "karmadown",
-            "karmaerror" };
+    private static final String[] SOUNDS = { "karmaup", "karmadown", "karmaerror" };
 
     private URL getSound(String sound) {
-        return getClass().getResource(
-                "/mods/" + Reference.MOD_ID + "/resource/sound/" + sound
-                        + ".ogg");
+        return getClass().getResource("/mods/" + Reference.MOD_ID + "/resource/sound/" + sound + ".ogg");
     }
 
     @ForgeSubscribe
     public void onSoundLoad(SoundLoadEvent evt) {
         for (String sound : SOUNDS) {
-            evt.manager.soundPoolSounds.addSound("minepg/" + sound + ".ogg",
-                    getSound(sound));
+            evt.manager.soundPoolSounds.addSound("minepg/" + sound + ".ogg", getSound(sound));
             System.out.println("[MinePG Sound Loader] Loading sounds...");
             SoundLoader.didSoundsLoad = true;
             System.out.println("[MinePG Sound Loader] Sounds Loaded");

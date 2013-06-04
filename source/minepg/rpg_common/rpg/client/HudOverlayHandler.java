@@ -22,10 +22,8 @@ public class HudOverlayHandler extends Gui {
         int width = scaler.getScaledWidth();
         mc.entityRenderer.setupOverlayRendering();
         GL11.glColor3f(1, 1, 1);
-        PlayerInformation clientPlayerInfo = PlayerInformation
-                .forPlayer(mc.thePlayer);
-        mc.renderEngine.bindTexture("/mods/" + Reference.MOD_ID
-                + "/textures/gui.png");
+        PlayerInformation clientPlayerInfo = PlayerInformation.forPlayer(mc.thePlayer);
+        mc.renderEngine.bindTexture("/mods/" + Reference.MOD_ID + "/textures/gui.png");
         int barXStart = width / 2 - 182 / 2;
 
         // background of the bar
@@ -34,14 +32,12 @@ public class HudOverlayHandler extends Gui {
 
         // the bar itself
         if (karma != 0) {
-            int rescaledKarmaWidth = (int) (Math.abs(karma)
-                    / PlayerInformation.MAX_KARMA_VALUE * 91F);
+            int rescaledKarmaWidth = (int) (Math.abs(karma) / PlayerInformation.MAX_KARMA_VALUE * 91F);
             if (rescaledKarmaWidth > 91) {
                 rescaledKarmaWidth = 91;
             }
             int barTextureXStart = karma > 0 ? 91 : 91 - rescaledKarmaWidth;
-            drawTexturedModalRect(barXStart + barTextureXStart, 10,
-                    barTextureXStart, 5, rescaledKarmaWidth, 5);
+            drawTexturedModalRect(barXStart + barTextureXStart, 10, barTextureXStart, 5, rescaledKarmaWidth, 5);
         }
 
         String karmaString = String.valueOf((int) karma);

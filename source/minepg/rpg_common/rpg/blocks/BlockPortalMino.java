@@ -16,18 +16,15 @@ public class BlockPortalMino extends BlockPortal {
     /**
      * Checks to see if this location is valid to create a portal and will return True if it does. Args: world, x, y, z
      */
-    public boolean tryToCreatePortal(World par1World, int par2, int par3,
-            int par4) {
+    public boolean tryToCreatePortal(World par1World, int par2, int par3, int par4) {
         byte b0 = 0;
         byte b1 = 0;
 
-        if (par1World.getBlockId(par2 - 1, par3, par4) == MinotaurBlocks.blockTaurite.blockID
-                || par1World.getBlockId(par2 + 1, par3, par4) == MinotaurBlocks.blockTaurite.blockID) {
+        if (par1World.getBlockId(par2 - 1, par3, par4) == MinotaurBlocks.blockTaurite.blockID || par1World.getBlockId(par2 + 1, par3, par4) == MinotaurBlocks.blockTaurite.blockID) {
             b0 = 1;
         }
 
-        if (par1World.getBlockId(par2, par3, par4 - 1) == MinotaurBlocks.blockTaurite.blockID
-                || par1World.getBlockId(par2, par3, par4 + 1) == MinotaurBlocks.blockTaurite.blockID) {
+        if (par1World.getBlockId(par2, par3, par4 - 1) == MinotaurBlocks.blockTaurite.blockID || par1World.getBlockId(par2, par3, par4 + 1) == MinotaurBlocks.blockTaurite.blockID) {
             b1 = 1;
         }
 
@@ -47,8 +44,7 @@ public class BlockPortalMino extends BlockPortal {
                     boolean flag = l == -1 || l == 2 || i1 == -1 || i1 == 3;
 
                     if (l != -1 && l != 2 || i1 != -1 && i1 != 3) {
-                        int j1 = par1World.getBlockId(par2 + b0 * l, par3 + i1,
-                                par4 + b1 * l);
+                        int j1 = par1World.getBlockId(par2 + b0 * l, par3 + i1, par4 + b1 * l);
 
                         if (flag) {
                             if (j1 != MinotaurBlocks.blockTaurite.blockID)
@@ -61,8 +57,7 @@ public class BlockPortalMino extends BlockPortal {
 
             for (l = 0; l < 2; ++l) {
                 for (i1 = 0; i1 < 3; ++i1) {
-                    par1World.setBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l,
-                            Block.portal.blockID, 0, 2);
+                    par1World.setBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l, Block.portal.blockID, 0, 2);
                 }
             }
 

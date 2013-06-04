@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import rpg.config.RPGCreativeTabs;
 import rpg.enums.weapons.EnumRPGStaffMaterial;
-import rpg.items.mage.weapons.ItemTrainingStaff;
+import rpg.items.mage.weapons.ItemRPGStaff;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class MageWeapons {
@@ -21,14 +21,11 @@ public class MageWeapons {
     }
 
     public static void load(Configuration config) {
-        staffTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Staff ID", 1014).getInt();
+        staffTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Staff ID", 1014).getInt();
         // wandTrainingID = config.get(Configuration.CATEGORY_ITEM,
         // "Training Wand ID", 1015).getInt();
 
-        staffTraining = new ItemTrainingStaff(staffTrainingID,
-                EnumRPGStaffMaterial.TRAINING, "staffTraining").setCreativeTab(
-                RPGCreativeTabs.tabMageItems).setFull3D();
+        staffTraining = new ItemRPGStaff(staffTrainingID, EnumRPGStaffMaterial.TRAINING, "staffTraining").setCreativeTab(RPGCreativeTabs.tabMageItems).setFull3D();
         // wandTraining = new ItemTrainingWand(wandTrainingID,
         // EnumRPGWandMaterial.TRAINING, "wandTraining")
         // .setCreativeTab(RPGCreativeTabs.tabMageItems);

@@ -25,24 +25,12 @@ public class ArcherArmor {
     }
 
     public static void load(Configuration config) {
-        tunicTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Tunic ID", 1002).getInt();
-        legsTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Pants ID", 1003).getInt();
-        bootsTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Shoes ID", 1004).getInt();
+        tunicTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Tunic ID", 1002).getInt();
+        legsTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Pants ID", 1003).getInt();
+        bootsTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Shoes ID", 1004).getInt();
 
-        tunicTraining = new ArcherTrainingArmor(tunicTrainingID,
-                RPGMaterials.trainingArmor,
-                RPG.proxy.addArmor("archerTraining"), 1, "tunicTraining")
-                .setCreativeTab(RPGCreativeTabs.tabArcherItems);
-        legsTraining = new ArcherTrainingArmor(legsTrainingID,
-                RPGMaterials.trainingArmor,
-                RPG.proxy.addArmor("archerTraining"), 2, "legsTraining")
-                .setCreativeTab(RPGCreativeTabs.tabArcherItems);
-        bootsTraining = new ArcherTrainingArmor(bootsTrainingID,
-                RPGMaterials.trainingArmor,
-                RPG.proxy.addArmor("archerTraining"), 3, "bootsTraining")
-                .setCreativeTab(RPGCreativeTabs.tabArcherItems);
+        tunicTraining = new ArcherTrainingArmor(tunicTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 1, "tunicTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
+        legsTraining = new ArcherTrainingArmor(legsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 2, "legsTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
+        bootsTraining = new ArcherTrainingArmor(bootsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 3, "bootsTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
     }
 }

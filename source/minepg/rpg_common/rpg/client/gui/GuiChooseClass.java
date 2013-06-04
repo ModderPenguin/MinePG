@@ -5,9 +5,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import rpg.BaseClassList;
 import rpg.gui.ContainerEmpty;
-import rpg.network.packet.PacketChoseArcher;
-import rpg.network.packet.PacketChoseMage;
-import rpg.network.packet.PacketChoseWarrior;
+import rpg.network.packet.PacketClassChosen;
 import rpg.playerinfo.PlayerInformation;
 
 public class GuiChooseClass extends GuiContainer {
@@ -26,8 +24,7 @@ public class GuiChooseClass extends GuiContainer {
         super.initGui();
         buttonList.clear();
         for (int i = 0; i < starterList.length; i++) {
-            buttonList.add(new GuiButton(i, width / 3 - 100, height / 6 + i
-                    * 20, starterList[i]));
+            buttonList.add(new GuiButton(i, width / 3 - 100, height / 6 + i * 20, starterList[i]));
         }
     }
 
@@ -35,40 +32,34 @@ public class GuiChooseClass extends GuiContainer {
     public void actionPerformed(GuiButton button) {
         switch (button.id) {
         case 0:
-            new PacketChoseArcher().sendToServer();
+            new PacketClassChosen("Archer", 0).sendToServer();
             break;
         case 1:
-            new PacketChoseMage().sendToServer();
+            new PacketClassChosen("Mage", 1).sendToServer();
             break;
         case 2:
-            new PacketChoseWarrior().sendToServer();
+            new PacketClassChosen("Warrior", 2).sendToServer();
             break;
         }
-        PlayerInformation playerInfo = PlayerInformation
-                .forPlayer(mc.thePlayer);
-        mc.thePlayer
-                .sendChatToPlayer("[MinePG] You have chosen the path of the "
-                        + playerInfo.getPlayersClass());
-        mc.thePlayer
-                .sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
-        mc.thePlayer
-                .sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(mc.thePlayer);
+
+        mc.thePlayer.sendChatToPlayer("[MinePG] You have chosen the path of the " + playerInfo.getPlayersClass());
+        mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Take care in this world my Friend...");
+        mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Many things lurk here that are better left alone");
         mc.thePlayer.sendChatToPlayer("<Mysterious Voice> ...");
-        mc.thePlayer
-                .sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
-        mc.thePlayer
-                .sendChatToPlayer("<Mysterious Voice> Have this equipment, learn to use it");
+        mc.thePlayer.sendChatToPlayer("<Mysterious Voice> You will need to be equiped");
+        mc.thePlayer.sendChatToPlayer("<Mysterious Voice> Have this equipment, learn to use it");
         mc.thePlayer.closeScreen();
         // MinecraftForge.EVENT_BUS.register(new HudOverlayHandler());
+        System.err.println(width);
+        System.err.println(height);
     }
 
     @Override
     public void drawGuiContainerBackgroundLayer(float par3, int par1, int par2) {
         drawDefaultBackground();
-        drawString(fontRenderer, "Welcome to the world of MinePG!!", 3, 10,
-                0xFFFFFF);
-        drawString(fontRenderer, "Please pick your desired Class:", 3, 20,
-                0xFFFFFF);
+        drawString(fontRenderer, "Welcome to the world of MinePG!!", 3, 10, 0xFFFFFF);
+        drawString(fontRenderer, "Please pick your desired Class:", 3, 20, 0xFFFFFF);
     }
 
     @Override

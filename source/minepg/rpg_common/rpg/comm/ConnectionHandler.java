@@ -17,8 +17,7 @@ import cpw.mods.fml.common.network.Player;
 public class ConnectionHandler implements IConnectionHandler {
 
     @Override
-    public void clientLoggedIn(NetHandler clientHandler,
-            INetworkManager manager, Packet1Login login) {
+    public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login) {
     }
 
     @Override
@@ -26,50 +25,43 @@ public class ConnectionHandler implements IConnectionHandler {
     }
 
     @Override
-    public void connectionOpened(NetHandler netClientHandler,
-            MinecraftServer server, INetworkManager manager) {
+    public void connectionOpened(NetHandler netClientHandler, MinecraftServer server, INetworkManager manager) {
     }
 
     @Override
-    public void connectionOpened(NetHandler netClientHandler, String server,
-            int port, INetworkManager manager) {
+    public void connectionOpened(NetHandler netClientHandler, String server, int port, INetworkManager manager) {
     }
 
     @Override
-    public String connectionReceived(NetLoginHandler netHandler,
-            INetworkManager manager) {
+    public String connectionReceived(NetLoginHandler netHandler, INetworkManager manager) {
         return null;
     }
 
     @Override
-    public void playerLoggedIn(Player player, NetHandler netHandler,
-            INetworkManager manager) {
-        PlayerInformation playerInfo = PlayerInformation
-                .forPlayer((EntityPlayerMP) player);
+    public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
+        PlayerInformation playerInfo = PlayerInformation.forPlayer((EntityPlayerMP) player);
         if (playerInfo.getPlayersClass().equals("")) {
-            ((EntityPlayerMP) player).openGui(RPG.instance,
-                    EnumGui.LoreStartingPage.getIndex(),
-                    ((EntityPlayerMP) player).worldObj, 0, 0, 0);
+            ((EntityPlayerMP) player).openGui(RPG.instance, EnumGui.LoreStartingPage.getIndex(), ((EntityPlayerMP) player).worldObj, 0, 0, 0);
+            playerInfo.setMana(100);
         } else {
-            if (!playerInfo.getShouldUseMysteriousVoice()) {
-                ((EntityPlayerMP) player)
-                        .sendChatToPlayer("<Mysterious Voice> Welcome back master "
-                                + playerInfo.getPlayersClass());
+            if (playerInfo.getShouldUseMysteriousVoice()) {
+                ((EntityPlayerMP) player).sendChatToPlayer("<Mysterious Voice> Welcome back master " + playerInfo.getPlayersClass());
+
             } else {
-                ((EntityPlayerMP) player)
-                        .sendChatToPlayer("<Dagon> Welcome back master "
-                                + playerInfo.getPlayersClass());
+                ((EntityPlayerMP) player).sendChatToPlayer("<Dagon> Welcome back master " + playerInfo.getPlayersClass());
             }
-            new PacketPlayerInfo(playerInfo)
-                    .sendToPlayer((EntityPlayerMP) player);
+            if (playerInfo.getMana() == 0) {
+                ((EntityPlayerMP) player).sendChatToPlayer("Your Mana is: \u00a74" + playerInfo.getMana());
+            } else {
+                ((EntityPlayerMP) player).sendChatToPlayer("Your Mana is: \u00a71" + playerInfo.getMana());
+            }
+            new PacketPlayerInfo(playerInfo).sendToPlayer((EntityPlayerMP) player);
         }
 
         if (SoundLoader.didSoundsLoad == true) {
-            System.out
-                    .println("[MinePG Sound Loader] Loaded Sounds Successfully");
+            System.out.println("[MinePG Sound Loader] Loaded Sounds Successfully");
         } else if (SoundLoader.didSoundsLoad == false) {
-            System.out
-                    .println("[MinePG Sound Loader] Failed to load one or more sounds");
+            System.out.println("[MinePG Sound Loader] Failed to load one or more sounds");
         }
     }
 }

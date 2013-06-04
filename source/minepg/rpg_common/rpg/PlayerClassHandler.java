@@ -14,10 +14,7 @@ public class PlayerClassHandler {
     }
 
     public static boolean hasPlayerClassFile() {
-        playerClassFile = new File(DownloadHelper.getDir()
-                + "/saves/"
-                + Minecraft.getMinecraft().theWorld.getSaveHandler()
-                        .getWorldDirectoryName() + "Random.txt");
+        playerClassFile = new File(DownloadHelper.getDir() + "/saves/" + Minecraft.getMinecraft().theWorld.getSaveHandler().getWorldDirectoryName() + "Random.txt");
         return playerClassFile.exists();
     }
 

@@ -16,7 +16,6 @@ public class RPGItem extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":"
-                + (this.getUnlocalizedName().substring(5)));
+        this.itemIcon = iconRegister.registerIcon(Reference.MOD_ID + ":" + (this.getUnlocalizedName().substring(5)));
     }
 }

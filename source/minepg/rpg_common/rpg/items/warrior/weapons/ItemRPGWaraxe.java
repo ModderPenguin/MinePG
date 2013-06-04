@@ -1,4 +1,4 @@
-package rpg.items;
+package rpg.items.warrior.weapons;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import rpg.enums.weapons.EnumRPGWaraxeMaterial;
+import rpg.items.RPGItem;
 import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,8 +25,7 @@ public class ItemRPGWaraxe extends RPGItem {
     private final int durationOfPotionEffect;
     private final int amplifierOfPotionEffect;
 
-    public ItemRPGWaraxe(int id, EnumRPGWaraxeMaterial material, int duration,
-            int amplifier, String name) {
+    public ItemRPGWaraxe(int id, EnumRPGWaraxeMaterial material, int duration, int amplifier, String name) {
         super(id, name);
         this.toolMaterial = material;
         this.maxStackSize = 1;
@@ -38,21 +38,17 @@ public class ItemRPGWaraxe extends RPGItem {
 
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
-            List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player, List par3List, boolean par4) {
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (PlayerInfoFake.getPlayersClass().equals("Berserker")
-                && player.experienceLevel >= 1) {
+        if (PlayerInfoFake.getPlayersClass().equals("Berserker") && player.experienceLevel >= 1) {
             par3List.add("Class: \u00a7ABerserker");
             par3List.add("Level: \u00a7A1");
-        } else if (PlayerInfoFake.getPlayersClass().equals("Berserker")
-                && player.experienceLevel != 1) {
+        } else if (PlayerInfoFake.getPlayersClass().equals("Berserker") && player.experienceLevel != 1) {
             par3List.add("Class: \u00a7ABerserker");
             par3List.add("Level: \u00a741");
-        } else if (!PlayerInfoFake.getPlayersClass().equals("Berserker")
-                && player.experienceLevel == 1) {
+        } else if (!PlayerInfoFake.getPlayersClass().equals("Berserker") && player.experienceLevel == 1) {
             par3List.add("Class: \u00a74Berserker");
             par3List.add("Level: \u00a7A1");
         } else {
@@ -85,10 +81,8 @@ public class ItemRPGWaraxe extends RPGItem {
      * Return whether this item is repairable in an anvil.
      */
     @Override
-    public boolean getIsRepairable(ItemStack par1ItemStack,
-            ItemStack par2ItemStack) {
-        return this.toolMaterial.getWaraxeCraftingMaterial() == par2ItemStack.itemID ? true
-                : super.getIsRepairable(par1ItemStack, par2ItemStack);
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        return this.toolMaterial.getWaraxeCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -127,8 +121,7 @@ public class ItemRPGWaraxe extends RPGItem {
      * the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack par1ItemStack,
-            EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
         par1ItemStack.damageItem(1, par3EntityLiving);
         return true;
     }
@@ -146,20 +139,22 @@ public class ItemRPGWaraxe extends RPGItem {
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer) {
-        // if (PlayerClassHandler.getPlayersClass() == "Berserker"
-        // || PlayerClassHandler.getPlayersClass() == "Demon") {
-        par3EntityPlayer.addPotionEffect(new PotionEffect(
-                Potion.damageBoost.id, this.durationOfPotionEffect,
-                this.amplifierOfPotionEffect));
-        par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.resistance.id,
-                this.durationOfPotionEffect, this.amplifierOfPotionEffect));
-        par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.moveSpeed.id,
-                this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(par3EntityPlayer);
+        if (playerInfo.getPlayersClass().equals("Berserker") || playerInfo.getPlayersClass().equals("Demon")) {
+            if (playerInfo.getMana() <= 70) {
+                par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+                par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.resistance.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+                par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, this.durationOfPotionEffect, this.amplifierOfPotionEffect));
+            } else {
+                par3EntityPlayer.sendChatToPlayer("\u00a74Insufficient Mana!");
+            }
+        } else {
+            if (playerInfo.getShouldUseMysteriousVoice())
+                par3EntityPlayer.sendChatToPlayer("\u00a74<Mysterious Voice> Do not try to use the power of a weapon that is not meant for you!");
+            else
+                par3EntityPlayer.sendChatToPlayer("\u00a74<Dagon> Do not try to use the power of a weapon that is not meant for you!");
+        }
         return par1ItemStack;
-        // } else {
-
-        // }
     }
 }

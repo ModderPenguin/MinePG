@@ -12,7 +12,6 @@ public class MinePGPacketHandler implements ITinyPacketHandler {
 
     @Override
     public void handle(NetHandler handler, Packet131MapData mapData) {
-        MinePGPacket.execute(ByteStreams.newDataInput(mapData.itemData),
-                mapData.uniqueID, handler.getPlayer());
+        MinePGPacket.execute(ByteStreams.newDataInput(mapData.itemData), mapData.uniqueID, handler.getPlayer());
     }
 }

@@ -1,4 +1,4 @@
-package rpg.items;
+package rpg.items.archer.weapons;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -15,15 +14,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import rpg.client.entities.projectiles.EntityTrainingArrow;
 import rpg.config.base.archer.ArcherWeapons;
+import rpg.items.RPGItem;
 import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemRPGBow extends RPGItem {
 
-    public static final String[] bowPullIconNameArray = new String[] {
-            "bow_pull_0", "bow_pull_1", "bow_pull_2" };
+    public static final String[] bowPullIconNameArray = new String[] { "bow_pull_0", "bow_pull_1", "bow_pull_2" };
     @SideOnly(Side.CLIENT)
     private Icon[] iconArray;
 
@@ -36,21 +36,17 @@ public class ItemRPGBow extends RPGItem {
 
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
-            List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player, List par3List, boolean par4) {
         PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (playerInfo.getPlayersClass().equals("Archer")
-                && player.experienceLevel >= 1) {
+        if (playerInfo.getPlayersClass().equals("Archer") && player.experienceLevel >= 1) {
             par3List.add("Class: \u00a7AArcher");
             par3List.add("Level: \u00a7A1");
-        } else if (playerInfo.getPlayersClass().equals("Archer")
-                && player.experienceLevel != 1) {
+        } else if (playerInfo.getPlayersClass().equals("Archer") && player.experienceLevel != 1) {
             par3List.add("Class: \u00a7AArcher");
             par3List.add("Level: \u00a741");
-        } else if (!playerInfo.getPlayersClass().equals("Archer")
-                && player.experienceLevel == 1) {
+        } else if (!playerInfo.getPlayersClass().equals("Archer") && player.experienceLevel == 1) {
             par3List.add("Class: \u00a74Archer");
             par3List.add("Level: \u00a7A1");
         } else {
@@ -89,8 +85,7 @@ public class ItemRPGBow extends RPGItem {
     }
 
     @Override
-    public ItemStack onEaten(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer) {
+    public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
         return par1ItemStack;
     }
 
@@ -98,56 +93,43 @@ public class ItemRPGBow extends RPGItem {
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer) {
-        // PlayerInformation playerInfo =
-        // PlayerInformation.forPlayer(par3EntityPlayer);
-        // if(playerInfo.getPlayersClass() == "Archer" ||
-        // playerInfo.getPlayersClass() == "Sniper" ||
-        // playerInfo.getPlayersClass() == "Assassin" ||
-        // playerInfo.getPlayersClass() == "Woodsmen" ||
-        // playerInfo.getPlayersClass() == "Hunter") {
-        ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer,
-                par1ItemStack);
-        MinecraftForge.EVENT_BUS.post(event);
-        if (event.isCanceled())
-            return event.result;
-
-        if (par3EntityPlayer.capabilities.isCreativeMode
-                || par3EntityPlayer.inventory
-                        .hasItem(ArcherWeapons.arrowTraining.itemID)) {
-            par3EntityPlayer.setItemInUse(par1ItemStack,
-                    this.getMaxItemUseDuration(par1ItemStack));
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(par3EntityPlayer);
+        if (playerInfo.getPlayersClass().equals("Archer")) {
+            ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
+            MinecraftForge.EVENT_BUS.post(event);
+            if (event.isCanceled())
+                return event.result;
+            
+            if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(ArcherWeapons.arrowTraining.itemID)) {
+            par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        }
+        } else {
+            if (playerInfo.getShouldUseMysteriousVoice())
+                par3EntityPlayer.sendChatToPlayer("\u00a74<Mysterious Voice> Do not try to use the power of a weapon that is not meant for you!");
+            else
+                par3EntityPlayer.sendChatToPlayer("\u00a74<Dagon> Do not try to use the power of a weapon that is not meant for you!");
         }
 
         return par1ItemStack;
-        // } else {
-        // return null;
-        // }
     }
 
     /**
      * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
     @Override
-    public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer, int par4) {
+    public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4) {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
-        ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer,
-                par1ItemStack, j);
+        ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, j);
         MinecraftForge.EVENT_BUS.post(event);
         if (event.isCanceled())
             return;
         j = event.charge;
 
-        boolean flag = par3EntityPlayer.capabilities.isCreativeMode
-                || EnchantmentHelper.getEnchantmentLevel(
-                        Enchantment.infinity.effectId, par1ItemStack) > 0;
+        boolean flag = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (flag
-                || par3EntityPlayer.inventory
-                        .hasItem(ArcherWeapons.arrowTraining.itemID)) {
+        if (flag || par3EntityPlayer.inventory.hasItem(ArcherWeapons.arrowTraining.itemID)) {
             float f = j / 20.0F;
             f = (f * f + f * 2.0F) / 3.0F;
 
@@ -158,45 +140,39 @@ public class ItemRPGBow extends RPGItem {
                 f = 1.0F;
             }
 
-            EntityArrow entityarrow = new EntityArrow(par2World,
-                    par3EntityPlayer, f * 2.0F);
+            EntityTrainingArrow entityarrow = new EntityTrainingArrow(par2World, par3EntityPlayer, f * 2.0F);
 
             if (f == 1.0F) {
                 entityarrow.setIsCritical(true);
             }
 
-            int k = EnchantmentHelper.getEnchantmentLevel(
-                    Enchantment.power.effectId, par1ItemStack);
+            int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
 
             if (k > 0) {
-                entityarrow
-                        .setDamage(entityarrow.getDamage() + k * 0.5D + 0.5D);
+                entityarrow.setDamage(entityarrow.getDamage() + k * 0.5D + 0.5D);
             }
 
-            int l = EnchantmentHelper.getEnchantmentLevel(
-                    Enchantment.punch.effectId, par1ItemStack);
+            int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, par1ItemStack);
 
             if (l > 0) {
                 entityarrow.setKnockbackStrength(l);
             }
 
-            if (EnchantmentHelper.getEnchantmentLevel(
-                    Enchantment.flame.effectId, par1ItemStack) > 0) {
+            if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, par1ItemStack) > 0) {
                 entityarrow.setFire(100);
             }
 
             par1ItemStack.damageItem(1, par3EntityPlayer);
-            par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F,
-                    1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+            par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
             if (flag) {
                 entityarrow.canBePickedUp = 2;
             } else {
-                par3EntityPlayer.inventory
-                        .consumeInventoryItem(ArcherWeapons.arrowTraining.itemID);
+                par3EntityPlayer.inventory.consumeInventoryItem(ArcherWeapons.arrowTraining.itemID);
             }
 
             if (!par2World.isRemote) {
+                entityarrow.setPosition(par3EntityPlayer.posX, par3EntityPlayer.posY + 2, par3EntityPlayer.posZ);
                 par2World.spawnEntityInWorld(entityarrow);
             }
         }
@@ -208,8 +184,7 @@ public class ItemRPGBow extends RPGItem {
         super.registerIcons(par1IconRegister);
         this.iconArray = new Icon[bowPullIconNameArray.length];
         for (int i = 0; i < this.iconArray.length; ++i) {
-            this.iconArray[i] = par1IconRegister
-                    .registerIcon(bowPullIconNameArray[i]);
+            this.iconArray[i] = par1IconRegister.registerIcon(bowPullIconNameArray[i]);
         }
     }
 }

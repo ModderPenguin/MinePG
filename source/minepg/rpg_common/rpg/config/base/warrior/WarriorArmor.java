@@ -28,30 +28,18 @@ public class WarriorArmor {
     }
 
     public static void load(Configuration config) {
-        helmetTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Helmet ID", 1008).getInt();
-        cuirassTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Cuirass ID", 1009).getInt();
-        greavesTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Greaves ID", 1010).getInt();
-        sabatonsTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Sabatons ID", 1011).getInt();
+        helmetTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Helmet ID", 1008).getInt();
+        cuirassTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Cuirass ID", 1009).getInt();
+        greavesTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Greaves ID", 1010).getInt();
+        sabatonsTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Sabatons ID", 1011).getInt();
 
-        helmetTraining = new WarriorTrainingArmor(helmetTrainingID,
-                RPGMaterials.trainingArmor,
-                RPG.proxy.addArmor("warriorTraining"), 0, "helmetTraining")
+        helmetTraining = new WarriorTrainingArmor(helmetTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("warriorTraining"), 0, "helmetTraining")
                 .setCreativeTab(RPGCreativeTabs.tabWarriorItems);
-        cuirassTraining = new WarriorTrainingArmor(cuirassTrainingID,
-                RPGMaterials.trainingArmor,
-                RPG.proxy.addArmor("warriorTraining"), 1, "cuirassTraining")
+        cuirassTraining = new WarriorTrainingArmor(cuirassTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("warriorTraining"), 1, "cuirassTraining")
                 .setCreativeTab(RPGCreativeTabs.tabWarriorItems);
-        greavesTraining = new WarriorTrainingArmor(greavesTrainingID,
-                RPGMaterials.trainingArmor,
-                RPG.proxy.addArmor("warriorTraining"), 2, "greavesTraining")
+        greavesTraining = new WarriorTrainingArmor(greavesTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("warriorTraining"), 2, "greavesTraining")
                 .setCreativeTab(RPGCreativeTabs.tabWarriorItems);
-        sabatonsTraining = new WarriorTrainingArmor(sabatonsTrainingID,
-                RPGMaterials.trainingArmor,
-                RPG.proxy.addArmor("warriorTraining"), 3, "sabatonsTraining")
+        sabatonsTraining = new WarriorTrainingArmor(sabatonsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("warriorTraining"), 3, "sabatonsTraining")
                 .setCreativeTab(RPGCreativeTabs.tabWarriorItems);
     }
 }

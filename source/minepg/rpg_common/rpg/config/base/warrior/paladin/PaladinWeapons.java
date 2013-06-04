@@ -4,7 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import rpg.enums.weapons.EnumRPGHammerMaterial;
-import rpg.items.warrior.weapons.ItemTrainingHammer;
+import rpg.items.warrior.weapons.ItemRPGHammer;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class PaladinWeapons {
@@ -18,11 +18,8 @@ public class PaladinWeapons {
     }
 
     public static void load(Configuration config) {
-        hammerTrainingID = config.get(Configuration.CATEGORY_ITEM,
-                "Training Staff ID", 1018).getInt();
+        hammerTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Staff ID", 1018).getInt();
 
-        hammerTraining = new ItemTrainingHammer(hammerTrainingID,
-                EnumRPGHammerMaterial.TRAINING, 1, "hammerTraining")
-                .setCreativeTab(CreativeTabs.tabCombat);
+        hammerTraining = new ItemRPGHammer(hammerTrainingID, EnumRPGHammerMaterial.TRAINING, 1, "hammerTraining").setCreativeTab(CreativeTabs.tabCombat);
     }
 }

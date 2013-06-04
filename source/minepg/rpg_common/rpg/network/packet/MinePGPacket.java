@@ -27,14 +27,13 @@ import cpw.mods.fml.relauncher.Side;
 
 public abstract class MinePGPacket {
 
-    private static BiMap<Integer, Class<? extends MinePGPacket>> idMapping = HashBiMap
-            .create();
+    private static BiMap<Integer, Class<? extends MinePGPacket>> idMapping = HashBiMap.create();
 
     static {
         addMapping(0, PacketPlayerInfo.class);
-        addMapping(1, PacketChoseArcher.class);
-        addMapping(2, PacketChoseMage.class);
-        addMapping(3, PacketChoseWarrior.class);
+        addMapping(1, PacketClassChosen.class);
+        addMapping(2, PacketDeleteItem.class);
+        addMapping(3, PacketSendChat.class);
 
         idMapping = ImmutableBiMap.copyOf(idMapping);
     }
@@ -43,8 +42,7 @@ public abstract class MinePGPacket {
         idMapping.put(Integer.valueOf(id), clazz);
     }
 
-    protected static final <E extends Enum<E>> E readEnum(
-            Class<? extends E> clazz, ByteArrayDataInput in) {
+    protected static final <E extends Enum<E>> E readEnum(Class<? extends E> clazz, ByteArrayDataInput in) {
         E[] enums = clazz.getEnumConstants();
         int id = in.readUnsignedByte();
         if (id >= enums.length)
@@ -69,36 +67,28 @@ public abstract class MinePGPacket {
         int packetId = idMapping.inverse().get(getClass()).intValue();
 
         writeData(output);
-        return PacketDispatcher.getTinyPacket(RPG.instance, (short) packetId,
-                output.toByteArray());
+        return PacketDispatcher.getTinyPacket(RPG.instance, (short) packetId, output.toByteArray());
     }
 
     public final void sendToAll() {
-        MinecraftServer.getServer().getConfigurationManager()
-                .sendPacketToAllPlayers(generatePacket());
+        MinecraftServer.getServer().getConfigurationManager().sendPacketToAllPlayers(generatePacket());
     }
 
-    public final void sendToAllNear(double x, double y, double z,
-            int dimension, double radius) {
-        MinecraftServer.getServer().getConfigurationManager()
-                .sendToAllNear(x, y, z, radius, dimension, generatePacket());
+    public final void sendToAllNear(double x, double y, double z, int dimension, double radius) {
+        MinecraftServer.getServer().getConfigurationManager().sendToAllNear(x, y, z, radius, dimension, generatePacket());
     }
 
     public final void sendToAllNear(Entity entity, double radius) {
-        sendToAllNear(entity.posX, entity.posY, entity.posZ, entity.dimension,
-                radius);
+        sendToAllNear(entity.posX, entity.posY, entity.posZ, entity.dimension, radius);
     }
 
     public final void sendToAllNear(TileEntity tileEntity, double radius) {
-        sendToAllNear(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord,
-                tileEntity.worldObj.provider.dimensionId, radius);
+        sendToAllNear(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, tileEntity.worldObj.provider.dimensionId, radius);
     }
 
     public final void sendToAllTracking(Entity entity) {
         if (entity.worldObj instanceof WorldServer) {
-            ((WorldServer) entity.worldObj).getEntityTracker()
-                    .sendPacketToAllPlayersTrackingEntity(entity,
-                            generatePacket());
+            ((WorldServer) entity.worldObj).getEntityTracker().sendPacketToAllPlayersTrackingEntity(entity, generatePacket());
         }
     }
 
@@ -131,22 +121,17 @@ public abstract class MinePGPacket {
 
     protected abstract void readData(ByteArrayDataInput in);
 
-    public static void execute(ByteArrayDataInput input, int packetId,
-            EntityPlayer player) {
-        Class<? extends MinePGPacket> packetClass = idMapping.get(Integer
-                .valueOf(packetId));
+    public static void execute(ByteArrayDataInput input, int packetId, EntityPlayer player) {
+        Class<? extends MinePGPacket> packetClass = idMapping.get(Integer.valueOf(packetId));
         if (packetClass == null) {
             logger.warning("Recieved unknown Packet-Id " + packetId);
         } else {
             try {
                 MinePGPacket parsedPacket = packetClass.newInstance();
                 parsedPacket.readData(input);
-                parsedPacket.execute(player,
-                        player.worldObj.isRemote ? Side.CLIENT : Side.SERVER);
+                parsedPacket.execute(player, player.worldObj.isRemote ? Side.CLIENT : Side.SERVER);
             } catch (Exception e) {
-                logger.warning("Exception during packet handling: "
-                        + e.getClass().getSimpleName() + " (" + e.getMessage()
-                        + ")");
+                logger.warning("Exception during packet handling: " + e.getClass().getSimpleName() + " (" + e.getMessage() + ")");
                 e.printStackTrace();
             }
         }

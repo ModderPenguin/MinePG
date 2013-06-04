@@ -1,4 +1,4 @@
-package rpg.items;
+package rpg.items.warrior.weapons;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import rpg.enums.EnumRPGToolMaterial;
+import rpg.items.RPGItem;
 import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,21 +33,17 @@ public class ItemRPGSword extends RPGItem {
 
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
-            List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player, List par3List, boolean par4) {
         PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if (playerInfo.getPlayersClass().equals("Warrior")
-                && player.experienceLevel >= 1) {
+        if (playerInfo.getPlayersClass().equals("Warrior") && player.experienceLevel >= 1) {
             par3List.add("Class: \u00a7AWarrior");
             par3List.add("Level: \u00a7A1");
-        } else if (playerInfo.getPlayersClass().equals("Warrior")
-                && player.experienceLevel != 1) {
+        } else if (playerInfo.getPlayersClass().equals("Warrior") && player.experienceLevel != 1) {
             par3List.add("Class: \u00a7AWarrior");
             par3List.add("Level: \u00a741");
-        } else if (!playerInfo.getPlayersClass().equals("Warrior")
-                && player.experienceLevel == 1) {
+        } else if (!playerInfo.getPlayersClass().equals("Warrior") && player.experienceLevel == 1) {
             par3List.add("Class: \u00a74Warrior");
             par3List.add("Level: \u00a7A1");
         } else {
@@ -79,10 +76,8 @@ public class ItemRPGSword extends RPGItem {
      * Return whether this item is repairable in an anvil.
      */
     @Override
-    public boolean getIsRepairable(ItemStack par1ItemStack,
-            ItemStack par2ItemStack) {
-        return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true
-                : super.getIsRepairable(par1ItemStack, par2ItemStack);
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -119,10 +114,7 @@ public class ItemRPGSword extends RPGItem {
             return 15.0F;
         else {
             Material material = par2Block.blockMaterial;
-            return material != Material.plants && material != Material.vine
-                    && material != Material.coral
-                    && material != Material.leaves
-                    && material != Material.pumpkin ? 1.0F : 1.5F;
+            return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.pumpkin ? 1.0F : 1.5F;
         }
     }
 
@@ -138,8 +130,7 @@ public class ItemRPGSword extends RPGItem {
      * the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack par1ItemStack,
-            EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
         par1ItemStack.damageItem(1, par3EntityLiving);
         return true;
     }
@@ -154,11 +145,8 @@ public class ItemRPGSword extends RPGItem {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World,
-            int par3, int par4, int par5, int par6,
-            EntityLiving par7EntityLiving) {
-        if (Block.blocksList[par3]
-                .getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving) {
+        if (Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
             par1ItemStack.damageItem(2, par7EntityLiving);
         }
 
@@ -169,10 +157,9 @@ public class ItemRPGSword extends RPGItem {
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer) {
-        par3EntityPlayer.setItemInUse(par1ItemStack,
-                this.getMaxItemUseDuration(par1ItemStack));
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+        // TODO I need to put something more interesting here...
+        par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
 }

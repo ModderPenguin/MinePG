@@ -1,8 +1,8 @@
-package rpg.items;
+package rpg.items.warrior.weapons;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -10,50 +10,46 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import rpg.client.entities.EntityStaffTrainingBolt;
-import rpg.enums.weapons.EnumRPGWandMaterial;
+import rpg.enums.weapons.EnumRPGHammerMaterial;
+import rpg.items.RPGItem;
+import rpg.network.packet.PacketPlayerInfo;
 import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemRPGWand extends RPGItem {
+public class ItemRPGHammer extends RPGItem {
 
     private int weaponDamage;
-    private final EnumRPGWandMaterial toolMaterial;
+    private final EnumRPGHammerMaterial toolMaterial;
+    private final int healAmount;
 
-    public ItemRPGWand(int id, EnumRPGWandMaterial material, String name) {
+    public ItemRPGHammer(int id, EnumRPGHammerMaterial material, int healAmount, String name) {
         super(id, name);
         this.toolMaterial = material;
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
         this.setCreativeTab(CreativeTabs.tabCombat);
-        this.weaponDamage = 4 + material.getDamageVsEntity();
+        this.weaponDamage = material.getDamageVsEntity();
+        this.healAmount = healAmount;
     }
 
     @Override
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer player,
-            List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer player, List par3List, boolean par4) {
         PlayerInformation PlayerInfoFake = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
         // accordingly
-        if ((PlayerInfoFake.getPlayersClass().equals("Sorcerer") || PlayerInfoFake
-                .getPlayersClass().equals("Mage"))
-                && player.experienceLevel >= 1) {
-            par3List.add("Class: \u00a7ASorcerer");
+        if ((PlayerInfoFake.getPlayersClass().equals("Paladin") || PlayerInfoFake.getPlayersClass().equals("Warrior")) && player.experienceLevel >= 1) {
+            par3List.add("Class: \u00a7APaladin");
             par3List.add("Level: \u00a7A1");
-        } else if ((PlayerInfoFake.getPlayersClass().equals("Sorcerer") || PlayerInfoFake
-                .getPlayersClass().equals("Mage"))
-                && player.experienceLevel != 1) {
-            par3List.add("Class: \u00a7ASorcerer");
+        } else if ((PlayerInfoFake.getPlayersClass().equals("Paladin") || PlayerInfoFake.getPlayersClass().equals("Warrior")) && player.experienceLevel != 1) {
+            par3List.add("Class: \u00a7APaladin");
             par3List.add("Level: \u00a741");
-        } else if ((!PlayerInfoFake.getPlayersClass().equals("Sorcerer") || !PlayerInfoFake
-                .getPlayersClass().equals("Mage"))
-                && player.experienceLevel == 1) {
-            par3List.add("Class: \u00a74Sorcerer");
+        } else if ((!PlayerInfoFake.getPlayersClass().equals("Paladin") || !PlayerInfoFake.getPlayersClass().equals("Warrior")) && player.experienceLevel == 1) {
+            par3List.add("Class: \u00a74Paladin");
             par3List.add("Level: \u00a7A1");
         } else {
-            par3List.add("Class: \u00a74Sorcerer");
+            par3List.add("Class: \u00a74Paladin");
             par3List.add("Level: \u00a741");
         }
     }
@@ -74,10 +70,8 @@ public class ItemRPGWand extends RPGItem {
      * Return whether this item is repairable in an anvil.
      */
     @Override
-    public boolean getIsRepairable(ItemStack par1ItemStack,
-            ItemStack par2ItemStack) {
-        return this.toolMaterial.getWandCraftingMaterial() == par2ItemStack.itemID ? true
-                : super.getIsRepairable(par1ItemStack, par2ItemStack);
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        return this.toolMaterial.getHammerCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -116,8 +110,7 @@ public class ItemRPGWand extends RPGItem {
      * the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack par1ItemStack,
-            EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
         par1ItemStack.damageItem(1, par3EntityLiving);
         return true;
     }
@@ -131,30 +124,26 @@ public class ItemRPGWand extends RPGItem {
         return true;
     }
 
-    @Override
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World,
-            int par3, int par4, int par5, int par6,
-            EntityLiving par7EntityLiving) {
-        if (Block.blocksList[par3]
-                .getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
-            par1ItemStack.damageItem(2, par7EntityLiving);
-        }
-
-        return true;
-    }
-
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer) {
-        par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F,
-                0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-        if (!par2World.isRemote) {
-            par2World.spawnEntityInWorld(new EntityStaffTrainingBolt(par2World,
-                    par3EntityPlayer));
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+        PlayerInformation playerInfo = PlayerInformation.forPlayer(par3EntityPlayer);
+        if (playerInfo.getMana() <= 50) {
+            if (!par3EntityPlayer.capabilities.isCreativeMode) {
+                if (playerInfo.getPlayersClass().equals("Paladin") || playerInfo.getPlayersClass().equals("Angel")) {
+                    par3EntityPlayer.heal(this.healAmount);
+                    playerInfo.decreaseMana(50);
+                    new PacketPlayerInfo(playerInfo).sendToServer();
+                }
+            } else {
+                Minecraft.getMinecraft().thePlayer.sendChatToPlayer("You do not need to heal in creative mode");
+            }
+        } else {
+            Minecraft.getMinecraft().thePlayer.sendChatToPlayer("\u00a74Insufficient Mana!");
         }
+
         return par1ItemStack;
     }
 }

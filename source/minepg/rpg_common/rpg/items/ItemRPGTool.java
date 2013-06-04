@@ -23,16 +23,13 @@ public class ItemRPGTool extends RPGItem {
     /** The material this tool is made from. */
     protected EnumRPGToolMaterial toolMaterial;
 
-    protected ItemRPGTool(int par1, int par2,
-            EnumRPGToolMaterial par3EnumToolMaterial, Block[] par4ArrayOfBlock,
-            String name) {
+    protected ItemRPGTool(int par1, int par2, EnumRPGToolMaterial par3EnumToolMaterial, Block[] par4ArrayOfBlock, String name) {
         super(par1, name);
         this.toolMaterial = par3EnumToolMaterial;
         this.blocksEffectiveAgainst = par4ArrayOfBlock;
         this.maxStackSize = 1;
         this.setMaxDamage(par3EnumToolMaterial.getMaxUses());
-        this.efficiencyOnProperMaterial = par3EnumToolMaterial
-                .getEfficiencyOnProperMaterial();
+        this.efficiencyOnProperMaterial = par3EnumToolMaterial.getEfficiencyOnProperMaterial();
         this.damageVsEntity = par2 + par3EnumToolMaterial.getDamageVsEntity();
         this.setCreativeTab(CreativeTabs.tabTools);
     }
@@ -49,10 +46,8 @@ public class ItemRPGTool extends RPGItem {
      * Return whether this item is repairable in an anvil.
      */
     @Override
-    public boolean getIsRepairable(ItemStack par1ItemStack,
-            ItemStack par2ItemStack) {
-        return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true
-                : super.getIsRepairable(par1ItemStack, par2ItemStack);
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -97,8 +92,7 @@ public class ItemRPGTool extends RPGItem {
      * the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack par1ItemStack,
-            EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
         par1ItemStack.damageItem(2, par3EntityLiving);
         return true;
     }
@@ -113,11 +107,8 @@ public class ItemRPGTool extends RPGItem {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World,
-            int par3, int par4, int par5, int par6,
-            EntityLiving par7EntityLiving) {
-        if (Block.blocksList[par3]
-                .getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving) {
+        if (Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
             par1ItemStack.damageItem(1, par7EntityLiving);
         }
 

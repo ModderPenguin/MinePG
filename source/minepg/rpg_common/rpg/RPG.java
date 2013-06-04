@@ -54,8 +54,7 @@ public class RPG {
         ItemModelRegisters.registerItemModelRenderers();
 
         NetworkRegistry.instance().registerGuiHandler(instance, proxy);
-        NetworkRegistry.instance().registerConnectionHandler(
-                new ConnectionHandler());
+        NetworkRegistry.instance().registerConnectionHandler(new ConnectionHandler());
 
         KarmaEventHandler karmaHandler = new KarmaEventHandler();
         MinecraftForge.EVENT_BUS.register(karmaHandler);
@@ -71,12 +70,10 @@ public class RPG {
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
-        modDirectory = new File(event.getModConfigurationDirectory()
-                .getParent());
+        modDirectory = new File(event.getModConfigurationDirectory().getParent());
         if (FMLCommonHandler.instance().getSide().isClient()) {
             MinecraftForge.EVENT_BUS.register(new SoundLoader());
         }
-        RPGConfig.loadConfig(new Configuration(event
-                .getSuggestedConfigurationFile()));
+        RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
     }
 }

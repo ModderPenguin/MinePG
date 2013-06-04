@@ -7,8 +7,6 @@ import rpg.config.base.mage.MageWeapons;
 public class ItemModelRegisters {
 
     public static void registerItemModelRenderers() {
-        MinecraftForgeClient
-                .registerItemRenderer(MageWeapons.staffTraining.itemID,
-                        new RenderItemTrainingStaff());
+        MinecraftForgeClient.registerItemRenderer(MageWeapons.staffTraining.itemID, new RenderItemTrainingStaff());
     }
 }

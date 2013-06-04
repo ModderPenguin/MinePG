@@ -19,10 +19,8 @@ import rpg.lib.Reference;
 public final class MinePGUtil {
 
     private static final String ENTITY_DATA = Reference.MOD_ID;
-    public static final String PARTICLE_TEXTURE_FILE = "/mods/"
-            + Reference.MOD_ID + "/textures/particles.png";
-    public static final String EVENT_HANDLER = Reference.MOD_ID
-            + "/handlers/event/KarmaEventHandler";
+    public static final String PARTICLE_TEXTURE_FILE = "/mods/" + Reference.MOD_ID + "/textures/particles.png";
+    public static final String EVENT_HANDLER = Reference.MOD_ID + "/handlers/event/KarmaEventHandler";
 
     private static Field[] fields = Opcodes.class.getDeclaredFields();
 
@@ -46,8 +44,7 @@ public final class MinePGUtil {
     }
 
     public static String getChatMessage(String string) {
-        return EnumChatFormatting.DARK_GREEN + "[MinePG] "
-                + EnumChatFormatting.RESET;
+        return EnumChatFormatting.DARK_GREEN + "[MinePG] " + EnumChatFormatting.RESET;
     }
 
     public static NBTTagCompound getCompound(NBTTagCompound parent, String key) {
@@ -62,8 +59,7 @@ public final class MinePGUtil {
 
         if (entity instanceof EntityPlayer) {
             NBTTagCompound entityData = entity.getEntityData();
-            persistentData = getCompound(entityData,
-                    EntityPlayer.PERSISTED_NBT_TAG);
+            persistentData = getCompound(entityData, EntityPlayer.PERSISTED_NBT_TAG);
         } else {
             persistentData = entity.getEntityData();
         }
@@ -107,8 +103,7 @@ public final class MinePGUtil {
         for (int i = 57; i < fields.length; i++) {
             Field field = fields[i];
             try {
-                if (field.getType() == int.class
-                        && field.getInt(null) == opcode)
+                if (field.getType() == int.class && field.getInt(null) == opcode)
                     return field.getName();
             } catch (Exception e) { // ReflectiveOperationException
                                     // e
