@@ -1,4 +1,4 @@
-package rpg.client.renderers;
+package rpg.client.renderers.projectiles;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;

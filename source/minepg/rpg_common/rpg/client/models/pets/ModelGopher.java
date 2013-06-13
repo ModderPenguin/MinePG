@@ -1,11 +1,10 @@
-package rpg.client.models;
+package rpg.client.models.pets;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-public class ModelGopher extends ModelBase {
+public class ModelGopher extends ModelPet {
 
     // fields
     ModelRenderer head;

@@ -23,12 +23,6 @@ public class EntityPet extends EntityTameable {
     public EntityPet(World par1World) {
         super(par1World);
     }
-    
-    public EntityPet(World par1World, int petHealth) {
-        super(par1World);
-        this.petHealth = petHealth;
-        
-    }
 
     @Override
     protected void entityInit() {

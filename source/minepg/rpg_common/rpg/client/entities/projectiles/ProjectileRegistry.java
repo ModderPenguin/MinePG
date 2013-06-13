@@ -1,8 +1,8 @@
 package rpg.client.entities.projectiles;
 
 import rpg.RPG;
-import rpg.client.renderers.RenderStaffTrainingBolt;
-import rpg.client.renderers.RenderTrainingArrow;
+import rpg.client.renderers.projectiles.RenderStaffTrainingBolt;
+import rpg.client.renderers.projectiles.RenderTrainingArrow;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 

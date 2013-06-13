@@ -11,15 +11,15 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-import rpg.client.models.ModelTrainingStaff;
+import rpg.client.models.weapons.ModelStaffTraining;
 import rpg.lib.Reference;
 
 public class RenderItemTrainingStaff implements IItemRenderer {
 
-    protected ModelTrainingStaff gopherModel;
+    protected ModelStaffTraining gopherModel;
 
     public RenderItemTrainingStaff() {
-        gopherModel = new ModelTrainingStaff();
+        gopherModel = new ModelStaffTraining();
     }
 
     @Override

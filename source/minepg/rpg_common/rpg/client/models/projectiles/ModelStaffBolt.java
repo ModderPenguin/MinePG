@@ -1,4 +1,4 @@
-package rpg.client.models;
+package rpg.client.models.projectiles;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

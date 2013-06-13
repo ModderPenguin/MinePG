@@ -1,10 +1,10 @@
-package rpg.client.models;
+package rpg.client.models.weapons;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelTrainingStaff extends ModelBase {
+public class ModelStaffTraining extends ModelBase {
 
     // fields
     ModelRenderer Staffbody;
@@ -20,7 +20,7 @@ public class ModelTrainingStaff extends ModelBase {
     ModelRenderer StaffPoint4;
     ModelRenderer Shape1;
 
-    public ModelTrainingStaff() {
+    public ModelStaffTraining() {
         textureWidth = 64;
         textureHeight = 32;
 
