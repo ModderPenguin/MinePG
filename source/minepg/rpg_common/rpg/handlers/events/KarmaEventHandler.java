@@ -1,11 +1,7 @@
 package rpg.handlers.events;
 
 import static rpg.playerinfo.PlayerInformation.forPlayer;
-
-import java.util.List;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityIronGolem;
@@ -18,46 +14,35 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.event.Event.Result;
-import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import rpg.MinePGUtil;
 import rpg.playerinfo.PlayerInformation;
 import rpg.playerinfo.PlayerInformation.CountableKarmaEvent;
 
-import com.google.common.primitives.Ints;
-
 public class KarmaEventHandler {
-
-    private static final int[] bonemealHandleIds = new int[] { Block.sapling.blockID, Block.mushroomBrown.blockID, Block.mushroomRed.blockID, Block.melonStem.blockID, Block.pumpkinStem.blockID,
-            Block.cocoaPlant.blockID, Block.grass.blockID };
 
     private static EntityPlayer playerPlacingBlock;
 
-    private static boolean placingIronGolem; // false =>
-                                             // snow golem,
-                                             // true => iron
-                                             // golem
+    private static boolean placingIronGolem; // false => snow golem,
+                                             // true => iron  golem
 
-    // called from ItemBlock.placeBlockAt after the block
-    // has successfully been placed
+    /** Called from ItemBlock.placeBlockAt after the block
+      * has successfully been placed 
+      */
     public static void onAfterBlockSet() {
         if (playerPlacingBlock != null) {
             PlayerInformation info = forPlayer(playerPlacingBlock);
 
             CountableKarmaEvent event = placingIronGolem ? CountableKarmaEvent.CREATE_IRONGOLEM : CountableKarmaEvent.CREATE_SNOWGOLEM;
             if (info.increaseEventAmount(event)) {
-                info.modifyKarma(1);
+                info.addKarma(50);
             }
 
             playerPlacingBlock = null;
@@ -86,44 +71,12 @@ public class KarmaEventHandler {
         }
     }
 
-    public static void onItemPotionUse(ItemStack potion, EntityPlayer player) {
-        if (!player.worldObj.isRemote && ItemPotion.isSplash(potion.getItemDamage())) {
-            @SuppressWarnings("unchecked")
-            List<PotionEffect> effects = Item.potion.getEffects(potion);
-            for (PotionEffect effect : effects) {
-                if (Potion.heal.id == effect.getPotionID()) {
-                    forPlayer(player).modifyKarmaWithMax(1, 30);
-                }
-            }
-        }
-    }
-
-    // called by the hook inserted into
-    // BlockMobSpawner/removeBlockByPlayer by the
-    // CrymodTransformer
-    public static void onMobSpawnerBreak(EntityPlayer player, World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            System.out.println("break mob spawner");
-            forPlayer(player).modifyKarmaWithMax(1, 30);
-        }
-    }
-
-    // set priority to lowest to also give good karma when
-    // other mods handle bonemeal event
-    // TODO: fixme
-    @ForgeSubscribe(priority = EventPriority.LOWEST)
-    public void onBonemealUse(BonemealEvent evt) {
-        if (evt.getResult() == Result.ALLOW || Ints.contains(bonemealHandleIds, evt.ID) || (evt.ID > 0 && Block.blocksList[evt.ID] instanceof BlockCrops)) {
-            forPlayer(evt.entityPlayer).modifyKarmaWithMax(0.1F, 10);
-        }
-    }
-
     @ForgeSubscribe
     public void onEntityAttack(LivingAttackEvent evt) {
         if (evt.source instanceof EntityDamageSource && ((EntityDamageSource) evt.source).getEntity() instanceof EntityPlayerMP && evt.entity instanceof EntityPigZombie) {
             PlayerInformation info = forPlayer(((EntityDamageSource) evt.source).getEntity());
             if (info.increaseEventAmount(CountableKarmaEvent.PIGMEN_ATTACK)) {
-                info.modifyKarma(-1);
+                info.addKarma(-10);
             }
         }
     }
@@ -134,15 +87,15 @@ public class KarmaEventHandler {
             EntityPlayer player = (EntityPlayer) evt.source.getEntity();
 
             if (evt.entity instanceof EntityCreeper) {
-                forPlayer(player).modifyKarmaWithMax(0.1F, 20);
+                forPlayer(player).addKarma(10);
             } else if (evt.entity instanceof EntityVillager) {
-                forPlayer(player).modifyKarmaWithMin(-0.1F, -20);
+                forPlayer(player).addKarma(-20);
             } else if (evt.entity instanceof EntityWitch) {
-                forPlayer(player).modifyKarmaWithMax(0.5F, 49);
+                forPlayer(player).addKarma(75);
             } else if (evt.entity instanceof EntityIronGolem || evt.entity instanceof EntitySnowman) {
-                forPlayer(player).modifyKarmaWithMin(-0.5F, -20);
+                forPlayer(player).addKarma(-50);
             } else if (evt.entity instanceof EntityDragon) {
-                forPlayer(player).modifyKarma(6);
+                forPlayer(player).addKarmaLevel(1);
             }
         }
     }

@@ -1,6 +1,7 @@
 package rpg.network.packet;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
@@ -20,8 +21,9 @@ public class PacketSendChat extends MinePGPacket {
 
     @Override
     protected void execute(EntityPlayer player, Side side) {
-        if (side.isServer() && !side.isClient()) {
-            player.sendChatToPlayer(message);
+        if (side.isServer()) {
+            EntityPlayerMP playerMP = (EntityPlayerMP)player;
+            playerMP.sendChatToPlayer(message);
         }
     }
 

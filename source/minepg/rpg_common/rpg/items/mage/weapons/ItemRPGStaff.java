@@ -2,11 +2,8 @@ package rpg.items.mage.weapons;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
@@ -22,7 +19,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemRPGStaff extends RPGItem {
 
-    public int weaponDamage;
     private final EnumRPGStaffMaterial toolMaterial;
 
     public ItemRPGStaff(int id, EnumRPGStaffMaterial material, String name) {
@@ -31,7 +27,6 @@ public class ItemRPGStaff extends RPGItem {
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
         this.setCreativeTab(CreativeTabs.tabCombat);
-        this.weaponDamage = material.getDamageVsEntity();
     }
 
     @Override
@@ -40,8 +35,7 @@ public class ItemRPGStaff extends RPGItem {
         if (playerInfo.getPlayersClass().equals("Mage")) {
             if (playerInfo.getMana() >= 5) {
                 if (!par3EntityPlayer.capabilities.isCreativeMode) {
-                    playerInfo.decreaseMana(5);
-                    Minecraft.getMinecraft().thePlayer.sendChatToPlayer("Your Mana is: \u00a71" + playerInfo.getMana());
+                    playerInfo.decreaseMana(1);
                     new PacketPlayerInfo(playerInfo).sendToServer();
                 }
 
@@ -54,6 +48,7 @@ public class ItemRPGStaff extends RPGItem {
                 if (!par2World.isRemote) {
                     par2World.spawnEntityInWorld(new EntityStaffTrainingBolt(par2World, par3EntityPlayer));
                 }
+                par1ItemStack.damageItem(2, par3EntityPlayer);
             } else {
                 Minecraft.getMinecraft().thePlayer.sendChatToPlayer("\u00a74Insufficient Mana!");
             }
@@ -87,18 +82,6 @@ public class ItemRPGStaff extends RPGItem {
             par3List.add("Class: \u00a74Mage");
             par3List.add("Level: \u00a741");
         }
-    }
-
-    public int func_82803_g() {
-        return this.toolMaterial.getDamageVsEntity();
-    }
-
-    /**
-     * Returns the damage against a given entity.
-     */
-    @Override
-    public int getDamageVsEntity(Entity par1Entity) {
-        return this.weaponDamage;
     }
 
     /**
@@ -146,15 +129,6 @@ public class ItemRPGStaff extends RPGItem {
      * Returns True is the item is renderer in full 3D when hold.
      */
     public boolean isFull3D() {
-        return true;
-    }
-
-    @Override
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving) {
-        if (Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
-            par1ItemStack.damageItem(2, par7EntityLiving);
-        }
-
         return true;
     }
 }

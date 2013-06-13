@@ -31,9 +31,7 @@ public class GenericEventHandler implements IPlayerTracker {
                     System.out.println("Mana Timer is: " + timer);
                 }
                 playerInfo.setManaTimer(timer);
-                if(timer == 40) {
-                    ent.sendChatToPlayer("Your Mana is: \u00a71" + playerInfo.getMana());
-                    
+                if(timer == 40) {                    
                     playerInfo.setManaTimer(0);
                 }
             }

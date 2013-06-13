@@ -1,5 +1,6 @@
 package rpg.client.entities.projectiles;
 
+import rpg.enums.weapons.EnumRPGStaffMaterial;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -8,7 +9,7 @@ import net.minecraft.world.World;
 
 public class EntityStaffTrainingBolt extends EntityThrowable {
 
-    public byte damage = 1;
+    public byte damage = (byte)EnumRPGStaffMaterial.TRAINING.getMagicDamage();
 
     public EntityStaffTrainingBolt(World var1) {
         super(var1);

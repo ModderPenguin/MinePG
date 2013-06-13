@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import rpg.config.RPGItems;
 
 public enum EnumRPGStaffMaterial {
-    TRAINING(32, 1, 1), TAURITE(200, 5, 10);
+    TRAINING(32, 1, 0), TAURITE(200, 5, 10);
 
     /**
      * The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32)
@@ -12,7 +12,7 @@ public enum EnumRPGStaffMaterial {
     private final int maxUses;
 
     /** Damage versus entities. */
-    private final int damageVsEntity;
+    private final int magicDamage;
 
     /**
      * Defines the natural enchantability factor of the material.
@@ -24,15 +24,16 @@ public enum EnumRPGStaffMaterial {
 
     private EnumRPGStaffMaterial(int par3, int par4, int par5) {
         this.maxUses = par3;
-        this.damageVsEntity = par4;
+        this.magicDamage = par4;
         this.enchantability = par5;
+        
     }
 
     /**
      * Damage versus entities.
      */
-    public int getDamageVsEntity() {
-        return this.damageVsEntity;
+    public int getMagicDamage() {
+        return this.magicDamage;
     }
 
     /**

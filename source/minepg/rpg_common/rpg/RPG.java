@@ -7,6 +7,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import rpg.client.gui.GuiBuffBar;
+import rpg.client.gui.GuiKarmaBar;
+import rpg.client.gui.GuiKarmaBar.GuiRenderKarmaLevel;
+import rpg.client.gui.GuiManaBar;
 import rpg.comm.ConnectionHandler;
 import rpg.config.RPGConfig;
 import rpg.config.RPGCreativeTabs;
@@ -22,10 +25,12 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarting;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -64,6 +69,15 @@ public class RPG {
         GenericEventHandler handler = new GenericEventHandler();
         MinecraftForge.EVENT_BUS.register(handler);
         GameRegistry.registerPlayerTracker(handler);
+        
+        GuiManaBar manaBar = new GuiManaBar();
+        MinecraftForge.EVENT_BUS.register(manaBar);
+        
+        GuiKarmaBar karmaBar = new GuiKarmaBar();
+        MinecraftForge.EVENT_BUS.register(karmaBar);
+        
+        GuiRenderKarmaLevel karmaLevel = karmaBar.new GuiRenderKarmaLevel();
+        MinecraftForge.EVENT_BUS.register(karmaLevel);
     }
 
     @PostInit
@@ -78,5 +92,10 @@ public class RPG {
             MinecraftForge.EVENT_BUS.register(new SoundLoader());
         }
         RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
+    }
+    
+    @ServerStarting
+    public void serverStarting(FMLServerStartingEvent evt) {
+        
     }
 }
