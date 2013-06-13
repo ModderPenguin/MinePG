@@ -3,10 +3,8 @@ package rpg;
 import java.io.File;
 import java.util.logging.Logger;
 
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-import rpg.client.gui.GuiBuffBar;
 import rpg.client.gui.GuiKarmaBar;
 import rpg.client.gui.GuiKarmaBar.GuiRenderKarmaLevel;
 import rpg.client.gui.GuiManaBar;
@@ -81,9 +79,7 @@ public class RPG {
     }
 
     @PostInit
-    public void postInit(FMLPostInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new GuiBuffBar(Minecraft.getMinecraft()));
-    }
+    public void postInit(FMLPostInitializationEvent event) {}
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
