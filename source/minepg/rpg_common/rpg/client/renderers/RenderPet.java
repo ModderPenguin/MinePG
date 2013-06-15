@@ -1,18 +1,19 @@
 package rpg.client.renderers;
 
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import rpg.client.entities.pets.EntityPet;
-import rpg.client.models.pets.ModelPet;
+import rpg.client.models.pet.ModelPet;
+import rpg.entity.passive.pet.EntityPet;
 
 public class RenderPet extends RenderLiving {
 
     protected ModelPet petModel;
     
-    public RenderPet(ModelPet par1ModelBase, float par2) {
+    public RenderPet(ModelBase par1ModelBase, float par2) {
         super(par1ModelBase, par2);
-        this.petModel = (ModelPet)par1ModelBase;
+        this.mainModel = (ModelPet)petModel;
     }
     
     public void renderPet(EntityPet par1EntityTameEbby, double par2, double par4, double par6, float par8, float par9) {

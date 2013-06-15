@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import rpg.config.pets.PetBlocks;
 import rpg.config.pets.PetItems;
 import rpg.network.packet.PacketDeleteItem;
-import rpg.pets.EnumPetType;
+import rpg.pet.EnumPetType;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ItemPetEgg extends RPGItem {

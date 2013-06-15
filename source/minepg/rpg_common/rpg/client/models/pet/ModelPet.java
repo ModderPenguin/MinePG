@@ -1,4 +1,4 @@
-package rpg.client.models.pets;
+package rpg.client.models.pet;
 
 import net.minecraft.client.model.ModelBase;
 

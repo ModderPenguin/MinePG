@@ -5,7 +5,7 @@ import net.minecraftforge.common.Configuration;
 import rpg.config.RPGConfiguration;
 import rpg.config.RPGCreativeTabs;
 import rpg.items.ItemPetEgg;
-import rpg.pets.EnumPetType;
+import rpg.pet.EnumPetType;
 
 public class PetItems {
 

@@ -1,4 +1,4 @@
-package rpg.client.entities.pets;
+package rpg.entity.passive.pet;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityTameable;

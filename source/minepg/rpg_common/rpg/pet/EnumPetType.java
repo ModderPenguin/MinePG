@@ -1,4 +1,4 @@
-package rpg.pets;
+package rpg.pet;
 
 public enum EnumPetType {
     MAIN("petMain"), AIR("petAir"), EARTH("petEarth"), FIRE("petFire"), /* LAVA("petLava"), */NORMAL("petNormal"), WATER("petWater"), ;

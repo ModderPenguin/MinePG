@@ -1,4 +1,4 @@
-package rpg.client.entities.pets;
+package rpg.entity.passive.pet;
 
 import rpg.lib.Reference;
 import net.minecraft.world.World;

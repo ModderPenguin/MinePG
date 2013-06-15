@@ -1,4 +1,4 @@
-package rpg.client.models.pets;
+package rpg.client.models.pet;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -105,7 +105,7 @@ public class ModelFairy extends ModelPet
         leftwing2.setTextureSize(128, 64);
         leftwing2.mirror = true;
         setRotation(leftwing2, 0F, 0F, 0F);
-        rightwing.mirror = true;
+        leftwing2.mirror = false;
         rightwing = new ModelRenderer(this, 68, 20);
         rightwing.addBox(0F, -4F, 0F, 10, 8, 0);
         rightwing.setRotationPoint(-11F, 5F, 2.1F);
