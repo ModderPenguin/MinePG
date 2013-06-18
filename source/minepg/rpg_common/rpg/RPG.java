@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-import rpg.client.gui.GuiKarmaBar;
-import rpg.client.gui.GuiKarmaBar.GuiRenderKarmaLevel;
 import rpg.client.gui.GuiManaBar;
 import rpg.comm.ConnectionHandler;
 import rpg.config.RPGConfig;
@@ -71,11 +69,11 @@ public class RPG {
         GuiManaBar manaBar = new GuiManaBar();
         MinecraftForge.EVENT_BUS.register(manaBar);
         
-        GuiKarmaBar karmaBar = new GuiKarmaBar();
-        MinecraftForge.EVENT_BUS.register(karmaBar);
+        // GuiKarmaBar karmaBar = new GuiKarmaBar();
+        // MinecraftForge.EVENT_BUS.register(karmaBar);
         
-        GuiRenderKarmaLevel karmaLevel = karmaBar.new GuiRenderKarmaLevel();
-        MinecraftForge.EVENT_BUS.register(karmaLevel);
+        // GuiRenderKarmaLevel karmaLevel = karmaBar.new GuiRenderKarmaLevel();
+        // MinecraftForge.EVENT_BUS.register(karmaLevel);
     }
 
     @PostInit

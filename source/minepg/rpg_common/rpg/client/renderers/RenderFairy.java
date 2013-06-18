@@ -4,16 +4,16 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import rpg.client.models.pet.ModelPet;
+import rpg.client.models.pet.ModelFairy;
 import rpg.entity.passive.pet.EntityPet;
 
-public class RenderPet extends RenderLiving {
+public class RenderFairy extends RenderLiving {
 
-    protected ModelPet petModel;
+    protected ModelFairy petModel;
     
-    public RenderPet(ModelBase par1ModelBase, float par2) {
+    public RenderFairy(ModelBase par1ModelBase, float par2) {
         super(par1ModelBase, par2);
-        this.mainModel = (ModelPet)petModel;
+        this.mainModel = (ModelFairy)petModel;
     }
     
     public void renderPet(EntityPet par1EntityTameEbby, double par2, double par4, double par6, float par8, float par9) {

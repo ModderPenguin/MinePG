@@ -33,4 +33,13 @@ public class EntityStaffTrainingBolt extends EntityThrowable {
             this.setDead();
         }
     }
+    
+    /**
+     * Gets the amount of gravity to apply to the thrown entity with each tick.
+     */
+    @Override
+    protected float getGravityVelocity()
+    {
+        return 0;
+    }
 }

@@ -1,29 +1,28 @@
 package rpg.entity.passive.pet;
 
-import rpg.RPG;
 import rpg.client.models.pet.ModelFairy;
-import rpg.client.renderers.RenderPet;
+import rpg.client.renderers.RenderFairy;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
-
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class EntityPetRegistry {
-        
+
     public static void registerPets() {
         registerPetRenders();
-        registerPetEntities();
         registerPetID();
+        registerPetNames();
     }
-    
-    protected static void registerPetRenders() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityFairy.class, new RenderPet(new ModelFairy(), 0.2F));
+
+    private static void registerPetRenders() {
+        RenderingRegistry.registerEntityRenderingHandler(EntityPet.class, new RenderFairy(new ModelFairy(), 0.2F));
     }
-    
-    protected static void registerPetEntities() {
-        EntityRegistry.registerModEntity(EntityFairy.class, "Fairy", EntityRegistry.findGlobalUniqueEntityId(), RPG.instance, 200, 50, true);
+
+    private static void registerPetID() {
+        EntityRegistry.registerGlobalEntityID(EntityPet.class, "Fairy", EntityRegistry.findGlobalUniqueEntityId(), 0xFFFFFF, 0x000000);
     }
-    
-    protected static void registerPetID() {
-        EntityRegistry.registerGlobalEntityID(EntityFairy.class, "Fairy", EntityRegistry.findGlobalUniqueEntityId(), 0xFFFFFF, 0x000000);
+
+    private static void registerPetNames() {
+        LanguageRegistry.instance().addStringLocalization("entity.Fairy.name", "en_US", "Fairy");
     }
 }
