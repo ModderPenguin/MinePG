@@ -7,6 +7,7 @@ import rpg.client.entities.projectiles.ProjectileRegistry;
 import rpg.client.gui.GuiChooseClass;
 import rpg.client.gui.GuiLoreStartingPage;
 import rpg.client.keybindings.PlayerStatsKey;
+import rpg.entity.passive.pet.EntityPetRegistry;
 import rpg.enums.EnumGui;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 
@@ -30,6 +31,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderers() {
         ProjectileRegistry.initProjectileRegistry();
-        // EntityPetRegistry.registerPets();
+        EntityPetRegistry.registerPets();
     }
 }

@@ -1,19 +1,13 @@
 package rpg.entity.passive.pet;
 
-import rpg.lib.Reference;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIFollowOwner;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIOwnerHurtByTarget;
-import net.minecraft.entity.ai.EntityAIOwnerHurtTarget;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class EntityPet extends EntityTameable {
@@ -33,19 +27,41 @@ public class EntityPet extends EntityTameable {
     
     public EntityPet(World par1World) {
         super(par1World);
-        this.petHealth = 10;
-        this.texture = "/mods/" + Reference.MOD_ID + "/textures/mob/fairy1.png";
-        this.setSize(0.6F, 0.8F);
-        this.getNavigator().setAvoidsWater(true);
-        this.tasks.addTask(1, new EntityAIFollowOwner(this, this.moveSpeed, 10.0F, 2.0F));
-        this.tasks.addTask(2, new EntityAILeapAtTarget(this, 0.4F));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, this.moveSpeed, true));
-        this.tasks.addTask(5, new EntityAIWander(this, this.moveSpeed));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(7, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
-        this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
+        this.setEntityHealth(this.petHealth);
+    }
+    
+    @Override
+    public int getMaxHealth() {
+        return 100;
+    }
+    
+    /**
+     * Returns true if the newer Entity AI code should be run
+     */
+    public boolean isAIEnabled()
+    {
+        return true;
+    }
+    
+    /**
+     * Sets the active target the Task system uses for tracking
+     */
+    public void setAttackTarget(EntityLiving par1EntityLiving)
+    {
+        super.setAttackTarget(par1EntityLiving);
+
+        if (par1EntityLiving instanceof EntityPlayer)
+        {
+            this.setAngry(true);
+        }
+    }
+    
+    /**
+     * main AI tick function, replaces updateEntityActionState
+     */
+    protected void updateAITick()
+    {
+        this.dataWatcher.updateObject(18, Integer.valueOf(this.getHealth()));
     }
 
     @Override
@@ -107,19 +123,79 @@ public class EntityPet extends EntityTameable {
         return this.experienceLevel >= 30 ? 62 + (this.experienceLevel - 30) * 7 : (this.experienceLevel >= 15 ? 17 + (this.experienceLevel - 15) * 3 : 17);
     }
     
-    @Override
-    public int getMaxHealth() {
-        return this.petHealth;
+    /**
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
+     */
+    public void onLivingUpdate()
+    {
+        super.onLivingUpdate();
+    }
+    
+    /**
+     * Called when the entity is attacked.
+     */
+    public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
+    {
+        if (this.isEntityInvulnerable())
+        {
+            return false;
+        }
+        else
+        {
+            Entity entity = par1DamageSource.getEntity();
+            this.aiSit.setSitting(false);
+
+            if (entity != null && !(entity instanceof EntityPlayer) && !(entity instanceof EntityArrow))
+            {
+                par2 = (par2 + 1) / 2;
+            }
+
+            return super.attackEntityFrom(par1DamageSource, par2);
+        }
+    }
+    
+    public boolean attackEntityAsMob(Entity par1Entity)
+    {
+        int i = this.isTamed() ? 4 : 2;
+        return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), i);
+    }
+    
+    /**
+     * Determines whether this pet is angry or not.
+     */
+    public boolean isAngry()
+    {
+        return (this.dataWatcher.getWatchableObjectByte(16) & 2) != 0;
+    }
+
+    /**
+     * Sets whether this pet is angry or not.
+     */
+    public void setAngry(boolean par1)
+    {
+        byte b0 = this.dataWatcher.getWatchableObjectByte(16);
+
+        if (par1)
+        {
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 2)));
+        }
+        else
+        {
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -3)));
+        }
     }
 
     @Override
-    public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-        
+    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readEntityFromNBT(par1NBTTagCompound);
+        this.setAngry(par1NBTTagCompound.getBoolean("Angry"));
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
-        
+    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
+        super.writeEntityToNBT(par1NBTTagCompound);
+        par1NBTTagCompound.setBoolean("Angry", this.isAngry());
     }
 
     @Override
