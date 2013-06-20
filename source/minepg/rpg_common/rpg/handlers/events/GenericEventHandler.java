@@ -17,7 +17,7 @@ public class GenericEventHandler implements IPlayerTracker {
     }
 
     @ForgeSubscribe
-    public void EntityUpdate(LivingEvent event){
+    public void regenerateMana(LivingEvent event){
         if(event.entity instanceof EntityPlayer) {
             EntityPlayer ent = (EntityPlayer) event.entityLiving;
             PlayerInformation playerInfo = PlayerInformation.forPlayer(ent);
