@@ -18,12 +18,10 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class ItemPetEgg extends RPGItem {
 
     EnumPetType petType;
-    String petTypeToString;
 
     public ItemPetEgg(int par1, String name, EnumPetType petType) {
         super(par1, name);
         this.petType = petType;
-        // this.petTypeToString = petType.getPetType();
         LanguageRegistry.addName(this, "Pet Egg: " + this.getUnlocalizedName().substring(11));
     }
 

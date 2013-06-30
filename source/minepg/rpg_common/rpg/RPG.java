@@ -11,6 +11,7 @@ import rpg.config.RPGConfig;
 import rpg.config.RPGCreativeTabs;
 import rpg.handlers.MinePGPacketHandler;
 import rpg.handlers.events.GenericEventHandler;
+import rpg.handlers.events.IncubatorHandler;
 import rpg.handlers.events.KarmaEventHandler;
 import rpg.items.ItemModelRegisters;
 import rpg.lib.Reference;
@@ -51,6 +52,7 @@ public class RPG {
     public void load(FMLInitializationEvent event) {
         proxy.registerRenderers();
         proxy.registerKeyBindings();
+        proxy.registerTileEntities();
 
         RPGCreativeTabs.addTabNames();
 
@@ -66,14 +68,14 @@ public class RPG {
         MinecraftForge.EVENT_BUS.register(handler);
         GameRegistry.registerPlayerTracker(handler);
         
+        IncubatorHandler incubHandler = new IncubatorHandler();
+        MinecraftForge.EVENT_BUS.register(incubHandler);
+        
         GuiManaBar manaBar = new GuiManaBar();
         MinecraftForge.EVENT_BUS.register(manaBar);
         
         // GuiKarmaBar karmaBar = new GuiKarmaBar();
         // MinecraftForge.EVENT_BUS.register(karmaBar);
-        
-        // GuiRenderKarmaLevel karmaLevel = karmaBar.new GuiRenderKarmaLevel();
-        // MinecraftForge.EVENT_BUS.register(karmaLevel);
     }
 
     @PostInit

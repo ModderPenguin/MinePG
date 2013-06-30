@@ -34,6 +34,7 @@ public abstract class MinePGPacket {
         addMapping(1, PacketClassChosen.class);
         addMapping(2, PacketDeleteItem.class);
         addMapping(3, PacketSendChat.class);
+        addMapping(4, PacketSpawnPet.class);
 
         idMapping = ImmutableBiMap.copyOf(idMapping);
     }

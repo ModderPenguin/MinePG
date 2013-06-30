@@ -1,21 +1,39 @@
 package rpg.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDragonEgg;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import rpg.blocks.tileentity.TileEntityPetEgg;
 import rpg.lib.Reference;
+import rpg.pet.EnumPetType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPetEgg extends BlockDragonEgg {
 
-    public BlockPetEgg(int par1, String textureFileName) {
+    public static int incubationTime;
+    
+    /** The type of pet that this egg is. */
+    public static EnumPetType petType;
+
+    public BlockPetEgg(int par1, String textureFileName, EnumPetType petType) {
         super(par1);
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 1.0F, 0.9375F);
         this.setUnlocalizedName(textureFileName);
+        BlockPetEgg.petType = petType;
+        switch(petType) {
+        case MAIN:
+            BlockPetEgg.incubationTime = 30;
+            break;
+        default:
+            BlockPetEgg.incubationTime = 100;
+            break;
+        }
     }
 
     @Override
@@ -25,12 +43,36 @@ public class BlockPetEgg extends BlockDragonEgg {
     }
 
     @Override
+    public TileEntity createTileEntity(World world, int metadata)
+    {
+       return new TileEntityPetEgg();
+    }
+
+    @Override
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
-    // This is the method to use to see if a furnace is nearby so that the egg can be incubated
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
+
+        boolean isFurnaceAbove = par1World.getBlockId(par2, par3 + 1, par4) == Block.furnaceBurning.blockID;
+        boolean isFurnaceBelow = par1World.getBlockId(par2, par3 - 1, par4) == Block.furnaceBurning.blockID;
+
+        boolean isFurnaceLeft = par1World.getBlockId(par2 - 1, par3, par4) == Block.furnaceBurning.blockID;
+        boolean isFurnaceRight = par1World.getBlockId(par2 + 1, par3, par4) == Block.furnaceBurning.blockID;
+
+        boolean isFurnaceInFront = par1World.getBlockId(par2, par3, par4 + 1) == Block.furnaceBurning.blockID;
+        boolean isFurnaceBehind = par1World.getBlockId(par2, par3, par4 - 1) == Block.furnaceBurning.blockID;
+
+        boolean isFurnaceAboveOrBelow = isFurnaceAbove && isFurnaceBelow;
+        boolean isFurnaceLeftOrRight = isFurnaceLeft && isFurnaceRight;
+        boolean isFurnaceInFrontOrBehind = isFurnaceInFront && isFurnaceBehind;
+
+        boolean furnaceIsNearby = isFurnaceAboveOrBelow && isFurnaceLeftOrRight && isFurnaceInFrontOrBehind;
+
+        if(furnaceIsNearby) {
+            TileEntityPetEgg.canIncubate = true;
+        }
     }
 
     @Override
@@ -41,6 +83,25 @@ public class BlockPetEgg extends BlockDragonEgg {
     // This is the method to use to see if a furnace has been placed so that the egg can be incubated
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
+
+        boolean isFurnaceAbove = par1World.getBlockId(par2, par3 + 1, par4) == Block.furnaceBurning.blockID;
+        boolean isFurnaceBelow = par1World.getBlockId(par2, par3 - 1, par4) == Block.furnaceBurning.blockID;
+
+        boolean isFurnaceLeft = par1World.getBlockId(par2 - 1, par3, par4) == Block.furnaceBurning.blockID;
+        boolean isFurnaceRight = par1World.getBlockId(par2 + 1, par3, par4) == Block.furnaceBurning.blockID;
+
+        boolean isFurnaceInFront = par1World.getBlockId(par2, par3, par4 + 1) == Block.furnaceBurning.blockID;
+        boolean isFurnaceBehind = par1World.getBlockId(par2, par3, par4 - 1) == Block.furnaceBurning.blockID;
+
+        boolean isFurnaceAboveOrBelow = isFurnaceAbove && isFurnaceBelow;
+        boolean isFurnaceLeftOrRight = isFurnaceLeft && isFurnaceRight;
+        boolean isFurnaceInFrontOrBehind = isFurnaceInFront && isFurnaceBehind;
+
+        boolean furnaceIsNearby = isFurnaceAboveOrBelow && isFurnaceLeftOrRight && isFurnaceInFrontOrBehind;
+
+        if(furnaceIsNearby) {
+            TileEntityPetEgg.canIncubate = true;
+        }
     }
 
     @Override
