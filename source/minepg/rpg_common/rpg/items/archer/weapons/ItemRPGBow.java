@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import rpg.client.entities.projectiles.EntityTrainingArrow;
+import rpg.client.entities.projectiles.EntityArrowTraining;
 import rpg.config.base.archer.ArcherWeapons;
 import rpg.items.RPGItem;
 import rpg.lib.Reference;
@@ -132,7 +132,7 @@ public class ItemRPGBow extends RPGItem {
 				f = 1.0F;
 			}
 
-			EntityTrainingArrow entityarrow = new EntityTrainingArrow(par2World, par3EntityPlayer, f * 2.0F);
+			EntityArrowTraining entityarrow = new EntityArrowTraining(par2World, par3EntityPlayer, f * 2.0F);
 
 			if (f == 1.0F) {
 				entityarrow.setIsCritical(true);
@@ -164,7 +164,7 @@ public class ItemRPGBow extends RPGItem {
 			}
 
 			if (!par2World.isRemote) {
-				entityarrow.setPosition(par3EntityPlayer.posX, par3EntityPlayer.posY + 2, par3EntityPlayer.posZ);
+				// entityarrow.setPosition(par3EntityPlayer.posX, par3EntityPlayer.posY + 3, par3EntityPlayer.posZ);
 				par2World.spawnEntityInWorld(entityarrow);
 			}
 		}

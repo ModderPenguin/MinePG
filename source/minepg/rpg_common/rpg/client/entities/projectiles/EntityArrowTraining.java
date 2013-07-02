@@ -24,7 +24,7 @@ import rpg.config.base.archer.ArcherWeapons;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityTrainingArrow extends EntityArrow implements IProjectile {
+public class EntityArrowTraining extends EntityArrow implements IProjectile {
 
     private int xTile = -1;
     private int yTile = -1;
@@ -48,13 +48,13 @@ public class EntityTrainingArrow extends EntityArrow implements IProjectile {
     /** The amount of knockback an arrow applies when it hits a mob. */
     private int knockbackStrength;
 
-    public EntityTrainingArrow(World par1World) {
+    public EntityArrowTraining(World par1World) {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
         this.setSize(0.5F, 0.5F);
     }
 
-    public EntityTrainingArrow(World par1World, double par2, double par4, double par6) {
+    public EntityArrowTraining(World par1World, double par2, double par4, double par6) {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
         this.setSize(0.5F, 0.5F);
@@ -62,7 +62,7 @@ public class EntityTrainingArrow extends EntityArrow implements IProjectile {
         this.yOffset = 0.0F;
     }
 
-    public EntityTrainingArrow(World par1World, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving, float par4, float par5) {
+    public EntityArrowTraining(World par1World, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving, float par4, float par5) {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
         this.shootingEntity = par2EntityLiving;
@@ -89,7 +89,7 @@ public class EntityTrainingArrow extends EntityArrow implements IProjectile {
         }
     }
 
-    public EntityTrainingArrow(World par1World, EntityLiving par2EntityLiving, float par3) {
+    public EntityArrowTraining(World par1World, EntityLiving par2EntityLiving, float par3) {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
         this.shootingEntity = par2EntityLiving;

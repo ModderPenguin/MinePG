@@ -10,12 +10,12 @@ public class ProjectileRegistry {
 
     protected static void registerProjectiles() {
         EntityRegistry.registerModEntity(EntityStaffTrainingBolt.class, "staffTrainingBolt", EntityRegistry.findGlobalUniqueEntityId(), RPG.instance, 350, 5, false);
-        EntityRegistry.registerModEntity(EntityTrainingArrow.class, "trainingArrow", EntityRegistry.findGlobalUniqueEntityId(), RPG.instance, 350, 5, false);
+        EntityRegistry.registerModEntity(EntityArrowTraining.class, "trainingArrow", EntityRegistry.findGlobalUniqueEntityId(), RPG.instance, 350, 5, false);
     }
 
     protected static void registerProjectileRenders() {
         RenderingRegistry.registerEntityRenderingHandler(EntityStaffTrainingBolt.class, new RenderStaffTrainingBolt());
-        RenderingRegistry.registerEntityRenderingHandler(EntityTrainingArrow.class, new RenderTrainingArrow());
+        RenderingRegistry.registerEntityRenderingHandler(EntityArrowTraining.class, new RenderTrainingArrow());
     }
 
     public static void initProjectileRegistry() {
