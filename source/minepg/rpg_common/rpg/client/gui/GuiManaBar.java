@@ -12,6 +12,7 @@ import rpg.lib.Reference;
 import rpg.playerinfo.PlayerInformation;
 
 public class GuiManaBar extends Gui {
+
     private Minecraft mc;
 
     public GuiManaBar() {
@@ -21,20 +22,18 @@ public class GuiManaBar extends Gui {
     @ForgeSubscribe
     public void onRenderHUD(RenderGameOverlayEvent.Pre evt) {
         if (evt.type.equals(RenderGameOverlayEvent.ElementType.HOTBAR)) {
-            ScaledResolution scaledRes = new ScaledResolution(
-                    this.mc.gameSettings, this.mc.displayWidth,
-                    this.mc.displayHeight);
+            ScaledResolution scaledRes = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
             int scaledWdt = scaledRes.getScaledWidth() - 102;
             int scaledHgt = scaledRes.getScaledHeight() - 12;
 
             GL11.glColor4f(1F, 1F, 1F, 1F);
 
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/mods/" + Reference.MOD_ID + "/textures/gui/manaBar.png"));
-            
+
             PlayerInformation playerInfo = PlayerInformation.forPlayer(this.mc.thePlayer);
-            
+
             int manaBarCap = playerInfo.getMaxMana();
-                        
+
             if (manaBarCap > 0) {
                 short short1 = 101;
                 int currentMana = 1 + playerInfo.getMana();
@@ -44,7 +43,7 @@ public class GuiManaBar extends Gui {
                     this.drawTexturedModalRect(scaledWdt, scaledHgt + 1, 0, 11, currentMana, 21);
                 }
             }
-            
+
             this.mc.renderEngine.resetBoundTexture();
         }
     }

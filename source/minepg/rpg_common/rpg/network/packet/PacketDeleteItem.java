@@ -21,13 +21,13 @@ public class PacketDeleteItem extends MinePGPacket {
     @Override
     protected void execute(EntityPlayer player, Side side) {
         if (side.isServer()) {
-            player.inventory.consumeInventoryItem(itemID);
+            player.inventory.consumeInventoryItem(this.itemID);
         }
     }
 
     @Override
     protected void writeData(ByteArrayDataOutput out) {
-        out.writeInt(itemID);
+        out.writeInt(this.itemID);
     }
 
     @Override

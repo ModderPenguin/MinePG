@@ -67,19 +67,20 @@ public class RPG {
         GenericEventHandler handler = new GenericEventHandler();
         MinecraftForge.EVENT_BUS.register(handler);
         GameRegistry.registerPlayerTracker(handler);
-        
+
         IncubatorHandler incubHandler = new IncubatorHandler();
         MinecraftForge.EVENT_BUS.register(incubHandler);
-        
+
         GuiManaBar manaBar = new GuiManaBar();
         MinecraftForge.EVENT_BUS.register(manaBar);
-        
+
         // GuiKarmaBar karmaBar = new GuiKarmaBar();
         // MinecraftForge.EVENT_BUS.register(karmaBar);
     }
 
     @PostInit
-    public void postInit(FMLPostInitializationEvent event) {}
+    public void postInit(FMLPostInitializationEvent event) {
+    }
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
@@ -89,9 +90,9 @@ public class RPG {
         }
         RPGConfig.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
     }
-    
+
     @ServerStarting
     public void serverStarting(FMLServerStartingEvent evt) {
-        
+
     }
 }

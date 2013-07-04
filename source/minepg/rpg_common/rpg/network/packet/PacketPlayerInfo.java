@@ -21,39 +21,39 @@ public class PacketPlayerInfo extends MinePGPacket {
 
     @Override
     protected void writeData(ByteArrayDataOutput out) {
-        out.writeUTF(playersClass);
-        out.writeFloat(karma);
-        out.writeInt(danris);
-        out.writeInt(mana);
-        out.writeInt(manaTimer);
+        out.writeUTF(this.playersClass);
+        out.writeFloat(this.karma);
+        out.writeInt(this.danris);
+        out.writeInt(this.mana);
+        out.writeInt(this.manaTimer);
     }
 
     @Override
     protected void readData(ByteArrayDataInput in) {
-        playersClass = in.readUTF();
-        karma = in.readFloat();
-        danris = in.readInt();
-        mana = in.readInt();
-        manaTimer = in.readInt();
+        this.playersClass = in.readUTF();
+        this.karma = in.readFloat();
+        this.danris = in.readInt();
+        this.mana = in.readInt();
+        this.manaTimer = in.readInt();
     }
 
     public PacketPlayerInfo(PlayerInformation playerInformation) {
-        playersClass = playerInformation.getPlayersClass();
-        karma = playerInformation.getKarma();
-        danris = playerInformation.getCurrency();
-        mana = playerInformation.getMana();
-        manaTimer = playerInformation.getManaTimer();
+        this.playersClass = playerInformation.getPlayersClass();
+        this.karma = playerInformation.getKarma();
+        this.danris = playerInformation.getCurrency();
+        this.mana = playerInformation.getMana();
+        this.manaTimer = playerInformation.getManaTimer();
     }
 
     @Override
     protected void execute(EntityPlayer player, Side side) {
         if (side.isClient()) {
             PlayerInformation info = PlayerInformation.forPlayer(player);
-            info.setPlayersClass(playersClass);
-            info.setKarma(karma);
-            info.setCurrency(danris);
-            info.setMana(mana);
-            info.setManaTimer(manaTimer);
+            info.setPlayersClass(this.playersClass);
+            info.setKarma(this.karma);
+            info.setCurrency(this.danris);
+            info.setMana(this.mana);
+            info.setManaTimer(this.manaTimer);
         }
     }
 }

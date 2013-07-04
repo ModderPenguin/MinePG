@@ -21,7 +21,8 @@ public class RPGItems {
         WarriorItems.addNames();
 
         // LanguageRegistry.addName(taurite, "Taurite");
-        // LanguageRegistry.addName(tauriteCloth, "Taurite Cloth");
+        // LanguageRegistry.addName(tauriteCloth,
+        // "Taurite Cloth");
     }
 
     public static void load(Configuration config) {
@@ -35,7 +36,8 @@ public class RPGItems {
 
         // taurite = new ItemTaurite(tauriteID, "taurite")
         // .setCreativeTab(CreativeTabs.tabMaterials);
-        // tauriteCloth = new ItemTauriteCloth(tauriteClothID, "tauriteCloth")
+        // tauriteCloth = new
+        // ItemTauriteCloth(tauriteClothID, "tauriteCloth")
         // .setCreativeTab(CreativeTabs.tabMaterials);
     }
 }

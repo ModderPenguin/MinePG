@@ -5,7 +5,7 @@ import net.minecraftforge.common.Configuration;
 import rpg.RPG;
 import rpg.config.RPGCreativeTabs;
 import rpg.config.RPGMaterials;
-import rpg.items.armor.mage.MageTrainingArmor;
+import rpg.items.armor.mage.ArmorMage;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class MageArmor {
@@ -29,8 +29,11 @@ public class MageArmor {
         robeTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Robe ID", 1006).getInt();
         sandalsTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Sandals ID", 1007).getInt();
 
-        hatTraining = new MageTrainingArmor(hatTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("mageTraining"), 0, "hatTraining").setCreativeTab(RPGCreativeTabs.tabMageItems);
-        robeTraining = new MageTrainingArmor(robeTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("mageTraining"), 1, "robeTraining").setCreativeTab(RPGCreativeTabs.tabMageItems);
-        sandalsTraining = new MageTrainingArmor(sandalsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("mageTraining"), 3, "sandalsTraining").setCreativeTab(RPGCreativeTabs.tabMageItems);
+        hatTraining = new ArmorMage(hatTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("mageTraining"), 0, "hatTraining")
+                .setCreativeTab(RPGCreativeTabs.tabMageItems);
+        robeTraining = new ArmorMage(robeTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("mageTraining"), 1, "robeTraining")
+                .setCreativeTab(RPGCreativeTabs.tabMageItems);
+        sandalsTraining = new ArmorMage(sandalsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("mageTraining"), 3, "sandalsTraining")
+                .setCreativeTab(RPGCreativeTabs.tabMageItems);
     }
 }

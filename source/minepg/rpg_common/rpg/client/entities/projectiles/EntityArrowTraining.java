@@ -36,7 +36,10 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     /** 1 if the player can pick up the arrow */
     public int canBePickedUp = 0;
 
-    /** Seems to be some sort of timer for animating an arrow. */
+    /**
+     * Seems to be some sort of timer for animating an
+     * arrow.
+     */
     public int arrowShake = 0;
 
     /** The owner of this arrow. */
@@ -45,7 +48,10 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     private int ticksInAir = 0;
     private double damage = 2.0D;
 
-    /** The amount of knockback an arrow applies when it hits a mob. */
+    /**
+     * The amount of knockback an arrow applies when it hits
+     * a mob.
+     */
     private int knockbackStrength;
 
     public EntityArrowTraining(World par1World) {
@@ -99,7 +105,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
         }
 
         this.setSize(0.5F, 0.5F);
-        this.setLocationAndAngles(par2EntityLiving.posX, par2EntityLiving.posY + par2EntityLiving.getEyeHeight(), par2EntityLiving.posZ, par2EntityLiving.rotationYaw, par2EntityLiving.rotationPitch);
+        this.setLocationAndAngles(par2EntityLiving.posX, par2EntityLiving.posY + par2EntityLiving.getEyeHeight(), par2EntityLiving.posZ,
+                par2EntityLiving.rotationYaw, par2EntityLiving.rotationPitch);
         this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
         this.posY -= 0.10000000149011612D;
         this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
@@ -117,7 +124,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     }
 
     /**
-     * Similar to setArrowHeading, it's point the throwable entity to a x, y, z direction.
+     * Similar to setArrowHeading, it's point the throwable
+     * entity to a x, y, z direction.
      */
     @Override
     public void setThrowableHeading(double par1, double par3, double par5, float par7, float par8) {
@@ -222,17 +230,20 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
         } else {
             ++this.ticksInAir;
             Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
-            Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            Vec3 vec31 = this.worldObj.getWorldVec3Pool()
+                    .getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
             MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks_do_do(vec3, vec31, false, true);
             vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
             vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
             if (movingobjectposition != null) {
-                vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+                vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord,
+                        movingobjectposition.hitVec.zCoord);
             }
 
             Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ)
+                    .expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
             int l;
             float f1;
@@ -263,7 +274,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
             if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer) {
                 EntityPlayer entityplayer = (EntityPlayer) movingobjectposition.entityHit;
 
-                if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer) this.shootingEntity).func_96122_a(entityplayer)) {
+                if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer
+                        && !((EntityPlayer) this.shootingEntity).func_96122_a(entityplayer)) {
                     movingobjectposition = null;
                 }
             }
@@ -304,8 +316,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
                                 f3 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
                                 if (f3 > 0.0F) {
-                                    movingobjectposition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / f3, 0.1D, this.motionZ * this.knockbackStrength
-                                            * 0.6000000238418579D / f3);
+                                    movingobjectposition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / f3,
+                                            0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / f3);
                                 }
                             }
 
@@ -313,8 +325,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
                                 EnchantmentThorns.func_92096_a(this.shootingEntity, entityliving, this.rand);
                             }
 
-                            if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.entityHit instanceof EntityPlayer
-                                    && this.shootingEntity instanceof EntityPlayerMP) {
+                            if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity
+                                    && movingobjectposition.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP) {
                                 ((EntityPlayerMP) this.shootingEntity).playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(6, 0));
                             }
                         }
@@ -358,8 +370,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
 
             if (this.getIsCritical()) {
                 for (l = 0; l < 4; ++l) {
-                    this.worldObj.spawnParticle("crit", this.posX + this.motionX * l / 4.0D, this.posY + this.motionY * l / 4.0D, this.posZ + this.motionZ * l / 4.0D, -this.motionX,
-                            -this.motionY + 0.2D, -this.motionZ);
+                    this.worldObj.spawnParticle("crit", this.posX + this.motionX * l / 4.0D, this.posY + this.motionY * l / 4.0D, this.posZ
+                            + this.motionZ * l / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
                 }
             }
 
@@ -393,7 +405,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
             if (this.isInWater()) {
                 for (int j1 = 0; j1 < 4; ++j1) {
                     f3 = 0.25F;
-                    this.worldObj.spawnParticle("bubble", this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
+                    this.worldObj.spawnParticle("bubble", this.posX - this.motionX * f3, this.posY - this.motionY * f3,
+                            this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
                 }
 
                 f4 = 0.8F;
@@ -409,7 +422,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     }
 
     /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
+     * (abstract) Protected helper method to write subclass
+     * entity data to NBT.
      */
     @Override
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
@@ -425,7 +439,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     }
 
     /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
+     * (abstract) Protected helper method to read subclass
+     * entity data from NBT.
      */
     @Override
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
@@ -449,7 +464,8 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     }
 
     /**
-     * Called by a player entity when they collide with an entity
+     * Called by a player entity when they collide with an
+     * entity
      */
     @Override
     public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
@@ -469,8 +485,9 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     }
 
     /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
+     * returns if this entity triggers Block.onEntityWalking
+     * on the blocks they walk on. used for spiders and
+     * wolves to prevent them from trampling crops
      */
     @Override
     protected boolean canTriggerWalking() {
@@ -483,23 +500,28 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
         return 0.0F;
     }
 
+    @Override
     public void setDamage(double par1) {
         this.damage = par1;
     }
 
+    @Override
     public double getDamage() {
         return this.damage;
     }
 
     /**
-     * Sets the amount of knockback the arrow applies when it hits a mob.
+     * Sets the amount of knockback the arrow applies when
+     * it hits a mob.
      */
+    @Override
     public void setKnockbackStrength(int par1) {
         this.knockbackStrength = par1;
     }
 
     /**
-     * If returns false, the item will not inflict any damage against entities.
+     * If returns false, the item will not inflict any
+     * damage against entities.
      */
     @Override
     public boolean canAttackWithItem() {
@@ -507,8 +529,10 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     }
 
     /**
-     * Whether the arrow has a stream of critical hit particles flying behind it.
+     * Whether the arrow has a stream of critical hit
+     * particles flying behind it.
      */
+    @Override
     public void setIsCritical(boolean par1) {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
 
@@ -520,8 +544,10 @@ public class EntityArrowTraining extends EntityArrow implements IProjectile {
     }
 
     /**
-     * Whether the arrow has a stream of critical hit particles flying behind it.
+     * Whether the arrow has a stream of critical hit
+     * particles flying behind it.
      */
+    @Override
     public boolean getIsCritical() {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
         return (b0 & 1) != 0;

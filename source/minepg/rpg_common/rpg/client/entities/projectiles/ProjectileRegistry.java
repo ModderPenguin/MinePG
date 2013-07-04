@@ -9,8 +9,10 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 public class ProjectileRegistry {
 
     protected static void registerProjectiles() {
-        EntityRegistry.registerModEntity(EntityStaffTrainingBolt.class, "staffTrainingBolt", EntityRegistry.findGlobalUniqueEntityId(), RPG.instance, 350, 5, false);
-        EntityRegistry.registerModEntity(EntityArrowTraining.class, "trainingArrow", EntityRegistry.findGlobalUniqueEntityId(), RPG.instance, 350, 5, false);
+        EntityRegistry.registerModEntity(EntityStaffTrainingBolt.class, "staffTrainingBolt", EntityRegistry.findGlobalUniqueEntityId(), RPG.instance,
+                350, 5, false);
+        EntityRegistry.registerModEntity(EntityArrowTraining.class, "trainingArrow", EntityRegistry.findGlobalUniqueEntityId(), RPG.instance, 350, 5,
+                false);
     }
 
     protected static void registerProjectileRenders() {

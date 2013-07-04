@@ -30,12 +30,15 @@ public class KarmaEventHandler {
 
     private static EntityPlayer playerPlacingBlock;
 
-    private static boolean placingIronGolem; // false => snow golem,
-                                             // true => iron  golem
+    private static boolean placingIronGolem; // false =>
+                                             // snow golem,
+                                             // true => iron
+                                             // golem
 
-    /** Called from ItemBlock.placeBlockAt after the block
-      * has successfully been placed 
-      */
+    /**
+     * Called from ItemBlock.placeBlockAt after the block
+     * has successfully been placed
+     */
     public static void onAfterBlockSet() {
         if (playerPlacingBlock != null) {
             PlayerInformation info = forPlayer(playerPlacingBlock);
@@ -53,12 +56,14 @@ public class KarmaEventHandler {
     // is modified
     public static void onBeforePlayerPlaceBlock(Item item, World world, int x, int y, int z, EntityPlayer player) {
         if (!world.isRemote && item.itemID == Block.pumpkin.blockID) {
-            boolean isSnowGolem = world.getBlockId(x, y - 1, z) == Block.blockSnow.blockID && world.getBlockId(x, y - 2, z) == Block.blockSnow.blockID;
+            boolean isSnowGolem = world.getBlockId(x, y - 1, z) == Block.blockSnow.blockID
+                    && world.getBlockId(x, y - 2, z) == Block.blockSnow.blockID;
 
             boolean isIronGolem = isSnowGolem ? false
-                    : (world.getBlockId(x, y - 1, z) == Block.blockIron.blockID && world.getBlockId(x, y - 2, z) == Block.blockIron.blockID
-                            && (world.getBlockId(x - 1, y - 1, z) == Block.blockIron.blockID && world.getBlockId(x + 1, y - 1, z) == Block.blockIron.blockID) || (world.getBlockId(x, y - 1, z - 1) == Block.blockIron.blockID && world
-                            .getBlockId(x, y - 1, z + 1) == Block.blockIron.blockID));
+                    : (world.getBlockId(x, y - 1, z) == Block.blockIron.blockID
+                            && world.getBlockId(x, y - 2, z) == Block.blockIron.blockID
+                            && (world.getBlockId(x - 1, y - 1, z) == Block.blockIron.blockID && world.getBlockId(x + 1, y - 1, z) == Block.blockIron.blockID) || (world
+                            .getBlockId(x, y - 1, z - 1) == Block.blockIron.blockID && world.getBlockId(x, y - 1, z + 1) == Block.blockIron.blockID));
 
             if (isIronGolem || isSnowGolem) {
                 playerPlacingBlock = player;
@@ -73,7 +78,8 @@ public class KarmaEventHandler {
 
     @ForgeSubscribe
     public void onEntityAttack(LivingAttackEvent evt) {
-        if (evt.source instanceof EntityDamageSource && ((EntityDamageSource) evt.source).getEntity() instanceof EntityPlayerMP && evt.entity instanceof EntityPigZombie) {
+        if (evt.source instanceof EntityDamageSource && ((EntityDamageSource) evt.source).getEntity() instanceof EntityPlayerMP
+                && evt.entity instanceof EntityPigZombie) {
             PlayerInformation info = forPlayer(((EntityDamageSource) evt.source).getEntity());
             if (info.increaseEventAmount(CountableKarmaEvent.PIGMEN_ATTACK)) {
                 info.addKarma(-10);
@@ -111,7 +117,8 @@ public class KarmaEventHandler {
             } else if (evt.target instanceof EntityZombie) {
                 EntityZombie zombie = (EntityZombie) evt.target;
                 ItemStack currentItem = evt.entityPlayer.getCurrentEquippedItem();
-                if (currentItem != null && currentItem.getItem() == Item.appleGold && currentItem.getItemDamage() == 0 && zombie.isVillager() && zombie.isPotionActive(Potion.weakness)) {
+                if (currentItem != null && currentItem.getItem() == Item.appleGold && currentItem.getItemDamage() == 0 && zombie.isVillager()
+                        && zombie.isPotionActive(Potion.weakness)) {
                     MinePGUtil.getEntityData(zombie).setString("cureOwner", evt.entityPlayer.username);
                 }
             }

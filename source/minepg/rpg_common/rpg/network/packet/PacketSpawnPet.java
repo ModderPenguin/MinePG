@@ -15,8 +15,9 @@ public class PacketSpawnPet extends MinePGPacket {
     public World world;
     public EnumPetType petType;
 
-    public PacketSpawnPet() {}
-    
+    public PacketSpawnPet() {
+    }
+
     public PacketSpawnPet(World par1World, EnumPetType par2PetType) {
         this.world = par1World;
         this.petType = par2PetType;
@@ -24,22 +25,22 @@ public class PacketSpawnPet extends MinePGPacket {
 
     @Override
     protected void execute(EntityPlayer player, Side side) {
-        if(side.isServer()) {
-            switch(petType) {
-            default:
-                world.spawnEntityInWorld(new EntityZombie(world));
-                break;
+        if (side.isServer()) {
+            switch (this.petType) {
+                default:
+                    this.world.spawnEntityInWorld(new EntityZombie(this.world));
+                    break;
             }
         }
     }
 
     @Override
     protected void writeData(ByteArrayDataOutput out) {
-        
+
     }
 
     @Override
     protected void readData(ByteArrayDataInput in) {
-        
+
     }
 }

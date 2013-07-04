@@ -26,35 +26,39 @@ public class ItemPetEgg extends RPGItem {
     }
 
     @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({
+            "rawtypes", "unchecked"
+    })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2par3EntityPlayer, List par3List, boolean par4) {
         switch (this.petType) {
-        case AIR:
-            par3List.add("Contains an Animal");
-            par3List.add("of the Air Element");
-            break;
-        case EARTH:
-            par3List.add("Contains an Animal");
-            par3List.add("of the Earth Element");
-            break;
-        case FIRE:
-            par3List.add("Contains an Animal");
-            par3List.add("of the Fire Element");
-            break;
-        /*
-         * case LAVA: par3List.add("Contains an Animal"); par3List.add("of the Lava Element"); break;
-         */
-        case NORMAL:
-            par3List.add("Contains an Animal");
-            par3List.add("of the Normal Element");
-            break;
-        case WATER:
-            par3List.add("Contains an Animal");
-            par3List.add("of the Water Element");
-            break;
-        default:
-            par3List.add("Contains an Animal");
-            break;
+            case AIR:
+                par3List.add("Contains an Animal");
+                par3List.add("of the Air Element");
+                break;
+            case EARTH:
+                par3List.add("Contains an Animal");
+                par3List.add("of the Earth Element");
+                break;
+            case FIRE:
+                par3List.add("Contains an Animal");
+                par3List.add("of the Fire Element");
+                break;
+            /*
+             * case LAVA:
+             * par3List.add("Contains an Animal");
+             * par3List.add("of the Lava Element"); break;
+             */
+            case NORMAL:
+                par3List.add("Contains an Animal");
+                par3List.add("of the Normal Element");
+                break;
+            case WATER:
+                par3List.add("Contains an Animal");
+                par3List.add("of the Water Element");
+                break;
+            default:
+                par3List.add("Contains an Animal");
+                break;
         }
     }
 
@@ -64,7 +68,8 @@ public class ItemPetEgg extends RPGItem {
         float f1 = par3EntityPlayer.prevRotationPitch + (par3EntityPlayer.rotationPitch - par3EntityPlayer.prevRotationPitch) * f;
         float f2 = par3EntityPlayer.prevRotationYaw + (par3EntityPlayer.rotationYaw - par3EntityPlayer.prevRotationYaw) * f;
         double d = par3EntityPlayer.prevPosX + (par3EntityPlayer.posX - par3EntityPlayer.prevPosX) * f;
-        double d1 = (par3EntityPlayer.prevPosY + (par3EntityPlayer.posY - par3EntityPlayer.prevPosY) * f + 1.6200000000000001D) - par3EntityPlayer.yOffset;
+        double d1 = (par3EntityPlayer.prevPosY + (par3EntityPlayer.posY - par3EntityPlayer.prevPosY) * f + 1.6200000000000001D)
+                - par3EntityPlayer.yOffset;
         double d2 = par3EntityPlayer.prevPosZ + (par3EntityPlayer.posZ - par3EntityPlayer.prevPosZ) * f;
         Vec3 vec3d = Vec3.createVectorHelper(d, d1, d2);
         float f3 = MathHelper.cos(-f2 * 0.01745329F - 3.141593F);
@@ -82,75 +87,77 @@ public class ItemPetEgg extends RPGItem {
             return par1ItemStack;
 
         switch (this.petType) {
-        case AIR:
-            if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
-                int i = movingobjectposition.blockX;
-                int j = movingobjectposition.blockY;
-                int k = movingobjectposition.blockZ;
-                par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockAir.blockID);
-                if (par3EntityPlayer.inventory.hasItem(PetItems.petEggAir.itemID)) {
-                    new PacketDeleteItem(PetItems.petEggAir.itemID).sendToServer();
+            case AIR:
+                if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+                    int i = movingobjectposition.blockX;
+                    int j = movingobjectposition.blockY;
+                    int k = movingobjectposition.blockZ;
+                    par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockAir.blockID);
+                    if (par3EntityPlayer.inventory.hasItem(PetItems.petEggAir.itemID)) {
+                        new PacketDeleteItem(PetItems.petEggAir.itemID).sendToServer();
+                    }
                 }
-            }
-            break;
-        case EARTH:
-            if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
-                int i = movingobjectposition.blockX;
-                int j = movingobjectposition.blockY;
-                int k = movingobjectposition.blockZ;
-                par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockEarth.blockID);
-                if (par3EntityPlayer.inventory.hasItem(PetItems.petEggEarth.itemID)) {
-                    new PacketDeleteItem(PetItems.petEggEarth.itemID).sendToServer();
+                break;
+            case EARTH:
+                if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+                    int i = movingobjectposition.blockX;
+                    int j = movingobjectposition.blockY;
+                    int k = movingobjectposition.blockZ;
+                    par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockEarth.blockID);
+                    if (par3EntityPlayer.inventory.hasItem(PetItems.petEggEarth.itemID)) {
+                        new PacketDeleteItem(PetItems.petEggEarth.itemID).sendToServer();
+                    }
                 }
-            }
-            break;
-        case FIRE:
-            if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
-                int i = movingobjectposition.blockX;
-                int j = movingobjectposition.blockY;
-                int k = movingobjectposition.blockZ;
-                par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockFire.blockID);
-                if (par3EntityPlayer.inventory.hasItem(PetItems.petEggFire.itemID)) {
-                    new PacketDeleteItem(PetItems.petEggFire.itemID).sendToServer();
+                break;
+            case FIRE:
+                if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+                    int i = movingobjectposition.blockX;
+                    int j = movingobjectposition.blockY;
+                    int k = movingobjectposition.blockZ;
+                    par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockFire.blockID);
+                    if (par3EntityPlayer.inventory.hasItem(PetItems.petEggFire.itemID)) {
+                        new PacketDeleteItem(PetItems.petEggFire.itemID).sendToServer();
+                    }
                 }
-            }
-            break;
-        /*
-         * case LAVA: par3List.add("Contains an Animal"); par3List.add("of the Lava Element"); break;
-         */
-        case NORMAL:
-            if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
-                int i = movingobjectposition.blockX;
-                int j = movingobjectposition.blockY;
-                int k = movingobjectposition.blockZ;
-                par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockNormal.blockID);
-                if (par3EntityPlayer.inventory.hasItem(PetItems.petEggNormal.itemID)) {
-                    new PacketDeleteItem(PetItems.petEggNormal.itemID).sendToServer();
+                break;
+            /*
+             * case LAVA:
+             * par3List.add("Contains an Animal");
+             * par3List.add("of the Lava Element"); break;
+             */
+            case NORMAL:
+                if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+                    int i = movingobjectposition.blockX;
+                    int j = movingobjectposition.blockY;
+                    int k = movingobjectposition.blockZ;
+                    par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockNormal.blockID);
+                    if (par3EntityPlayer.inventory.hasItem(PetItems.petEggNormal.itemID)) {
+                        new PacketDeleteItem(PetItems.petEggNormal.itemID).sendToServer();
+                    }
                 }
-            }
-            break;
-        case WATER:
-            if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
-                int i = movingobjectposition.blockX;
-                int j = movingobjectposition.blockY;
-                int k = movingobjectposition.blockZ;
-                par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockWater.blockID);
-                if (par3EntityPlayer.inventory.hasItem(PetItems.petEggWater.itemID)) {
-                    new PacketDeleteItem(PetItems.petEggWater.itemID).sendToServer();
+                break;
+            case WATER:
+                if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+                    int i = movingobjectposition.blockX;
+                    int j = movingobjectposition.blockY;
+                    int k = movingobjectposition.blockZ;
+                    par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockWater.blockID);
+                    if (par3EntityPlayer.inventory.hasItem(PetItems.petEggWater.itemID)) {
+                        new PacketDeleteItem(PetItems.petEggWater.itemID).sendToServer();
+                    }
                 }
-            }
-            break;
-        default:
-            if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
-                int i = movingobjectposition.blockX;
-                int j = movingobjectposition.blockY;
-                int k = movingobjectposition.blockZ;
-                par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockMain.blockID);
-                if (par3EntityPlayer.inventory.hasItem(PetItems.petEggMain.itemID)) {
-                    new PacketDeleteItem(PetItems.petEggMain.itemID).sendToServer();
+                break;
+            default:
+                if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+                    int i = movingobjectposition.blockX;
+                    int j = movingobjectposition.blockY;
+                    int k = movingobjectposition.blockZ;
+                    par2World.setBlock(i, j + 1, k, PetBlocks.petEggBlockMain.blockID);
+                    if (par3EntityPlayer.inventory.hasItem(PetItems.petEggMain.itemID)) {
+                        new PacketDeleteItem(PetItems.petEggMain.itemID).sendToServer();
+                    }
                 }
-            }
-            break;
+                break;
         }
         return par1ItemStack;
     }

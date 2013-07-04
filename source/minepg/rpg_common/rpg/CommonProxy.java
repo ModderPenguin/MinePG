@@ -25,11 +25,11 @@ public class CommonProxy implements IGuiHandler {
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        return guiHandler.getServerGuiElement(ID, player, world, x, y, z);
+        return this.guiHandler.getServerGuiElement(ID, player, world, x, y, z);
     }
 
     public void init() {
-        registerRenderers();
+        this.registerRenderers();
 
         EntityRegistry.registerGlobalEntityID(EntityStaffTrainingBolt.class, "TrainingBolt", EntityRegistry.findGlobalUniqueEntityId());
     }
@@ -40,7 +40,7 @@ public class CommonProxy implements IGuiHandler {
 
     public void registerRenderers() {
     }
-    
+
     public void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityPetEgg.class, "petEggEntity");
     }

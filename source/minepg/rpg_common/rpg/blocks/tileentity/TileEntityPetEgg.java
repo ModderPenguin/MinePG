@@ -8,67 +8,70 @@ import rpg.pet.EnumPetType;
 
 public class TileEntityPetEgg extends TileEntity {
 
-	public boolean canIncubate = false;
-	public int incubatingTimer = 0;
+    public boolean canIncubate = false;
+    public int incubatingTimer = 0;
 
-	public EnumPetType petType;
+    public EnumPetType petType;
 
-	public TileEntityPetEgg() {
-		this.petType = BlockPetEgg.petType;
-	}
+    public TileEntityPetEgg() {
+        this.petType = BlockPetEgg.petType;
+    }
 
-	/**
-	 * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
-	 * ticks and creates a new spawn inside its implementation.
-	 */
-	public void updateEntity() {
-		boolean isFurnaceAbove = this.worldObj.getBlockId(this.xCoord, this.yCoord + 1, this.zCoord) == Block.furnaceBurning.blockID;
-		boolean isFurnaceBelow = this.worldObj.getBlockId(this.xCoord, this.yCoord - 1, this.zCoord) == Block.furnaceBurning.blockID;
+    /**
+     * Allows the entity to update its state. Overridden in
+     * most subclasses, e.g. the mob spawner uses this to
+     * count ticks and creates a new spawn inside its
+     * implementation.
+     */
+    @Override
+    public void updateEntity() {
+        boolean isFurnaceAbove = this.worldObj.getBlockId(this.xCoord, this.yCoord + 1, this.zCoord) == Block.furnaceBurning.blockID;
+        boolean isFurnaceBelow = this.worldObj.getBlockId(this.xCoord, this.yCoord - 1, this.zCoord) == Block.furnaceBurning.blockID;
 
-		boolean isFurnaceLeft = this.worldObj.getBlockId(this.xCoord - 1, this.yCoord, this.zCoord) == Block.furnaceBurning.blockID;
-		boolean isFurnaceRight = this.worldObj.getBlockId(this.xCoord + 1, this.yCoord, this.zCoord) == Block.furnaceBurning.blockID;
+        boolean isFurnaceLeft = this.worldObj.getBlockId(this.xCoord - 1, this.yCoord, this.zCoord) == Block.furnaceBurning.blockID;
+        boolean isFurnaceRight = this.worldObj.getBlockId(this.xCoord + 1, this.yCoord, this.zCoord) == Block.furnaceBurning.blockID;
 
-		boolean isFurnaceInFront = this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord + 1) == Block.furnaceBurning.blockID;
-		boolean isFurnaceBehind = this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord - 1) == Block.furnaceBurning.blockID;
+        boolean isFurnaceInFront = this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord + 1) == Block.furnaceBurning.blockID;
+        boolean isFurnaceBehind = this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord - 1) == Block.furnaceBurning.blockID;
 
-		boolean isFurnaceAboveOrBelow = isFurnaceAbove && isFurnaceBelow;
-		boolean isFurnaceLeftOrRight = isFurnaceLeft && isFurnaceRight;
-		boolean isFurnaceInFrontOrBehind = isFurnaceInFront && isFurnaceBehind;
+        boolean isFurnaceAboveOrBelow = isFurnaceAbove && isFurnaceBelow;
+        boolean isFurnaceLeftOrRight = isFurnaceLeft && isFurnaceRight;
+        boolean isFurnaceInFrontOrBehind = isFurnaceInFront && isFurnaceBehind;
 
-		boolean furnaceIsNearby = isFurnaceAboveOrBelow && isFurnaceLeftOrRight && isFurnaceInFrontOrBehind;
+        boolean furnaceIsNearby = isFurnaceAboveOrBelow && isFurnaceLeftOrRight && isFurnaceInFrontOrBehind;
 
-		if(furnaceIsNearby) {
-			this.canIncubate = true;
-		}
-	}
+        if (furnaceIsNearby) {
+            this.canIncubate = true;
+        }
+    }
 
-	public int getIncubationTime() {
-		return BlockPetEgg.incubationTime;
-	}
+    public int getIncubationTime() {
+        return BlockPetEgg.incubationTime;
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTag) {
-		super.writeToNBT(par1NBTTag);
-		par1NBTTag.setBoolean("canIncubate", canIncubate);
-		par1NBTTag.setInteger("incubatingTimer", incubatingTimer);
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTag) {
+        super.writeToNBT(par1NBTTag);
+        par1NBTTag.setBoolean("canIncubate", this.canIncubate);
+        par1NBTTag.setInteger("incubatingTimer", this.incubatingTimer);
 
-	}
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTag) {
-		super.readFromNBT(par1NBTTag);
-		canIncubate = par1NBTTag.getBoolean("canIncubate");
-		incubatingTimer = par1NBTTag.getInteger("incubatingTimer");
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound par1NBTTag) {
+        super.readFromNBT(par1NBTTag);
+        this.canIncubate = par1NBTTag.getBoolean("canIncubate");
+        this.incubatingTimer = par1NBTTag.getInteger("incubatingTimer");
+    }
 
-	public int getIncubatingTimer() {
-		return this.incubatingTimer;
-	}
-	
-	public int setIncubatingTimer(int newTime) {
-		if(this.incubatingTimer != newTime)
-			this.incubatingTimer = newTime;
-		
-		return this.incubatingTimer;
-	}
+    public int getIncubatingTimer() {
+        return this.incubatingTimer;
+    }
+
+    public int setIncubatingTimer(int newTime) {
+        if (this.incubatingTimer != newTime)
+            this.incubatingTimer = newTime;
+
+        return this.incubatingTimer;
+    }
 }

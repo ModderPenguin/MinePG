@@ -15,7 +15,11 @@ public class PlayerStatsKey extends KeyHandler {
     private EnumSet tickTypes = EnumSet.of(TickType.CLIENT);
 
     public PlayerStatsKey() {
-        super(new KeyBinding[] { new KeyBinding("PlayerStats Key", Keyboard.KEY_P) }, new boolean[] { false });
+        super(new KeyBinding[] {
+            new KeyBinding("PlayerStats Key", Keyboard.KEY_P)
+        }, new boolean[] {
+            false
+        });
     }
 
     @Override
@@ -30,16 +34,21 @@ public class PlayerStatsKey extends KeyHandler {
     @Override
     public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {
         /*
-         * if (FMLClientHandler.instance().getClient().currentScreen == null) {
-         * FMLClientHandler.instance().getClient().displayGuiScreen(new GuiPlayerStats());
+         * if (FMLClientHandler.instance().getClient().
+         * currentScreen == null) {
+         * FMLClientHandler.instance
+         * ().getClient().displayGuiScreen(new
+         * GuiPlayerStats());
          * 
-         * @SuppressWarnings("unused") World world = FMLClientHandler.instance().getClient().theWorld; }
+         * @SuppressWarnings("unused") World world =
+         * FMLClientHandler.instance().getClient().theWorld;
+         * }
          */
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public EnumSet<TickType> ticks() {
-        return tickTypes;
+        return this.tickTypes;
     }
 }

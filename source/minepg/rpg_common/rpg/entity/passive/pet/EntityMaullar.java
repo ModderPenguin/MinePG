@@ -43,5 +43,5 @@ public class EntityMaullar extends EntityTameable {
     @Override
     public int getMaxHealth() {
         return 1;
-    }    
+    }
 }

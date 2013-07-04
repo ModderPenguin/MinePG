@@ -9,6 +9,7 @@ public class CreativeTabPetItems extends CreativeTabs {
     }
 
     /*
-     * @Override public ItemStack getIconItemStack() { return new ItemStack(PetItems.petEggNormal, 1); }
+     * @Override public ItemStack getIconItemStack() {
+     * return new ItemStack(PetItems.petEggNormal, 1); }
      */
 }

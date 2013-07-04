@@ -6,10 +6,10 @@ public enum EnumGui {
     private int index;
 
     private EnumGui(int i) {
-        index = i;
+        this.index = i;
     }
 
     public Integer getIndex() {
-        return index;
+        return this.index;
     }
 }

@@ -1,28 +1,16 @@
-package rpg.enums;
+package rpg.enums.weapons;
 
 import net.minecraft.item.Item;
 import rpg.config.RPGItems;
 
-public enum EnumRPGToolMaterial {
-    TRAINING(1, 32, 1.0F, 1, 1), TAURITE(1, 200, 4.0F, 5, 10);
-
-    /**
-     * The level of material this tool can harvest (3 =
-     * DIAMOND, 2 = IRON, 1 = STONE, 0 = IRON/GOLD)
-     */
-    private final int harvestLevel;
+public enum EnumWandMaterial {
+    TRAINING(32, 1, 1), TAURITE(200, 5, 10);
 
     /**
      * The number of uses this material allows. (wood = 59,
      * stone = 131, iron = 250, diamond = 1561, gold = 32)
      */
     private final int maxUses;
-
-    /**
-     * The strength of this tool material against blocks
-     * which it is effective against.
-     */
-    private final float efficiencyOnProperMaterial;
 
     /** Damage versus entities. */
     private final int damageVsEntity;
@@ -36,12 +24,10 @@ public enum EnumRPGToolMaterial {
     // Added by forge for custom Armor materials.
     public Item customCraftingMaterial = null;
 
-    private EnumRPGToolMaterial(int par3, int par4, float par5, int par6, int par7) {
-        this.harvestLevel = par3;
-        this.maxUses = par4;
-        this.efficiencyOnProperMaterial = par5;
-        this.damageVsEntity = par6;
-        this.enchantability = par7;
+    private EnumWandMaterial(int par3, int par4, int par5) {
+        this.maxUses = par3;
+        this.damageVsEntity = par4;
+        this.enchantability = par5;
     }
 
     /**
@@ -52,27 +38,11 @@ public enum EnumRPGToolMaterial {
     }
 
     /**
-     * The strength of this tool material against blocks
-     * which it is effective against.
-     */
-    public float getEfficiencyOnProperMaterial() {
-        return this.efficiencyOnProperMaterial;
-    }
-
-    /**
      * Return the natural enchantability factor of the
      * material.
      */
     public int getEnchantability() {
         return this.enchantability;
-    }
-
-    /**
-     * The level of material this tool can harvest (3 =
-     * DIAMOND, 2 = IRON, 1 = STONE, 0 = IRON/GOLD)
-     */
-    public int getHarvestLevel() {
-        return this.harvestLevel;
     }
 
     /**
@@ -88,7 +58,7 @@ public enum EnumRPGToolMaterial {
      * used to determine the item that can be used to repair
      * a tool with an anvil
      */
-    public int getToolCraftingMaterial() {
+    public int getWandCraftingMaterial() {
         switch (this) {
             case TAURITE:
                 return RPGItems.taurite.itemID;

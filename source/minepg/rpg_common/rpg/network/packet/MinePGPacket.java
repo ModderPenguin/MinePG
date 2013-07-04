@@ -60,36 +60,36 @@ public abstract class MinePGPacket {
 
     public final Packet generatePacket() {
         ByteArrayDataOutput output = ByteStreams.newDataOutput();
-        if (!idMapping.containsValue(getClass())) {
-            logger.warning("Packet " + getClass() + " is missing a Mapping!");
+        if (!idMapping.containsValue(this.getClass())) {
+            logger.warning("Packet " + this.getClass() + " is missing a Mapping!");
             return null;
         }
 
-        int packetId = idMapping.inverse().get(getClass()).intValue();
+        int packetId = idMapping.inverse().get(this.getClass()).intValue();
 
-        writeData(output);
+        this.writeData(output);
         return PacketDispatcher.getTinyPacket(RPG.instance, (short) packetId, output.toByteArray());
     }
 
     public final void sendToAll() {
-        MinecraftServer.getServer().getConfigurationManager().sendPacketToAllPlayers(generatePacket());
+        MinecraftServer.getServer().getConfigurationManager().sendPacketToAllPlayers(this.generatePacket());
     }
 
     public final void sendToAllNear(double x, double y, double z, int dimension, double radius) {
-        MinecraftServer.getServer().getConfigurationManager().sendToAllNear(x, y, z, radius, dimension, generatePacket());
+        MinecraftServer.getServer().getConfigurationManager().sendToAllNear(x, y, z, radius, dimension, this.generatePacket());
     }
 
     public final void sendToAllNear(Entity entity, double radius) {
-        sendToAllNear(entity.posX, entity.posY, entity.posZ, entity.dimension, radius);
+        this.sendToAllNear(entity.posX, entity.posY, entity.posZ, entity.dimension, radius);
     }
 
     public final void sendToAllNear(TileEntity tileEntity, double radius) {
-        sendToAllNear(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, tileEntity.worldObj.provider.dimensionId, radius);
+        this.sendToAllNear(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, tileEntity.worldObj.provider.dimensionId, radius);
     }
 
     public final void sendToAllTracking(Entity entity) {
         if (entity.worldObj instanceof WorldServer) {
-            ((WorldServer) entity.worldObj).getEntityTracker().sendPacketToAllPlayersTrackingEntity(entity, generatePacket());
+            ((WorldServer) entity.worldObj).getEntityTracker().sendPacketToAllPlayersTrackingEntity(entity, this.generatePacket());
         }
     }
 
@@ -101,7 +101,7 @@ public abstract class MinePGPacket {
         ServerConfigurationManager manager = server.getConfigurationManager();
         if (manager == null)
             return;
-        Packet packet = generatePacket();
+        Packet packet = this.generatePacket();
         Set<String> ops = manager.getOps();
         for (EntityPlayer player : (List<EntityPlayer>) manager.playerEntityList) {
             if (ops.contains(player.username.toLowerCase())) {
@@ -111,11 +111,11 @@ public abstract class MinePGPacket {
     }
 
     public final void sendToPlayer(EntityPlayer player) {
-        PacketDispatcher.sendPacketToPlayer(generatePacket(), (Player) player);
+        PacketDispatcher.sendPacketToPlayer(this.generatePacket(), (Player) player);
     }
 
     public final void sendToServer() {
-        PacketDispatcher.sendPacketToServer(generatePacket());
+        PacketDispatcher.sendPacketToServer(this.generatePacket());
     }
 
     protected abstract void writeData(ByteArrayDataOutput out);

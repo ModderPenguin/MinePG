@@ -3,8 +3,9 @@ package rpg.config.base.archer;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import rpg.config.RPGCreativeTabs;
+import rpg.enums.weapons.EnumBowMaterial;
 import rpg.items.RPGItem;
-import rpg.items.archer.weapons.ItemRPGBow;
+import rpg.items.archer.weapons.ItemBow;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ArcherWeapons {
@@ -24,7 +25,7 @@ public class ArcherWeapons {
         bowTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Bow ID", 1012).getInt();
         arrowTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Arrow ID", 1013).getInt();
 
-        bowTraining = new ItemRPGBow(bowTrainingID, "bowTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
+        bowTraining = new ItemBow(bowTrainingID, EnumBowMaterial.TRAINING, "bowTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
         arrowTraining = new RPGItem(arrowTrainingID, "arrowTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
     }
 }

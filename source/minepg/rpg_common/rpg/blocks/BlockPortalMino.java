@@ -20,11 +20,13 @@ public class BlockPortalMino extends BlockPortal {
         byte b0 = 0;
         byte b1 = 0;
 
-        if (par1World.getBlockId(par2 - 1, par3, par4) == MinotaurBlocks.blockTaurite.blockID || par1World.getBlockId(par2 + 1, par3, par4) == MinotaurBlocks.blockTaurite.blockID) {
+        if (par1World.getBlockId(par2 - 1, par3, par4) == MinotaurBlocks.blockTaurite.blockID
+                || par1World.getBlockId(par2 + 1, par3, par4) == MinotaurBlocks.blockTaurite.blockID) {
             b0 = 1;
         }
 
-        if (par1World.getBlockId(par2, par3, par4 - 1) == MinotaurBlocks.blockTaurite.blockID || par1World.getBlockId(par2, par3, par4 + 1) == MinotaurBlocks.blockTaurite.blockID) {
+        if (par1World.getBlockId(par2, par3, par4 - 1) == MinotaurBlocks.blockTaurite.blockID
+                || par1World.getBlockId(par2, par3, par4 + 1) == MinotaurBlocks.blockTaurite.blockID) {
             b1 = 1;
         }
 

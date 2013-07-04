@@ -17,13 +17,13 @@ public class GenericEventHandler implements IPlayerTracker {
     }
 
     @ForgeSubscribe
-    public void regenerateMana(LivingEvent event){
-        if(event.entity instanceof EntityPlayer) {
+    public void regenerateMana(LivingEvent event) {
+        if (event.entity instanceof EntityPlayer) {
             EntityPlayer ent = (EntityPlayer) event.entityLiving;
             PlayerInformation playerInfo = PlayerInformation.forPlayer(ent);
             int mana = playerInfo.getMana();
             int maxmana = playerInfo.getMaxMana();
-            if(mana < maxmana) {
+            if (mana < maxmana) {
                 int timer = playerInfo.getManaTimer();
                 timer++;
                 if (timer >= 40) {
@@ -31,7 +31,7 @@ public class GenericEventHandler implements IPlayerTracker {
                     System.out.println("Mana Timer is: " + timer);
                 }
                 playerInfo.setManaTimer(timer);
-                if(timer == 40) {                    
+                if (timer == 40) {
                     playerInfo.setManaTimer(0);
                 }
             }

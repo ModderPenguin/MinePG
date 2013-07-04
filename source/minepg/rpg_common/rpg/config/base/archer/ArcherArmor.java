@@ -5,7 +5,7 @@ import net.minecraftforge.common.Configuration;
 import rpg.RPG;
 import rpg.config.RPGCreativeTabs;
 import rpg.config.RPGMaterials;
-import rpg.items.armor.archer.ArcherTrainingArmor;
+import rpg.items.armor.archer.ArmorArcher;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ArcherArmor {
@@ -29,8 +29,11 @@ public class ArcherArmor {
         legsTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Pants ID", 1003).getInt();
         bootsTrainingID = config.get(Configuration.CATEGORY_ITEM, "Training Shoes ID", 1004).getInt();
 
-        tunicTraining = new ArcherTrainingArmor(tunicTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 1, "tunicTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
-        legsTraining = new ArcherTrainingArmor(legsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 2, "legsTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
-        bootsTraining = new ArcherTrainingArmor(bootsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 3, "bootsTraining").setCreativeTab(RPGCreativeTabs.tabArcherItems);
+        tunicTraining = new ArmorArcher(tunicTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 1, "tunicTraining")
+                .setCreativeTab(RPGCreativeTabs.tabArcherItems);
+        legsTraining = new ArmorArcher(legsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 2, "legsTraining")
+                .setCreativeTab(RPGCreativeTabs.tabArcherItems);
+        bootsTraining = new ArmorArcher(bootsTrainingID, RPGMaterials.trainingArmor, RPG.proxy.addArmor("archerTraining"), 3, "bootsTraining")
+                .setCreativeTab(RPGCreativeTabs.tabArcherItems);
     }
 }

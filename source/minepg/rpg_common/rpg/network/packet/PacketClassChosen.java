@@ -35,32 +35,32 @@ public class PacketClassChosen extends MinePGPacket {
             playerInfo.setCurrency(20);
             player.addExperienceLevel(1);
             switch (this.buttonID) {
-            case 0:
-                playerInfo.setPlayersClass(this.playersNewClass);
-                player.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.bowTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.arrowTraining, 32));
-                player.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.tunicTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.legsTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.bootsTraining, 1));
-                new PacketPlayerInfo(playerInfo).sendToPlayer(player);
-                break;
-            case 1:
-                playerInfo.setPlayersClass(this.playersNewClass);
-                player.inventory.addItemStackToInventory(new ItemStack(MageWeapons.staffTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(MageArmor.hatTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(MageArmor.robeTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(MageArmor.sandalsTraining, 1));
-                new PacketPlayerInfo(playerInfo).sendToPlayer(player);
-                break;
-            case 2:
-                playerInfo.setPlayersClass(this.playersNewClass);
-                player.inventory.addItemStackToInventory(new ItemStack(WarriorWeapons.swordTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.helmetTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.cuirassTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.greavesTraining, 1));
-                player.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.sabatonsTraining, 1));
-                new PacketPlayerInfo(playerInfo).sendToPlayer(player);
-                break;
+                case 0:
+                    playerInfo.setPlayersClass(this.playersNewClass);
+                    player.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.bowTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(ArcherWeapons.arrowTraining, 32));
+                    player.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.tunicTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.legsTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(ArcherArmor.bootsTraining, 1));
+                    new PacketPlayerInfo(playerInfo).sendToPlayer(player);
+                    break;
+                case 1:
+                    playerInfo.setPlayersClass(this.playersNewClass);
+                    player.inventory.addItemStackToInventory(new ItemStack(MageWeapons.staffTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(MageArmor.hatTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(MageArmor.robeTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(MageArmor.sandalsTraining, 1));
+                    new PacketPlayerInfo(playerInfo).sendToPlayer(player);
+                    break;
+                case 2:
+                    playerInfo.setPlayersClass(this.playersNewClass);
+                    player.inventory.addItemStackToInventory(new ItemStack(WarriorWeapons.swordTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.helmetTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.cuirassTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.greavesTraining, 1));
+                    player.inventory.addItemStackToInventory(new ItemStack(WarriorArmor.sabatonsTraining, 1));
+                    new PacketPlayerInfo(playerInfo).sendToPlayer(player);
+                    break;
             }
         }
     }
@@ -68,7 +68,7 @@ public class PacketClassChosen extends MinePGPacket {
     @Override
     protected void writeData(ByteArrayDataOutput out) {
         out.writeUTF(this.playersNewClass);
-        out.writeInt(buttonID);
+        out.writeInt(this.buttonID);
     }
 
     @Override

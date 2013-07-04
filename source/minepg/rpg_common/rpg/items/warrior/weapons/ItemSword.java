@@ -17,12 +17,12 @@ import rpg.playerinfo.PlayerInformation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemRPGSword extends RPGItem {
+public class ItemSword extends RPGItem {
 
     private int weaponDamage;
     private final EnumRPGToolMaterial toolMaterial;
 
-    public ItemRPGSword(int id, EnumRPGToolMaterial material, String name) {
+    public ItemSword(int id, EnumRPGToolMaterial material, String name) {
         super(id, name);
         this.toolMaterial = material;
         this.maxStackSize = 1;
@@ -32,7 +32,9 @@ public class ItemRPGSword extends RPGItem {
     }
 
     @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({
+            "rawtypes", "unchecked"
+    })
     public void addInformation(ItemStack par1ItemStack, EntityPlayer player, List par3List, boolean par4) {
         PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
         // Checks the players class and colored item name
@@ -53,7 +55,8 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Returns if the item (tool) can harvest results from the block type.
+     * Returns if the item (tool) can harvest results from
+     * the block type.
      */
     @Override
     public boolean canHarvestBlock(Block par1Block) {
@@ -81,7 +84,8 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Return the enchantability factor of the item, most of the time is based on material.
+     * Return the enchantability factor of the item, most of
+     * the time is based on material.
      */
     @Override
     public int getItemEnchantability() {
@@ -89,7 +93,8 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * returns the action that specifies what animation to play when the items is being used
+     * returns the action that specifies what animation to
+     * play when the items is being used
      */
     @Override
     public EnumAction getItemUseAction(ItemStack par1ItemStack) {
@@ -105,8 +110,9 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Returns the strength of the stack against a given block. 1.0F base, (Quality+1)*2 if correct blocktype, 1.5F if
-     * sword
+     * Returns the strength of the stack against a given
+     * block. 1.0F base, (Quality+1)*2 if correct blocktype,
+     * 1.5F if sword
      */
     @Override
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
@@ -114,7 +120,8 @@ public class ItemRPGSword extends RPGItem {
             return 15.0F;
         else {
             Material material = par2Block.blockMaterial;
-            return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.pumpkin ? 1.0F : 1.5F;
+            return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves
+                    && material != Material.pumpkin ? 1.0F : 1.5F;
         }
     }
 
@@ -126,8 +133,9 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
-     * the damage on the stack.
+     * Current implementations of this method in child
+     * classes do not use the entry argument beside ev. They
+     * just raise the damage on the stack.
      */
     @Override
     public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
@@ -154,11 +162,14 @@ public class ItemRPGSword extends RPGItem {
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right
+     * mouse button is pressed. Args: itemStack, world,
+     * entityPlayer
      */
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-        // TODO I need to put something more interesting here...
+        // TODO I need to put something more interesting
+        // here...
         par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }

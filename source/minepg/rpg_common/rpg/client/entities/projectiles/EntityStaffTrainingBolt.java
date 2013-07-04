@@ -1,15 +1,15 @@
 package rpg.client.entities.projectiles;
 
-import rpg.enums.weapons.EnumRPGStaffMaterial;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import rpg.enums.weapons.EnumStaffMaterial;
 
 public class EntityStaffTrainingBolt extends EntityThrowable {
 
-    public byte damage = (byte)EnumRPGStaffMaterial.TRAINING.getMagicDamage();
+    public byte damage = (byte) EnumStaffMaterial.TRAINING.getMagicDamage();
 
     public EntityStaffTrainingBolt(World var1) {
         super(var1);
@@ -33,13 +33,13 @@ public class EntityStaffTrainingBolt extends EntityThrowable {
             this.setDead();
         }
     }
-    
+
     /**
-     * Gets the amount of gravity to apply to the thrown entity with each tick.
+     * Gets the amount of gravity to apply to the thrown
+     * entity with each tick.
      */
     @Override
-    protected float getGravityVelocity()
-    {
+    protected float getGravityVelocity() {
         return 0;
     }
 }

@@ -22,14 +22,14 @@ public class PacketSendChat extends MinePGPacket {
     @Override
     protected void execute(EntityPlayer player, Side side) {
         if (side.isServer()) {
-            EntityPlayerMP playerMP = (EntityPlayerMP)player;
-            playerMP.sendChatToPlayer(message);
+            EntityPlayerMP playerMP = (EntityPlayerMP) player;
+            playerMP.sendChatToPlayer(this.message);
         }
     }
 
     @Override
     protected void writeData(ByteArrayDataOutput out) {
-        out.writeUTF(message);
+        out.writeUTF(this.message);
     }
 
     @Override
